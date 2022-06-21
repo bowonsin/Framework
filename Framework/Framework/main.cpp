@@ -1,4 +1,4 @@
-#include <iostream>
+ #include <iostream>
 //framework ver0.1 2022-06-20
 using namespace std;
 
