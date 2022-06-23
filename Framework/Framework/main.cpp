@@ -1,24 +1,33 @@
-#include "Child.h"
-#include "Bullet.h"
+#include "MainUpdate.h"
 
-class Parent
-{
-protected:
-
-public:
-
-};
 
 
 int main(void)
 {
-	
 
+	MainUpdate Main;
+	Main.Initialize();
+	
+	ULONGLONG Time = GetTickCount64();// 1/ 1000;
+	while (true)
+	{
+		if (Time + 16 < GetTickCount64()) //Time + 50 < GetTickCount64() 0.05 초 + 
+		{
+			Time = GetTickCount64();
+
+			system("cls");
+			
+
+			Main.Update();
+			Main.Render();
+
+		}
+	}
 
 	return 0;
 }
 
-#pragma region C++
+#pragma region C++ 볼만한거
 // C++ 5가지
 
 // ** 1. 정보은닉
@@ -335,4 +344,58 @@ public:
 	}
 */
 
+// ** const 
+/*
+	const 상수와 키웓,
+	void setnumber(const int& _Number){ m_Number = _Number;}에서 
+	_Number 값이 교체되거나 변경 되지 말아야 하는 경우에 const 값을 사용한다.
+	협업시 코드 작업시 조심 해달라고 하는 표현 으로 const 를 사용하는 할 수도 있다
+
+	int GetNumber()	{return m_Number;}
+	이 함수에서 return m_Number 의 값을 건들지 말라고 하면
+	int Getnumber() const{return m_Number;} 로 사용해두 된다.
+	const <= 상수화 키워드
+
+*/
+
+// ** & 연산자 사용 시기
+/*
+	& 연산이 단항 연산자로 사양될때 주소 반환연산자로 사용 된다.
+	레퍼런스 연산자 -> 데이터 타입에 붙어있다. ( C++ 에서 새로 나오게 된 기능 ) 
+	레퍼런스 키워드를 사용할 때에는 const 키워드를 사용하는게 대체적이다.
+	void setnumber(const int& _Number){ m_Number = _Number;} -> 이경우 
+
+*/
+
 #pragma endregion 
+
+#define region  SingleTon
+
+// ** Singleton
+/*
+class Singleton
+{
+private:
+	static Singleton * Instance;
+	Singleton() {}
+	Singleton() :Number(10) {}
+
+	int Number;
+
+public:
+	static Singleton* GetInstance()
+	{
+		if (Instance == nullptr)
+			Instance = new Singleton;
+
+		return Instance;
+	}
+
+	int GetNumber() const { return Number; }
+	void SetNumber(const int& _Number) { Number = _Number; }
+
+	~Singleton() {}
+};
+Singleton* Singleton::Instance = nullptr;
+*/
+#define endregion

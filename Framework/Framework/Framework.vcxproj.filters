@@ -13,42 +13,45 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="소스 파일\Parent">
-      <UniqueIdentifier>{d3009754-4283-4191-a700-e0507abba802}</UniqueIdentifier>
+    <Filter Include="소스 파일\MainUpdate">
+      <UniqueIdentifier>{3f0efff4-d3b9-4af1-bfdb-cc6f8cc2ca28}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Parent\Child">
-      <UniqueIdentifier>{8694f0ca-8858-4b0e-baba-a0d41322ccf8}</UniqueIdentifier>
+    <Filter Include="소스 파일\MainUpdate\99.Manager">
+      <UniqueIdentifier>{2d9273ad-163c-4395-ae31-1c987af54efb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Parent\Bullet">
-      <UniqueIdentifier>{ea0403dd-6a83-42dc-b617-207713d26a01}</UniqueIdentifier>
+    <Filter Include="소스 파일\MainUpdate\99.Manager\SceneManager">
+      <UniqueIdentifier>{00044904-b441-4bcf-87fb-5def208bd3a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\include">
+      <UniqueIdentifier>{61ced6a3-3f5b-4389-93a1-0f7e2ad2c8c3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Parent.cpp">
-      <Filter>소스 파일\Parent</Filter>
+    <ClCompile Include="MainUpdate.cpp">
+      <Filter>소스 파일\MainUpdate</Filter>
     </ClCompile>
-    <ClCompile Include="Child.cpp">
-      <Filter>소스 파일\Parent\Child</Filter>
-    </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>소스 파일\Parent\Bullet</Filter>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Parent.h">
-      <Filter>소스 파일\Parent</Filter>
-    </ClInclude>
     <ClInclude Include="Headers.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Child.h">
-      <Filter>소스 파일\Parent\Child</Filter>
+    <ClInclude Include="MainUpdate.h">
+      <Filter>소스 파일\MainUpdate</Filter>
     </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>소스 파일\Parent\Bullet</Filter>
+    <ClInclude Include="SceneManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Constant.h">
+      <Filter>헤더 파일\include</Filter>
+    </ClInclude>
+    <ClInclude Include="enum.h">
+      <Filter>헤더 파일\include</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
