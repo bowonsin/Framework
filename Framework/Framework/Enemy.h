@@ -9,6 +9,6 @@ public:
 	virtual void Release()override;
 
 	Enemy();
-	~Enemy();
+	virtual ~Enemy();
 };
 

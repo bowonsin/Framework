@@ -7,7 +7,7 @@
 #include <map>
 #include <list>
 
-//framework ver2.4 2022-06-24
+//framework ver3.1 2022-06-24 Test Range
 using namespace std;
 
 #include "Define.h"

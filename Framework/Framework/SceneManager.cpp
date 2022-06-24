@@ -52,7 +52,6 @@ void SceneManager::Render()
 
 void SceneManager::Release()
 {
-	delete SceneState;
-	SceneState = nullptr;
+	::Safe_Delete(SceneState);
 
 }

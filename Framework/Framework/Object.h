@@ -9,6 +9,6 @@ public:
 	virtual void Release()PURE;
 
 	Object();
-	~Object();
+	virtual ~Object();
 };
 

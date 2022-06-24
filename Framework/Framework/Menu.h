@@ -8,6 +8,6 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 	Menu();
-	~Menu();
+	virtual ~Menu();
 };
 

@@ -3,6 +3,8 @@
 
 class Scene
 {
+protected:
+	string str;
 public:
 	virtual void Initialize()PURE; //PURE  순수 가상함수와 비슷 하게 작용 된다.
 	virtual void Update()PURE;
@@ -10,5 +12,6 @@ public:
 	virtual void Release()PURE;
 
 	Scene();
-	~Scene();
+	Scene(string _str);
+	virtual ~Scene();
 };
