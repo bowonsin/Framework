@@ -3,7 +3,6 @@
 class InputManager
 {
 private:
-	InputManager();
 	static InputManager* Instance;
 
 public:
@@ -14,10 +13,17 @@ public:
 
 		return Instance;
 	}
-	~InputManager();
+
 
 private:
 	DWORD Key;
 public:
 	void InputKey();
+	DWORD GetKey() const { return Key; }
+
+private:
+	InputManager();
+public:
+	~InputManager();
+
 };

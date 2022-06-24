@@ -7,8 +7,9 @@
 #include <map>
 #include <list>
 
-//framework ver1.0 2022-06-23
+//framework ver2.4 2022-06-24
 using namespace std;
 
+#include "Define.h"
 #include "Constant.h"
-#include "enum.h"
+#include "Enum.h"
