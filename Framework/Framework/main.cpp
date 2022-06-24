@@ -1,10 +1,40 @@
 #include "MainUpdate.h"
 
-
+const DWORD KEY_UP = 1;
+const DWORD KEY_DOWN = 2;
+const DWORD KEY_LEFT = 4;
+const DWORD KEY_RIGHT = 8;
+const DWORD KEY_SPACE = 16;
+const DWORD KEY_ENETER = 32;
+const DWORD KEY_CTRL = 64;
+const DWORD KEY_ALT = 128;
 
 int main(void)
 {
+	/*
+	DWORD InputKey = 0;
 
+	cout << "ÀÔ·Â : "; cin >> InputKey;
+
+	if (InputKey & KEY_UP)
+		cout << "KEY_UP " << endl;
+	if (InputKey & KEY_DOWN)
+		cout << "KEY_DOWN " << endl;
+	if (InputKey & KEY_LEFT)
+		cout << "KEY_LEFT " << endl;
+	if (InputKey & KEY_RIGHT)
+		cout << "KEY_RIGHT " << endl;
+	if (InputKey & KEY_SPACE)
+		cout << "KEY_SPACE " << endl;
+	if (InputKey & KEY_ENETER)
+		cout << "KEY_ENETER " << endl;
+	if (InputKey & KEY_CTRL)
+		cout << "KEY_CTRL " << endl;
+	if (InputKey & KEY_ALT)
+		cout << "KEY_ALT " << endl;
+	*/
+
+	
 	MainUpdate Main;
 	Main.Initialize();
 	
@@ -14,15 +44,13 @@ int main(void)
 		if (Time + 16 < GetTickCount64()) //Time + 50 < GetTickCount64() 0.05 ÃÊ + 
 		{
 			Time = GetTickCount64();
-
 			system("cls");
-			
-
 			Main.Update();
 			Main.Render();
 
 		}
 	}
+	
 
 	return 0;
 }
@@ -369,8 +397,7 @@ public:
 
 #pragma endregion 
 
-#define region  SingleTon
-
+#pragma region SingleTon
 // ** Singleton
 /*
 class Singleton
@@ -398,4 +425,15 @@ public:
 };
 Singleton* Singleton::Instance = nullptr;
 */
-#define endregion
+#pragma endregion 
+
+#pragma region input
+
+// ** Input
+
+/*
+	
+
+*/
+
+#pragma endregion

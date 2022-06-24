@@ -20,4 +20,6 @@ void SceneManager::SetScene(int _SceneState)
 		cout << "EXIT" << endl;
 		break;
 	}
+
+	Sleep(500);
 }
