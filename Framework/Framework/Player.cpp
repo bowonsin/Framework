@@ -1,12 +1,14 @@
 #include "Player.h"
 #include "InputManager.h"
 
-Player::Player()
-	:Horizontal(0),Vertical(0){}
+Player::Player():Horizontal(0),Vertical(0){}
+Player::Player(Trasnform _info):Object(_info){}
 Player::~Player(){}
 
 void Player::Initialize()
 {
+	strKey = "Player";
+
 	Horizontal = 0;
 	Vertical = 0;
 }
@@ -26,7 +28,8 @@ void Player::Update()
 
 void Player::Render()
 {
-	cout << "X : " << Horizontal << endl << "Y : " << Vertical << endl;
+	cout << "Player" << endl;
+	cout << "X : " << Horizontal << endl << "Y : " << Vertical << endl << endl;
 }
 
 void Player::Release()

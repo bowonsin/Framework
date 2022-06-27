@@ -254,7 +254,7 @@ public:
 	Object() {};
 	Object(tagInfo _info) : m_Info(_info) {}
 
-	virtual Object* Clone() = 0;
+	virtual Object* Clone() = 0; // Clone 을 다시한번 확인하고 기억하기
 };
 
 class Player: public Object

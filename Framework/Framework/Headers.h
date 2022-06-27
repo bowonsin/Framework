@@ -6,6 +6,7 @@
 #include <vector>
 #include <map>
 #include <list>
+#include <string>
 
 //framework ver3.1 2022-06-24 Test Range
 using namespace std;
@@ -13,3 +14,4 @@ using namespace std;
 #include "Define.h"
 #include "Constant.h"
 #include "Enum.h"
+#include "Struct.h"

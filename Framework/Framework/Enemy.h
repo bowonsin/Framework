@@ -8,7 +8,11 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 
+	virtual Object* Clone()override { return new Enemy(*this); }
+
+
 	Enemy();
+	Enemy(Trasnform _info);
 	virtual ~Enemy();
 };
 

@@ -49,6 +49,9 @@
     <Filter Include="소스 파일\02.Object\Enemy">
       <UniqueIdentifier>{d03d5424-647c-457e-8e38-c2f3b355ea54}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\99.Manager\ObjectManager">
+      <UniqueIdentifier>{3df3439c-9c85-449d-8e97-4ac9a0241926}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -83,6 +86,9 @@
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
       <Filter>소스 파일\02.Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>소스 파일\99.Manager\ObjectManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +133,12 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>소스 파일\02.Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>소스 파일\99.Manager\ObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Struct.h">
+      <Filter>헤더 파일\include</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
