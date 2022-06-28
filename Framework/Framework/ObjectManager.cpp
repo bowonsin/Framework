@@ -28,18 +28,25 @@ void ObjectManager::Redner() // ¾È½áµÎ µÊ
 		for (list<Object*>::iterator iter2 = iter->second.begin();iter2 != iter->second.end(); ++iter2)
 			(*iter2)->Render();
 }
-
-Object* ObjectManager::GetPlayerObject(string _Key)
+void ObjectManager::Update()
 {
 	for (map<string, list<Object*>>::iterator iter = ObjectList.begin(); iter != ObjectList.end(); ++iter)
-		for (list<Object*>::iterator iter2 = iter->second.begin(); iter2 != iter->second.end(); ++iter2)
-	{
-		if ((*iter2)->GetKey() == _Key)
-			return (*iter2);
-	}
-	return nullptr;
-}
+		for (list<Object*>::iterator iter2 = iter->second.begin(); iter2 != iter->second.end();)
+		{
+			int result = (*iter2)->Update();
 
+			if (result == BUFFER_OVER)
+			{
+				Object* Temp = *iter2;
+				iter2 = iter->second.erase(iter2);
+				delete Temp;
+				Temp = nullptr;
+			}
+			else
+				++iter2
+
+		}
+}
 list<Object*>* ObjectManager::GetObject_list(string _Key)
 {
 	map<string, list<Object*>>::iterator iter = ObjectList.find(_Key);

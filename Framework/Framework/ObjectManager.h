@@ -19,7 +19,7 @@ private:
 public:
 	void AddObject(Object* _Object);
 	void Redner();
-	Object* GetPlayerObject(string _Key);
+	void Update();
 	list<Object*>* GetObject_list(string _Key);
 
 private:

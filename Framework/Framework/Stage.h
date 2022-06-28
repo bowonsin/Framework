@@ -5,6 +5,7 @@ class Stage : public Scene
 {
 private:
 	Object* pPlayer;
+	list<Object*>* pEnemyList;
 public:
 	virtual void Initialize()override; //PURE  순수 가상함수와 비슷 하게 작용 된다.
 	virtual void Update()override;

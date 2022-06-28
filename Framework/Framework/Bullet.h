@@ -1,6 +1,6 @@
 #pragma once
 #include "Object.h"
-class Enemy : public Object
+class Bullet: public Object
 {
 public:
 	virtual void Initialize()override; //PURE  순수 가상함수와 비슷 하게 작용 된다.
@@ -8,10 +8,9 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 
-	virtual Object* Clone()override	{	return new Enemy(*this);}
+	virtual Object* Clone()override { return new Bullet(*this); }
 
-	Enemy();
-	Enemy(Trasnform _info);
-	virtual ~Enemy();
+	Bullet();
+	Bullet(Trasnform _info);
+	virtual ~Bullet();
 };
-

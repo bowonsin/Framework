@@ -10,7 +10,6 @@ public:
 	virtual void Release()override;
 
 	Logo();
-	Logo(string _str);
 	virtual ~Logo();
 };
 
