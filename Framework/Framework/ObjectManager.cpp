@@ -43,8 +43,7 @@ void ObjectManager::Update()
 				Temp = nullptr;
 			}
 			else
-				++iter2
-
+				++iter2;
 		}
 }
 list<Object*>* ObjectManager::GetObject_list(string _Key)
