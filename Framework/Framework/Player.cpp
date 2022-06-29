@@ -6,17 +6,20 @@
 #include "ObjectManager.h"
 
 
-Player::Player():Horizontal(0),Vertical(0){}
+Player::Player(){}
 Player::Player(Trasnform _info):Object(_info){}
 Player::~Player(){}
 
 void Player::Initialize()
 {
-	strKey = "¢Á";
+	strKey = "AA";
 
 	TransInfo.Position = Vector3(10.0f, 15.0f);
 	TransInfo.Rotation = Vector3(0.0f, 5.0f);
-	TransInfo.Sacle = Vector3(2.0f, 1.0f);
+	TransInfo.Sacle = Vector3(2.0f, 2.0f);
+
+	Buffer[0] = (char*)'¿À';
+	Buffer[1] = (char*)'¤µ';
 }
 
 int Player::Update()
@@ -46,7 +49,13 @@ int Player::Update()
 void Player::Render()
 {
 
-	CursorManager::Draw(TransInfo.Position.x, TransInfo.Position.y, strKey);
+	for (int i = 0; i < 2; ++i)
+	{
+		CursorManager::Draw(
+			TransInfo.Position.x - (TransInfo.Sacle.x * 0.5f),
+			TransInfo.Position.y - (TransInfo.Sacle.y * 0.5f),
+			Buffer[i]);
+	}
 
 
 	//cout << "Player" << endl;

@@ -4,10 +4,12 @@
 
 #include "SceneManager.h"
 #include "ObjectManager.h"
+#include "CollisionManager.h"
+#include "CursorManager.h"
 
 //#include "CursorManager.h"
 
-Stage::Stage(): pPlayer(nullptr){}
+Stage::Stage(){}
 Stage::~Stage() { Release(); }
 
 void Stage::Initialize()
@@ -20,7 +22,9 @@ void Stage::Initialize()
 		srand((DWORD)GetTickCount64() * (i + 1));
 
 		Object* pEnemy = pEnemyProto->Clone();
-		pEnemy->Setposition(118.0f, rand()% 30);
+		//pEnemy->Setposition(118.0f, rand()% 30);
+		pEnemy->Setposition(float(rand()% 118), rand() % 30);
+
 
 		ObjectManager::GetInstance()->AddObject(pEnemy);
 
@@ -41,7 +45,10 @@ void Stage::Update()
 {
 	ObjectManager::GetInstance()->Update();
 
+	Object* pPlayer = ObjectManager::GetInstance()->GetObject_list("AA")->front();
 	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObject_list("＊");
+	list<Object*>* pEnemy = ObjectManager::GetInstance()->GetObject_list("BB");
+
 	if (pBulletList != nullptr)
 	{
 		for (list<Object*>::iterator iter = pBulletList->begin(); iter != pBulletList->end();)
@@ -54,6 +61,27 @@ void Stage::Update()
 			}
 			else
 				++iter;
+		}
+	}
+
+	if (pEnemy !=nullptr && pBulletList != nullptr)
+	{
+		for (list<Object*>::iterator pBulletIter = pBulletList->begin(); pBulletIter != pBulletList->end(); ++pBulletIter)
+		{
+			for (list<Object*>::iterator pEnemyIter = pEnemy->begin(); pEnemyIter != pEnemy->end(); ++pEnemyIter)
+			{
+				if (CollisionManager::Collision(*pBulletIter, *pEnemyIter))
+					CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
+			}
+
+		}
+	}
+	if (pEnemy != nullptr && pPlayer != nullptr)
+	{
+		for (list<Object*>::iterator pEnemyIter = pEnemy->begin(); pEnemyIter != pEnemy->end(); ++pEnemyIter)
+		{
+			if (CollisionManager::Collision(pPlayer, *pEnemyIter))
+				CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
 		}
 	}
 }

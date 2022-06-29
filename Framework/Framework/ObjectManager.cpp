@@ -35,6 +35,7 @@ void ObjectManager::Update()
 		{
 			int result = (*iter2)->Update();
 
+
 			if (result == BUFFER_OVER)
 			{
 				Object* Temp = *iter2;
