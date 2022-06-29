@@ -8,7 +8,7 @@
 #include <list>
 #include <string>
 
-//framework ver5.1 2022-06-24 Test Range
+//framework ver5.2 2022-06-29 Test Range
 using namespace std;
 
 #include "Define.h"
