@@ -1,21 +1,28 @@
 #include "Stage.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "ScrollBox.h"
 
 #include "SceneManager.h"
 #include "ObjectManager.h"
 #include "CollisionManager.h"
 #include "CursorManager.h"
+#include "InputManager.h"
+
+#include "ObjectFActory.h"
 
 //#include "CursorManager.h"
 
-Stage::Stage(){}
+Stage::Stage():pUI(nullptr),Check (0){}
 Stage::~Stage() { Release(); }
 
 void Stage::Initialize()
 {
-	Object* pEnemyProto= new Enemy;
-	pEnemyProto->Initialize();
+	Check = 0;
+	
+	Object* pEnemyProto = ObjectFactory<Enemy>::CreateObject();
+	pUI = new ScrollBox;
+	pUI->Initialize();
 
 	for (int i = 0; i < 5; ++i)
 	{
@@ -43,6 +50,12 @@ void Stage::Initialize()
 
 void Stage::Update()
 {
+	DWORD dwKey = InputManager::GetInstance()->GetKey();
+	if (dwKey & KEY_TAB)// 
+	{
+		Enable_UI();
+	}
+
 	ObjectManager::GetInstance()->Update();
 
 	Object* pPlayer = ObjectManager::GetInstance()->GetObject_list("Player")->front();
@@ -64,37 +77,49 @@ void Stage::Update()
 		}
 	}
 
-	if (pEnemyList !=nullptr && pBulletList != nullptr)
+	if (pPlayer != nullptr)
 	{
-		for (list<Object*>::iterator pBulletIter = pBulletList->begin(); 
-			pBulletIter != pBulletList->end(); ++pBulletIter)
+		if (pEnemyList != nullptr)
 		{
 			for (list<Object*>::iterator pEnemyIter = pEnemyList->begin();
 				pEnemyIter != pEnemyList->end(); ++pEnemyIter)
 			{
-				if (CollisionManager::Collision(*pBulletIter, *pEnemyIter))
+				if (CollisionManager::Collision(pPlayer, *pEnemyIter))
 					CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
-			}
 
+				if (pBulletList != nullptr)
+				{
+					for (list<Object*>::iterator pBulletIter = pBulletList->begin();
+						pBulletIter != pBulletList->end(); ++pBulletIter)
+					{
+
+						{
+							if (CollisionManager::Collision(*pBulletIter, *pEnemyIter))
+								CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
+						}
+
+					}
+				}
+			}
 		}
 	}
-	if (pEnemyList != nullptr && pPlayer != nullptr)
-	{
-		for (list<Object*>::iterator pEnemyIter = pEnemyList->begin();
-			pEnemyIter != pEnemyList->end(); ++pEnemyIter)
-		{
-			if (CollisionManager::Collision(pPlayer, *pEnemyIter))
-				CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
-		}
-	}
+	pUI->Update();
 }
 
 void Stage::Render()
 {
+	if (Check)
+		pUI->Render();
 	ObjectManager::GetInstance()->Redner();
 }
 
 void Stage::Release()
 {
 
+}
+
+void Stage::Enable_UI()
+{
+	Check = !Check;
+	
 }

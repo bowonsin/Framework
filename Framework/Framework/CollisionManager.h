@@ -6,7 +6,7 @@ class CollisionManager
 {
 public:
 	
-	static bool Collision(const Object* _ObjA, const Object* _ObjB)
+	static bool Collision(const Object* _ObjA, Object* _ObjB)
 	{
 		// ** Positoin ¹Þ¾Æ¿È.
 		Vector3 Position_A = _ObjA->Getposition();

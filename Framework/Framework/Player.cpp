@@ -4,6 +4,7 @@
 #include "InputManager.h"
 #include "CursorManager.h"
 #include "ObjectManager.h"
+#include "ObjectFActory.h"
 
 
 Player::Player(){}
@@ -36,13 +37,8 @@ int Player::Update()
 		TransInfo.Position.x +=1;
 
 	if (dwKey & KEY_SPACE)
-	{
-		Object* pBullet = new Bullet;
-		pBullet->Initialize();
-		pBullet->Setposition(TransInfo.Position);
+		ObjectManager::GetInstance()->AddObject(ObjectFactory<Bullet>::CreateObject(TransInfo.Position));
 
-		ObjectManager::GetInstance()->AddObject(pBullet);
-	}
 	return 0;
 }
 

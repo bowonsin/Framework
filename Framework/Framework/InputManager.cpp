@@ -23,6 +23,9 @@ void InputManager::InputKey()
 		Key |= KEY_CTRL;
 	if (GetAsyncKeyState(VK_MENU))
 		Key |= KEY_ALT;
+	if (GetAsyncKeyState(VK_TAB))
+		Key |= KEY_TAB;
+
 }
 /*
 	if (GetAsyncKeyState(VK_UP))// 키 입력을 받는 함수 VK(VirtualKey_  방향)
