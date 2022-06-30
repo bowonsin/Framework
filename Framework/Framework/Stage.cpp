@@ -45,9 +45,9 @@ void Stage::Update()
 {
 	ObjectManager::GetInstance()->Update();
 
-	Object* pPlayer = ObjectManager::GetInstance()->GetObject_list("AA")->front();
-	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObject_list("£ª");
-	list<Object*>* pEnemy = ObjectManager::GetInstance()->GetObject_list("BB");
+	Object* pPlayer = ObjectManager::GetInstance()->GetObject_list("Player")->front();
+	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObject_list("Bullet");
+	list<Object*>* pEnemy = ObjectManager::GetInstance()->GetObject_list("Enemy");
 
 	if (pBulletList != nullptr)
 	{
@@ -93,5 +93,5 @@ void Stage::Render()
 
 void Stage::Release()
 {
-	::Safe_Delete(pPlayer);
+
 }

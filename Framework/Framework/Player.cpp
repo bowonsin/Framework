@@ -12,14 +12,14 @@ Player::~Player(){}
 
 void Player::Initialize()
 {
-	strKey = "AA";
+	strKey = "Player";
 
-	TransInfo.Position = Vector3(10.0f, 15.0f);
-	TransInfo.Rotation = Vector3(0.0f, 5.0f);
-	TransInfo.Sacle = Vector3(2.0f, 2.0f);
+	Buffer[0] = (char*)"神";
+	Buffer[1] = (char*)"さ";
 
-	Buffer[0] = (char*)'神';
-	Buffer[1] = (char*)'さ';
+	TransInfo.Position = Vector3(20.0f, 15.0f);
+	TransInfo.Rotation = Vector3(0.0f, 0.0f);
+	TransInfo.Scale = Vector3(2.0f, 2.0f);
 }
 
 int Player::Update()
@@ -49,18 +49,18 @@ int Player::Update()
 void Player::Render()
 {
 
-	for (int i = 0; i < 2; ++i)
+	for (int i = 0; i < MAX_SIZE; ++i)
 	{
 		CursorManager::Draw(
-			TransInfo.Position.x - (TransInfo.Sacle.x * 0.5f),
-			TransInfo.Position.y - (TransInfo.Sacle.y * 0.5f),
+			TransInfo.Position.x - (TransInfo.Scale.x * 0.5f),
+			TransInfo.Position.y - (TransInfo.Scale.x * 0.5f) + i,
 			Buffer[i]);
 	}
+}
 
 
 	//cout << "Player" << endl;
 	//cout << "X : " << Horizontal << endl << "Y : " << Vertical << endl << endl;
-}
 
 void Player::Release()
 {
