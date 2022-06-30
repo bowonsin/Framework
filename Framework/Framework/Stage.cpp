@@ -47,7 +47,7 @@ void Stage::Update()
 
 	Object* pPlayer = ObjectManager::GetInstance()->GetObject_list("Player")->front();
 	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObject_list("Bullet");
-	list<Object*>* pEnemy = ObjectManager::GetInstance()->GetObject_list("Enemy");
+	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObject_list("Enemy");
 
 	if (pBulletList != nullptr)
 	{
@@ -64,11 +64,13 @@ void Stage::Update()
 		}
 	}
 
-	if (pEnemy !=nullptr && pBulletList != nullptr)
+	if (pEnemyList !=nullptr && pBulletList != nullptr)
 	{
-		for (list<Object*>::iterator pBulletIter = pBulletList->begin(); pBulletIter != pBulletList->end(); ++pBulletIter)
+		for (list<Object*>::iterator pBulletIter = pBulletList->begin(); 
+			pBulletIter != pBulletList->end(); ++pBulletIter)
 		{
-			for (list<Object*>::iterator pEnemyIter = pEnemy->begin(); pEnemyIter != pEnemy->end(); ++pEnemyIter)
+			for (list<Object*>::iterator pEnemyIter = pEnemyList->begin();
+				pEnemyIter != pEnemyList->end(); ++pEnemyIter)
 			{
 				if (CollisionManager::Collision(*pBulletIter, *pEnemyIter))
 					CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
@@ -76,9 +78,10 @@ void Stage::Update()
 
 		}
 	}
-	if (pEnemy != nullptr && pPlayer != nullptr)
+	if (pEnemyList != nullptr && pPlayer != nullptr)
 	{
-		for (list<Object*>::iterator pEnemyIter = pEnemy->begin(); pEnemyIter != pEnemy->end(); ++pEnemyIter)
+		for (list<Object*>::iterator pEnemyIter = pEnemyList->begin();
+			pEnemyIter != pEnemyList->end(); ++pEnemyIter)
 		{
 			if (CollisionManager::Collision(pPlayer, *pEnemyIter))
 				CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
