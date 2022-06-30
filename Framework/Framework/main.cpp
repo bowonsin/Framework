@@ -5,30 +5,9 @@
 
 int main(void)
 {
-	/*
-	DWORD InputKey = 0;
-
-	cout << "입력 : "; cin >> InputKey;
-
-	if (InputKey & KEY_UP)
-		cout << "KEY_UP " << endl;
-	if (InputKey & KEY_DOWN)
-		cout << "KEY_DOWN " << endl;
-	if (InputKey & KEY_LEFT)
-		cout << "KEY_LEFT " << endl;
-	if (InputKey & KEY_RIGHT)
-		cout << "KEY_RIGHT " << endl;
-	if (InputKey & KEY_SPACE)
-		cout << "KEY_SPACE " << endl;
-	if (InputKey & KEY_ENETER)
-		cout << "KEY_ENETER " << endl;
-	if (InputKey & KEY_CTRL)
-		cout << "KEY_CTRL " << endl;
-	if (InputKey & KEY_ALT)
-		cout << "KEY_ALT " << endl;
-	*/
-
 	
+	
+
 	MainUpdate Main;
 	Main.Initialize();
 	
@@ -431,3 +410,44 @@ Singleton* Singleton::Instance = nullptr;
 */
 
 #pragma endregion
+
+/*
+//클래스에 붙으면 클레스 이름의 끝
+// 함수 에 부으면 함수 끝에 붙이면 된다.
+//A* a = Temp<A>::Func();
+template <typename T>
+class Temp
+{
+public:
+	// 자료형을 보내는 매개변수이다.
+	//A* a = Temp::Func<A>();
+	template <typename T1>
+	static T* Func()
+	{
+		return new T;
+	}
+	static T* Func(int i)
+	{
+		return new T;
+	}
+	static T* Func(float i)
+	{
+		return new T;
+	}
+
+};
+class B
+{
+public:
+	int Number;
+};
+
+class A
+{
+public:
+	int Number;
+};
+	A* a = Temp<A>::Func<B>();
+
+	a->Number = 10;
+	*/
