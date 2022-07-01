@@ -21,4 +21,3 @@ void Cloud::Render()
 void Cloud::Release()
 {
 }
-

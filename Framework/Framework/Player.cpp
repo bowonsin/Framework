@@ -26,7 +26,7 @@ void Player::Initialize()
 int Player::Update()
 {
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
-	if (dwKey & KEY_UP)// 키 입력을 받는 함수 VK(VirtualKey_  방향)
+	if (dwKey & KEY_UP)
 		TransInfo.Position.y -=1;
 	if (dwKey & KEY_DOWN)
 		TransInfo.Position.y +=1;

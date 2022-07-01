@@ -7,8 +7,10 @@
 #include <map>
 #include <list>
 #include <string>
+#include <math.h>
 
-//framework ver7.0 2022-06-30 (template <typename T>)
+
+//framework ver7.0 2022-06-30 
 using namespace std;
 
 #include "Define.h"

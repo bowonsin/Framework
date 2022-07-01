@@ -69,8 +69,6 @@ void Stage::Update()
 			if ((*iter)->Getposition().x >= 120.0f)
 			{
 				iter = pBulletList->erase(iter);
-				//delete (*iter); 역시나 오류난다.
-				//(*iter) = nullptr;
 			}
 			else
 				++iter;

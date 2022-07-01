@@ -14,7 +14,7 @@ int main(void)
 	ULONGLONG Time = GetTickCount64();// 1/ 1000;
 	while (true)
 	{
-		if (Time + 16 < GetTickCount64()) //Time + 50 < GetTickCount64() 0.05 ÃÊ + 
+		if (Time + 50 < GetTickCount64()) //Time + 50 < GetTickCount64() 0.05 ÃÊ + 
 		{
 			Time = GetTickCount64();
 			system("cls");
