@@ -44,17 +44,10 @@ int Player::Update()
 
 void Player::Render()
 {
+	CursorManager::GetInstance()->WriteBuffer(
+		TransInfo.Position, (char*)"ABCDEFG");
 
-	for (int i = 0; i < MAX_SIZE; ++i)
-	{
-		CursorManager::Draw(
-			TransInfo.Position.x - (TransInfo.Scale.x * 0.5f),
-			TransInfo.Position.y - (TransInfo.Scale.x * 0.5f) + i,
-			Buffer[i]);
-	}
 }
-
-
 	//cout << "Player" << endl;
 	//cout << "X : " << Horizontal << endl << "Y : " << Vertical << endl << endl;
 

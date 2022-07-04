@@ -156,6 +156,7 @@
     <ClCompile Include="ScrollBox.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="UserInterface.cpp" />
+    <ClCompile Include="CursorManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BakcGround.h" />

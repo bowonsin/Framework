@@ -10,7 +10,7 @@
 #include <math.h>
 
 
-//framework ver7.0 2022-06-30 
+//framework ver8.0 2022-07-04
 using namespace std;
 
 #include "Define.h"

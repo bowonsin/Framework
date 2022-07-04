@@ -18,6 +18,8 @@ Stage::~Stage() { Release(); }
 
 void Stage::Initialize()
 {
+
+
 	Check = 0;
 	
 	Object* pEnemyProto = ObjectFactory<Enemy>::CreateObject();
@@ -83,8 +85,7 @@ void Stage::Update()
 				pEnemyIter != pEnemyList->end(); ++pEnemyIter)
 			{
 				if (CollisionManager::Collision(pPlayer, *pEnemyIter))
-					CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
-
+					;
 				if (pBulletList != nullptr)
 				{
 					for (list<Object*>::iterator pBulletIter = pBulletList->begin();
@@ -93,7 +94,7 @@ void Stage::Update()
 
 						{
 							if (CollisionManager::Collision(*pBulletIter, *pEnemyIter))
-								CursorManager::Draw(50.0f, 1.0f, "충돌입니다.");
+								;
 						}
 
 					}

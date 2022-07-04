@@ -30,22 +30,26 @@ void Bullet::Initialize()
 
 int  Bullet::Update()
 { 
+	Vector3 Target = Vector3(60.0f, 15.0f);
+	Vector3 TargetVector = Target - TransInfo.Position; // 이 부분이 Initialize에 있으면 안됌
+	float Distance = sqrt((TargetVector.x * TargetVector.x) + (TargetVector.y * TargetVector.y));
+
+	TransInfo.Direction.x = TargetVector.x / Distance;
+	TransInfo.Direction.y = TargetVector.y / Distance;
+
 	TransInfo.Position += TransInfo.Direction;
-	//TransInfo.Position.x += 2;
+
+	float Average = sqrt(
+		(TransInfo.Direction.x * TransInfo.Direction.x) +
+		(TransInfo.Direction.y * TransInfo.Direction.y));
 
 	return 0;
 }
 
 void Bullet::Render()
 {
-	for (int i = 0; i < MAX_SIZE; ++i)
-	{
-		CursorManager::Draw(
-			TransInfo.Position.x - (TransInfo.Scale.x * 0.5f),
-			TransInfo.Position.y - (TransInfo.Scale.x * 0.5f) + i,
-			Buffer[i]);
-	}
-
+	CursorManager::GetInstance()->WriteBuffer(
+		TransInfo.Position, (char*)"ABCDEFG");
 
 }
 

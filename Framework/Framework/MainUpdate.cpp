@@ -1,12 +1,16 @@
 #include "MainUpdate.h"
 #include "SceneManager.h"
 #include "InputManager.h"
+#include "CursorManager.h"
 
 MainUpdate::MainUpdate() :Count(0) {}
 MainUpdate::~MainUpdate() { Release(); }
 
 void MainUpdate::Initialize()
 {
+	
+	CursorManager::GetInstance()->CreateBuffer(ConsoleWidthSize,ConsoleHeightSize);
+
 	SceneManager::GetInstance()->SetScene(LOGO);
 }
 
@@ -49,6 +53,8 @@ void MainUpdate::Update()
 	if (dwKey & KEY_ALT)
 		cout << "KEY_ALT " << endl;
 	*/
+
+	CursorManager::GetInstance()->FlippingBuffer();
 
 }
 

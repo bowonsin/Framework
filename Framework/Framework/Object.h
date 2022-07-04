@@ -6,6 +6,7 @@ class Object
 protected:
 	Trasnform TransInfo;
 	string strKey;
+	int Color;
 
 	char* Buffer[2];
 public:
