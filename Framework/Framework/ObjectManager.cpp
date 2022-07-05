@@ -1,22 +1,24 @@
 #include "ObjectManager.h"
+#include "ObjectPool.h"
 #include "Object.h"
 
 ObjectManager* ObjectManager::Instance = nullptr;
-
-ObjectManager::ObjectManager(){}
-
+ObjectManager::ObjectManager()
+{
+	EnableList = ObjectPool::GetEnableList();
+}
 ObjectManager::~ObjectManager(){}
 
 void ObjectManager::AddObject(Object* _Object)
 {
 	//ObjectList
-	map<string, list<Object*>>::iterator iter = ObjectList.find(_Object->GetKey());
+	map<string, list<Object*>>::iterator iter = EnableList->find(_Object->GetKey());
 
-	if (iter == ObjectList.end())
+	if (iter == EnableList->end())
 	{
 		list<Object*> TempList;
 		TempList.push_back(_Object);
-		ObjectList.insert(make_pair(_Object->GetKey(), TempList));
+		EnableList->insert(make_pair(_Object->GetKey(), TempList));
 	}
 	else
 		iter->second.push_back(_Object);
@@ -24,13 +26,13 @@ void ObjectManager::AddObject(Object* _Object)
 
 void ObjectManager::Redner() // ¾È½áµÎ µÊ
 {
-	for (map<string, list<Object*>>::iterator iter = ObjectList.begin(); iter != ObjectList.end(); ++iter)
+	for (map<string, list<Object*>>::iterator iter = EnableList->begin(); iter != EnableList->end(); ++iter)
 		for (list<Object*>::iterator iter2 = iter->second.begin();iter2 != iter->second.end(); ++iter2)
 			(*iter2)->Render();
 }
 void ObjectManager::Update()
 {
-	for (map<string, list<Object*>>::iterator iter = ObjectList.begin(); iter != ObjectList.end(); ++iter)
+	for (map<string, list<Object*>>::iterator iter = EnableList->begin(); iter != EnableList->end(); ++iter)
 		for (list<Object*>::iterator iter2 = iter->second.begin(); iter2 != iter->second.end();)
 		{
 			int result = (*iter2)->Update();
@@ -49,8 +51,8 @@ void ObjectManager::Update()
 }
 list<Object*>* ObjectManager::GetObject_list(string _Key)
 {
-	map<string, list<Object*>>::iterator iter = ObjectList.find(_Key);
-	if (iter == ObjectList.end())
+	map<string, list<Object*>>::iterator iter = EnableList->find(_Key);
+	if (iter == EnableList->end())
 		return nullptr;
 	return &iter->second;
 }

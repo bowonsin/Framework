@@ -102,14 +102,16 @@ void Stage::Update()
 			}
 		}
 	}
-	pUI->Update();
+	if (pUI)
+		pUI->Update();
 }
 
 void Stage::Render()
 {
+	ObjectManager::GetInstance()->Redner();
+
 	if (Check)
 		pUI->Render();
-	ObjectManager::GetInstance()->Redner();
 }
 
 void Stage::Release()
