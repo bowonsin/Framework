@@ -76,7 +76,7 @@ void Stage::Update()
 				++iter;
 		}
 	}
-
+	/*
 	if (pPlayer != nullptr)
 	{
 		if (pEnemyList != nullptr)
@@ -102,6 +102,7 @@ void Stage::Update()
 			}
 		}
 	}
+	*/
 	if (pUI)
 		pUI->Update();
 }

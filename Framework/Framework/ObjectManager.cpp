@@ -32,22 +32,7 @@ void ObjectManager::Redner() // ¾È½áµÎ µÊ
 }
 void ObjectManager::Update()
 {
-	for (map<string, list<Object*>>::iterator iter = EnableList->begin(); iter != EnableList->end(); ++iter)
-		for (list<Object*>::iterator iter2 = iter->second.begin(); iter2 != iter->second.end();)
-		{
-			int result = (*iter2)->Update();
-
-
-			if (result == BUFFER_OVER)
-			{
-				Object* Temp = *iter2;
-				iter2 = iter->second.erase(iter2);
-				delete Temp;
-				Temp = nullptr;
-			}
-			else
-				++iter2;
-		}
+	ObjectPool::GetInstance()->Update();
 }
 list<Object*>* ObjectManager::GetObject_list(string _Key)
 {

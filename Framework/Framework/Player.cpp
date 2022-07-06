@@ -32,7 +32,6 @@ int Player::Update()
 		TransInfo.Position.y +=1;
 	if (dwKey & KEY_LEFT)
 		TransInfo.Position.x -= 1;
-
 	if (dwKey & KEY_RIGHT)
 		TransInfo.Position.x +=1;
 
@@ -45,7 +44,7 @@ int Player::Update()
 void Player::Render()
 {
 	CursorManager::GetInstance()->WriteBuffer(
-		TransInfo.Position, (char*)"ABCDEFG");
+		TransInfo.Position, (char*)"Player");
 
 }
 	//cout << "Player" << endl;

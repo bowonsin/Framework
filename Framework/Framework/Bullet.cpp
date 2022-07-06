@@ -1,10 +1,10 @@
 #include "Bullet.h"
 #include "CursorManager.h"
+#include "MathManager.h"
 
 Bullet::Bullet() {}
 
 Bullet::Bullet(Trasnform _info) :Object(_info) {}
-
 Bullet::~Bullet() {}
 
 void Bullet::Initialize()
@@ -19,29 +19,24 @@ void Bullet::Initialize()
 	TransInfo.Scale = Vector3(2.0f, 2.0f);
 	TransInfo.Direction= Vector3(0.0f, 0.0f);
 
-	Vector3 Target = Vector3(60.0f, 15.0f);
 	// 타겟으로 부터 내 좌표를 빼면 됨
-
-	Vector3 Result = Target - TransInfo.Position;
-
-	float Distance = sqrt((Result.x * Result.x) + (Result.y * Result.y));
-	TransInfo.Direction /= Distance;
 }
 
 int  Bullet::Update()
 { 
-	Vector3 Target = Vector3(60.0f, 15.0f);
-	Vector3 TargetVector = Target - TransInfo.Position; // 이 부분이 Initialize에 있으면 안됌
-	float Distance = sqrt((TargetVector.x * TargetVector.x) + (TargetVector.y * TargetVector.y));
-
-	TransInfo.Direction.x = TargetVector.x / Distance;
-	TransInfo.Direction.y = TargetVector.y / Distance;
+	TransInfo.Direction = MathManager::GetDirection(
+	TransInfo.Position, Vector3(120.0f, 15.0f));
 
 	TransInfo.Position += TransInfo.Direction;
 
-	float Average = sqrt(
-		(TransInfo.Direction.x * TransInfo.Direction.x) +
-		(TransInfo.Direction.y * TransInfo.Direction.y));
+	float Distance = MathManager::GetDistance(
+		TransInfo.Position, Vector3(60.0f, 15.0));
+
+	
+	float Sum = 4;
+
+	if (Distance < Sum)
+		return 2;
 
 	return 0;
 }

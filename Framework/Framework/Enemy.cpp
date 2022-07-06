@@ -23,6 +23,7 @@ void Enemy::Initialize()
 int Enemy::Update()
 {
 	//TransInfo.Position.x -= 2;
+	// 일정 시간마다 플레이어 방향으로 총알이 쏘도록
 
 	if (TransInfo.Position.x <= 0)
 		return BUFFER_OVER;
@@ -32,6 +33,9 @@ int Enemy::Update()
 
 void Enemy::Render()
 {
+	CursorManager::GetInstance()->WriteBuffer(
+		TransInfo.Position,(char*)"Enemy"
+	);
 
 }
 

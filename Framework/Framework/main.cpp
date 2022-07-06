@@ -1,8 +1,10 @@
 #include "MainUpdate.h"
 #include "Headers.h"
 
+
 int main(void)
 {
+
 	system("title 홍길동 - 게임명");
 
 	system("mode con cols= 120 line=30"); //  콘솔창 120  30 으로 고정
@@ -22,8 +24,6 @@ int main(void)
 
 		}
 	}
-	
-
 	return 0;
 }
 
@@ -450,3 +450,12 @@ public:
 
 	a->Number = 10;
 	*/
+
+/*
+	동적은 데이터의 주소 를 바꿀수 있는것 
+
+	정적은 static 으로 할당 단 하나의 주소로만 관리 할려고 ?.. 좀더 알아보자.
+	좀더 빠르게 이용하기 위해서 
+
+	
+*/

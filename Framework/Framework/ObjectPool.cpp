@@ -1,5 +1,6 @@
 #include "ObjectPool.h"
 #include "Object.h"
+#include "CursorManager.h"
 
 ObjectPool* ObjectPool::Instance = nullptr;
 map<string, list<Object*>> ObjectPool::EnableList;
@@ -40,6 +41,15 @@ void ObjectPool::Update()
 					Disableiter->second.push_back((*iter2));
 
 				(*iter).second.erase(iter2);
+			}
+			break;
+			case 2:
+			{
+				CursorManager::GetInstance()->WriteBuffer(50.0f, 1.0f, (char*)"충돌입니다.");
+				
+				map<string, list<Object*>>::iterator Disableiter = DisableList.find((*iter2)->GetKey());
+				iter2 = (*iter).second.erase(iter2);
+
 			}
 			break;
 
