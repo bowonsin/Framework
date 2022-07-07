@@ -46,8 +46,17 @@ Object* ObjectPool::BulletRecycle()
 
 Object* ObjectPool::EnemyReclcle()
 {
+	map<string, list<Object*>>::iterator Disableiter = DisableList.find("Enemy");
 
-	return nullptr;
+	if (Disableiter == DisableList.end())
+		return nullptr;
+	else
+	{
+		list<Object*>::iterator EnableObject = Disableiter->second.begin();
+		Object* Tmep = Disableiter->second.front();
+		Disableiter->second.erase(EnableObject);
+		return Tmep;
+	}
 }
 
 list<Object*>* ObjectPool::Getlist(string Key)
