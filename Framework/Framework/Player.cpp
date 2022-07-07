@@ -5,6 +5,7 @@
 #include "CursorManager.h"
 #include "ObjectManager.h"
 #include "ObjectFActory.h"
+#include "ObjectPool.h"
 
 
 Player::Player(){}
@@ -36,7 +37,18 @@ int Player::Update()
 		TransInfo.Position.x +=1;
 
 	if (dwKey & KEY_SPACE)
-		ObjectManager::GetInstance()->AddObject(ObjectFactory<Bullet>::CreateObject(TransInfo.Position));
+	{
+		
+		if (ObjectPool::GetInstance()->Getlist("Bullet")->size() <= 30)
+			ObjectManager::GetInstance()->AddObject(ObjectFactory<Bullet>::CreateObject(TransInfo.Position));
+		else
+		{
+			Object* BulletRe =  ObjectPool::GetInstance()->BulletRecycle();
+			BulletRe->Setposition(TransInfo.Position);
+			ObjectManager::GetInstance()->AddObject(BulletRe);
+		}
+
+	}
 
 	return 0;
 }

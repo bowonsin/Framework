@@ -18,6 +18,13 @@ private:
 	map<string, list<Object*>> DisableList;
 public:
 	static map<string, list<Object*>>* GetEnableList() { return &EnableList; }
+	void CatchObject(Object* _Object);
+	Object* BulletRecycle();
+	Object* EnemyReclcle();
+
+	list<Object*>* Getlist(string Key);
+
+
 	void Update();
 private:
 	ObjectPool();

@@ -48,6 +48,8 @@ void Stage::Initialize()
 	//if (pPlayerList != nullptr)
 	//	pPlayer = pPlayerList->front();
 	*/
+	pUI = new ScrollBox;
+	pUI->Initialize();
 }
 
 void Stage::Update()
@@ -76,7 +78,6 @@ void Stage::Update()
 				++iter;
 		}
 	}
-	/*
 	if (pPlayer != nullptr)
 	{
 		if (pEnemyList != nullptr)
@@ -84,25 +85,27 @@ void Stage::Update()
 			for (list<Object*>::iterator pEnemyIter = pEnemyList->begin();
 				pEnemyIter != pEnemyList->end(); ++pEnemyIter)
 			{
-				if (CollisionManager::Collision(pPlayer, *pEnemyIter))
-					;
+				if (CollisionManager::CircleCollision(pPlayer, *pEnemyIter))
+				{ 
+					pEnemyIter = ObjectManager::GetInstance()->ThrowObject(pEnemyIter, (*pEnemyIter));
+				}
 				if (pBulletList != nullptr)
 				{
 					for (list<Object*>::iterator pBulletIter = pBulletList->begin();
-						pBulletIter != pBulletList->end(); ++pBulletIter)
+						pBulletIter != pBulletList->end();)
 					{
-
+						if (CollisionManager::Collision(*pBulletIter, *pEnemyIter))
 						{
-							if (CollisionManager::Collision(*pBulletIter, *pEnemyIter))
-								;
+							pBulletIter = ObjectManager::GetInstance()->ThrowObject(pBulletIter, (*pBulletIter));
+							
 						}
-
+						else
+							++pBulletIter;
 					}
 				}
 			}
 		}
 	}
-	*/
 	if (pUI)
 		pUI->Update();
 }

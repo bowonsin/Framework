@@ -18,10 +18,11 @@ private:
 	map<string, list<Object*>>* EnableList;
 public:
 	void AddObject(Object* _Object);
+	list<Object*>* GetObject_list(string _Key);
+	list<Object*>::iterator ThrowObject(list<Object*>::iterator _Where,Object* _Object);
+
 	void Redner();
 	void Update();
-	list<Object*>* GetObject_list(string _Key);
-
 private:
 	ObjectManager();
 public:
