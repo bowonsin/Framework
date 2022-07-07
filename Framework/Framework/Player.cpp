@@ -43,7 +43,7 @@ int Player::Update()
 			ObjectManager::GetInstance()->AddObject(ObjectFactory<Bullet>::CreateObject(TransInfo.Position));
 		else
 		{
-			Object* BulletRe =  ObjectPool::GetInstance()->BulletRecycle();
+			Object* BulletRe =  ObjectPool::GetInstance()->Recycle("Bullet");
 			BulletRe->Setposition(TransInfo.Position);
 			ObjectManager::GetInstance()->AddObject(BulletRe);
 		}

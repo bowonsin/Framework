@@ -19,8 +19,7 @@ private:
 public:
 	static map<string, list<Object*>>* GetEnableList() { return &EnableList; }
 	void CatchObject(Object* _Object);
-	Object* BulletRecycle();
-	Object* EnemyReclcle();
+	Object* Recycle(string _Key);
 
 	list<Object*>* Getlist(string Key);
 

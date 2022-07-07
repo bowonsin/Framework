@@ -29,24 +29,9 @@ void ObjectPool::CatchObject(Object* _Object)
 		Disableiter->second.push_back((_Object));
 }
 
-Object* ObjectPool::BulletRecycle()
+Object* ObjectPool::Recycle(string _Key)
 {
-	map<string, list<Object*>>::iterator Disableiter = DisableList.find("Bullet");
-
-	if (Disableiter == DisableList.end())
-		return nullptr;
-	else
-	{
-		list<Object*>::iterator EnableObject = Disableiter->second.begin();
-		Object* Tmep = Disableiter->second.front();
-		Disableiter->second.erase(EnableObject);
-		return Tmep;
-	}
-}
-
-Object* ObjectPool::EnemyReclcle()
-{
-	map<string, list<Object*>>::iterator Disableiter = DisableList.find("Enemy");
+	map<string, list<Object*>>::iterator Disableiter = DisableList.find(_Key);
 
 	if (Disableiter == DisableList.end())
 		return nullptr;
