@@ -142,10 +142,7 @@
       <Filter>소스 파일\99.Manager\CursorManager</Filter>
     </ClCompile>
     <ClCompile Include="ObjectPool.cpp">
-      <Filter>소스 파일\98.Pattern</Filter>
-    </ClCompile>
-    <ClCompile Include="Prototype.cpp">
-      <Filter>소스 파일\98.Pattern\Prototype</Filter>
+      <Filter>소스 파일\98.ObjectPool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -225,10 +222,7 @@
       <Filter>소스 파일\99.Manager\MathManager</Filter>
     </ClInclude>
     <ClInclude Include="ObjectPool.h">
-      <Filter>소스 파일\98.Pattern</Filter>
-    </ClInclude>
-    <ClInclude Include="Prototype.h">
-      <Filter>소스 파일\98.Pattern\Prototype</Filter>
+      <Filter>소스 파일\98.ObjectPool</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
