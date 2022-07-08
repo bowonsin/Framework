@@ -7,9 +7,11 @@ Enemy::Enemy(Trasnform _info):Object(_info){}
 
 Enemy::~Enemy(){}
 
-void Enemy::Initialize()
+Object* Enemy::Initialize(string _Key)
 {
 	strKey = "Enemy";
+
+	Hp = 3;
 
 	Buffer[0] = (char*)"È£";
 	Buffer[1] = (char*)"¤µ";
@@ -21,6 +23,7 @@ void Enemy::Initialize()
 
 	Color = 12;
 
+	return this;
 }
 
 int Enemy::Update()

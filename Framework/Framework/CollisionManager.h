@@ -42,12 +42,13 @@ public:
 		return false;
 	}
 
-	static bool CircleCollision(const Object* _ObjA, const Object* _ObjB)
+	static bool CircleCollision(const Object* _Circle, const Object* _Obj)
 	{
-		float Distance = MathManager::GetDistance(
-			_ObjA->Getposition(), _ObjB->Getposition());
 
-		float Sum = _ObjA->GetScale().x * 0.5f + _ObjB->GetScale().x * 0.5f;
+		float Distance = MathManager::GetDistance(
+			_Circle->Getposition(), _Obj->Getposition());
+
+		float Sum = _Circle->GetScale().x * 0.5f + _Obj->GetScale().x * 0.5f;
 
 		if (Distance < Sum)
 			return true;

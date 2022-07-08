@@ -42,6 +42,7 @@ int ScrollBox::Update()
 
 void ScrollBox::Render()
 {
+	
 }
 
 void ScrollBox::Release()

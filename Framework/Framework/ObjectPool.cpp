@@ -33,15 +33,16 @@ Object* ObjectPool::Recycle(string _Key)
 {
 	map<string, list<Object*>>::iterator Disableiter = DisableList.find(_Key);
 
-	if (Disableiter == DisableList.end())
-		return nullptr;
-	else
+	if (Disableiter != DisableList.end() && Disableiter->second.size())
 	{
 		list<Object*>::iterator EnableObject = Disableiter->second.begin();
 		Object* Tmep = Disableiter->second.front();
 		Disableiter->second.erase(EnableObject);
 		return Tmep;
 	}
+
+	return nullptr;
+
 }
 
 list<Object*>* ObjectPool::Getlist(string Key)

@@ -29,7 +29,6 @@ struct Vector3
 	{
 		return Vector3(this->x /= _Value, this->y /= _Value, this->z = _Value);
 	}
-	
 };
 
 struct Trasnform
@@ -38,5 +37,4 @@ struct Trasnform
 	Vector3 Rotation;
 	Vector3 Scale;
 	Vector3 Direction;
-
 };

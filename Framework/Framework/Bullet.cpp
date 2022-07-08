@@ -9,9 +9,11 @@ Bullet::Bullet() {}
 Bullet::Bullet(Trasnform _info) :Object(_info) {}
 Bullet::~Bullet() {}
 
-void Bullet::Initialize()
+Object* Bullet::Initialize(string _Key)
 {
 	strKey = "Bullet";
+
+	Hp = 1;
 
 	Buffer[0] = (char*)"＼";
 	Buffer[1] = (char*)"／";
@@ -25,12 +27,18 @@ void Bullet::Initialize()
 
 	Color = 13;
 
+	Speed = 0.5f;
+
+	return this;
 }
 
 int  Bullet::Update()
 { 
 	
 	list<Object*>* Enemy = ObjectManager::GetInstance()->GetObject_list("Enemy");
+
+	if (Enemy->size() == 0)
+		return 2;
 
 	//가장 가까이 좌표에 있는 적을 향해서 출동
 	//Vector3 Enemy_Position  = Enemy->front()->Getposition();
@@ -46,16 +54,17 @@ int  Bullet::Update()
 		}
 	}
 
+	
 	TransInfo.Direction = MathManager::GetDirection(
 	TransInfo.Position, Temp);
 
-	TransInfo.Position += TransInfo.Direction;
+	TransInfo.Position += TransInfo.Direction * Speed;
 
 
 	return 0;
 }
 
-void Bullet::Render()
+void Bullet::Render() 
 {
 	for (int i = 0; i < 2; ++i)
 		CursorManager::GetInstance()->WriteBuffer(

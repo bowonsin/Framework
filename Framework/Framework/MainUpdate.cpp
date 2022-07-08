@@ -2,15 +2,16 @@
 #include "SceneManager.h"
 #include "InputManager.h"
 #include "CursorManager.h"
+#include "Prototype.h"
 
 MainUpdate::MainUpdate() :Count(0) {}
 MainUpdate::~MainUpdate() { Release(); }
 
 void MainUpdate::Initialize()
 {
-	
-	CursorManager::GetInstance()->CreateBuffer(ConsoleWidthSize,ConsoleHeightSize);
+	Prototype::GetInstance()->Initialize();
 
+	CursorManager::GetInstance()->CreateBuffer(ConsoleWidthSize,ConsoleHeightSize);
 	SceneManager::GetInstance()->SetScene(LOGO);
 }
 

@@ -29,7 +29,7 @@ public:
 	void ClearBuffer();		// ** 그려진 내용 삭제
 	void DestoryBuffer();	// ** 버퍼 해제
 	void SetColor(int _Color);
-
+	void Draw(float _x, float _y, string str);
 private:
 	CursorManager();
 public:

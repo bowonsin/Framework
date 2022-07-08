@@ -2,7 +2,9 @@
 #include "SceneManager.h"
 #include "InputManager.h"
 #include "ObjectManager.h"
-#include "ObjectFActory.h"
+#include "ObjectFactory.h"
+#include "Prototype.h"
+
 
 #include "Player.h"
 #include "Enemy.h"
@@ -18,7 +20,6 @@ void Logo::Initialize()
 	//pEnemy->Initialize();
 	//ObjectManager::GetInstance()->AddObject(pEnemy);
 	// -> 여기서 오브젝트 팩토리르로 그냥 다이렉트로 넣기 
-	ObjectManager::GetInstance()->AddObject(ObjectFactory<Player>::CreateObject());
 	SceneManager::GetInstance()->SetScene(STAGE);
 
 }

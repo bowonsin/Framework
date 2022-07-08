@@ -21,6 +21,8 @@ public:
 	void CatchObject(Object* _Object);
 	Object* Recycle(string _Key);
 
+	
+
 	list<Object*>* Getlist(string Key);
 
 

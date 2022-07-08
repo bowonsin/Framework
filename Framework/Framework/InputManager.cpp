@@ -25,6 +25,8 @@ void InputManager::InputKey()
 		Key |= KEY_ALT;
 	if (GetAsyncKeyState(VK_TAB))
 		Key |= KEY_TAB;
+	if (GetAsyncKeyState(VK_ESCAPE))
+		Key |= KEY_ESCAPE;
 
 }
 /*

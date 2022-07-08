@@ -1,7 +1,8 @@
 #include "BakcGround.h"
 
-void BakcGround::Initialize()
+Object* BakcGround::Initialize(string _Key)
 {
+    return nullptr;
 }
 
 int BakcGround::Update()

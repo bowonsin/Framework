@@ -9,7 +9,8 @@
 #include "CursorManager.h"
 #include "InputManager.h"
 
-#include "ObjectFActory.h"
+#include "ObjectPool.h"
+#include "Prototype.h"
 
 //#include "CursorManager.h"
 
@@ -19,13 +20,23 @@ Stage::~Stage() { Release(); }
 void Stage::Initialize()
 {
 
-
 	Check = 0;
 	
-	Object* pEnemyProto = ObjectFactory<Enemy>::CreateObject();
 	pUI = new ScrollBox;
 	pUI->Initialize();
+	ObjectManager::GetInstance()->AddObject(Prototype::GetInstance()->ProtoTypeObject("Player"));
+	pPlayer = ObjectManager::GetInstance()->GetObject_list("Player")->front();
+	
 
+	for (int i = 0; i < 5; i++)
+	{
+		srand((DWORD)GetTickCount64() * (i + 1));
+		Object* pEnemy = Prototype::GetInstance()->ProtoTypeObject("Enemy");
+		pEnemy->Setposition(float(rand() % 118), rand() % 30);
+		ObjectManager::GetInstance()->AddObject(pEnemy->Clone());
+	}
+
+	/*
 	for (int i = 0; i < 5; ++i)
 	{
 		srand((DWORD)GetTickCount64() * (i + 1));
@@ -38,7 +49,6 @@ void Stage::Initialize()
 		ObjectManager::GetInstance()->AddObject(pEnemy);
 
 	}
-	/*
 	// ** 1. 반환 형태가 Object* && list<Object*>
 	// ** list<Object*> 불러오는 것으로 함
 	// ** 2.Key 가 전달되어야 함.
@@ -48,25 +58,33 @@ void Stage::Initialize()
 	//if (pPlayerList != nullptr)
 	//	pPlayer = pPlayerList->front();
 	*/
-	pUI = new ScrollBox;
-	pUI->Initialize();
 }
 
 void Stage::Update()
 {
+
+
+	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObject_list("Bullet");
+	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObject_list("Enemy");
+
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 	if (dwKey & KEY_TAB)// 
 	{
 		Enable_UI();
 	}
 
+	if (dwKey & KEY_ESCAPE)
+	{
+		if (pBulletList->size())
+		{
+			ObjectPool::GetInstance()->CatchObject(pBulletList->back());
+			pBulletList->pop_back();
+		}
+	}
+
 	ObjectManager::GetInstance()->Update();
 
-	Object* pPlayer = ObjectManager::GetInstance()->GetObject_list("Player")->front();
-	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObject_list("Bullet");
-	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObject_list("Enemy");
-
-	if (pBulletList != nullptr)
+		if (pBulletList != nullptr)
 	{
 		for (list<Object*>::iterator iter = pBulletList->begin(); iter != pBulletList->end();)
 		{
@@ -80,7 +98,7 @@ void Stage::Update()
 	}
 	if (pPlayer != nullptr)
 	{
-		if (pEnemyList != nullptr)
+ 		if (pEnemyList != nullptr)
 		{
 			for (list<Object*>::iterator pEnemyIter = pEnemyList->begin();
 				pEnemyIter != pEnemyList->end(); ++pEnemyIter)
@@ -106,16 +124,16 @@ void Stage::Update()
 			}
 		}
 	}
-	if (pUI)
-		pUI->Update();
+	//if (pUI)
+	//	pUI->Update();
 }
 
 void Stage::Render()
 {
 	ObjectManager::GetInstance()->Redner();
 
-	if (Check)
-		pUI->Render();
+	//if (Check)
+	//	pUI->Render();
 }
 
 void Stage::Release()

@@ -1,6 +1,9 @@
 #include "ObjectManager.h"
+#include "ObjectFactory.h"
 #include "ObjectPool.h"
+#include "Prototype.h"
 #include "Object.h"
+#include "Bullet.h"
 
 ObjectManager* ObjectManager::Instance = nullptr;
 ObjectManager::ObjectManager()
@@ -22,6 +25,26 @@ void ObjectManager::AddObject(Object* _Object)
 	}
 	else
 		iter->second.push_back(_Object);
+}
+
+void ObjectManager::AddObject(string str)
+{
+	Object* pObject = ObjectPool::GetInstance()->Recycle(str);
+
+	if (pObject == nullptr)// Bullet 은 임의로 작성 
+		pObject = Prototype::GetInstance()->ProtoTypeObject(str)->Clone();
+
+
+	map<string, list<Object*>>::iterator iter = EnableList->find(str);
+
+	if (iter == EnableList->end())
+	{
+		list<Object*> TempList;
+		TempList.push_back(pObject);
+		EnableList->insert(make_pair(pObject->GetKey(), TempList));
+	}
+	else
+		iter->second.push_back(pObject);
 }
 
 list<Object*>* ObjectManager::GetObject_list(string _Key)

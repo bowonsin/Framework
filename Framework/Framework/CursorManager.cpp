@@ -144,4 +144,10 @@ void CursorManager::SetColor(int _Color)
 
 }
 
+void CursorManager::Draw( float _x, float _y,string str )
+{
+	//SetConsoleCursorPosition(_x , _y);
+	cout << str;
+}
+
 

@@ -26,7 +26,7 @@ public:
 	static Object* CreateObject(Vector3 _Position)
 	{
 		T* pObject = new T;
-		pObject->Initialize();
+		//pObject->Initialize();
 
 		pObject->Setposition(_Position);
 
