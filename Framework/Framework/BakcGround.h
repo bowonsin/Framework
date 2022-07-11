@@ -11,7 +11,7 @@ public:
 	virtual Object* Clone()override	{	return new BakcGround(*this);}
 
 	BakcGround();
-	BakcGround(Trasnform _info);
+	BakcGround(Transform _info);
 	virtual ~BakcGround();
 };
 

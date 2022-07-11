@@ -14,7 +14,7 @@ Prototype::~Prototype() {}
 void Prototype::Initialize()
 {
 
-	Trasnform Info;
+	Transform Info;
 
 	string Key = "Player";
 	//((new Player(Info))->Initialize(Key) 나 자신을 할당하면서 Initialize 같이 하는것

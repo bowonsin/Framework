@@ -45,15 +45,6 @@ Object* ObjectPool::Recycle(string _Key)
 
 }
 
-list<Object*>* ObjectPool::Getlist(string Key)
-{
-	map<string, list<Object*>>::iterator iter = DisableList.find(Key);
-	if (iter == DisableList.end())
-		return nullptr;
-
-	return &iter->second;
-}
-
 void ObjectPool::Update()
 {
 

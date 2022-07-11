@@ -8,9 +8,11 @@
 #include "ObjectPool.h"
 #include "Prototype.h"
 
+#include "NormalBullet.h"
+
 
 Player::Player(){}
-Player::Player(Trasnform _info):Object(_info){}
+Player::Player(Transform _info):Object(_info){}
 Player::~Player(){}
 
 Object* Player::Initialize(string _Key)
@@ -25,7 +27,7 @@ Object* Player::Initialize(string _Key)
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);
 	TransInfo.Scale = Vector3(2.0f, 2.0f);
 
-	Speed = 1.0f;
+	
 	
 	return this;
 }
@@ -34,16 +36,17 @@ int Player::Update()
 {
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 	if (dwKey & KEY_UP)
-		TransInfo.Position.y -= Speed;
+		TransInfo.Position.y -= 1;
 	if (dwKey & KEY_DOWN)
-		TransInfo.Position.y += Speed;
+		TransInfo.Position.y += 1;
 	if (dwKey & KEY_LEFT)
-		TransInfo.Position.x -= Speed;
+		TransInfo.Position.x -= 1;
 	if (dwKey & KEY_RIGHT)
-		TransInfo.Position.x += Speed;
+		TransInfo.Position.x += 1;
 
 	if (dwKey & KEY_SPACE)
 	{
+		/*
 		Object* BulletRe;
 		if (ObjectPool::GetInstance()->Getlist("Bullet")->size() <= 2)
 		{
@@ -57,6 +60,10 @@ int Player::Update()
 			BulletRe->Setposition(TransInfo.Position);
 			ObjectManager::GetInstance()->AddObject(BulletRe);
 		}
+		*/
+
+ 		Bridge* pBridge = new NormalBullet;
+		ObjectManager::GetInstance()->AddBullet( pBridge, TransInfo.Position);
 
 	}
 
@@ -65,8 +72,11 @@ int Player::Update()
 
 void Player::Render()
 {
-	CursorManager::GetInstance()->WriteBuffer(
-		TransInfo.Position, (char*)"Player");
+	for (int i = 0; i < 2; ++i)
+		CursorManager::GetInstance()->WriteBuffer(
+			TransInfo.Position.x,
+			TransInfo.Position.y + i,
+			Buffer[i], 15);
 
 }
 	//cout << "Player" << endl;
@@ -75,4 +85,5 @@ void Player::Render()
 void Player::Release()
 {
 }
+
 

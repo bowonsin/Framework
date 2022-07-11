@@ -20,12 +20,6 @@ public:
 	static map<string, list<Object*>>* GetEnableList() { return &EnableList; }
 	void CatchObject(Object* _Object);
 	Object* Recycle(string _Key);
-
-	
-
-	list<Object*>* Getlist(string Key);
-
-
 	void Update();
 private:
 	ObjectPool();

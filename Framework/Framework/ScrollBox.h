@@ -10,7 +10,7 @@ public:
 
 
 	ScrollBox();
-	ScrollBox(Trasnform _info);
+	ScrollBox(Transform _info);
 	virtual ~ScrollBox();
 };
 

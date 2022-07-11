@@ -9,8 +9,8 @@ public:
 	virtual void Release()override;
 
 	virtual Object* Clone()override { return new Bullet(*this); }
-
+public:
 	Bullet();
-	Bullet(Trasnform _info);
+	Bullet(Transform _info);
 	virtual ~Bullet();
 };

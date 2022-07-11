@@ -3,7 +3,7 @@
 #include "InputManager.h"
 
 ScrollBox::ScrollBox() {}
-ScrollBox::ScrollBox(Trasnform _info) {}
+ScrollBox::ScrollBox(Transform _info) {}
 ScrollBox::~ScrollBox() {}
 
 void ScrollBox::Initialize()

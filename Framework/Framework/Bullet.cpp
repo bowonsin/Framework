@@ -1,12 +1,13 @@
 #include "Bullet.h"
-#include "CursorManager.h"
-#include "MathManager.h"
+
 #include "ObjectManager.h"
 #include "CollisionManager.h"
 
+#include "Bridge.h"
+
 Bullet::Bullet() {}
 
-Bullet::Bullet(Trasnform _info) :Object(_info) {}
+Bullet::Bullet(Transform _info) :Object(_info) {}
 Bullet::~Bullet() {}
 
 Object* Bullet::Initialize(string _Key)
@@ -21,13 +22,14 @@ Object* Bullet::Initialize(string _Key)
 	TransInfo.Position = Vector3(0.0f, 0.0f);
 	TransInfo.Rotation = Vector3(0.0f, .0f);
 	TransInfo.Scale = Vector3((float)strlen(Buffer[0]),(float)MAX_SIZE);
+
 	TransInfo.Direction= Vector3(0.0f, 0.0f);
 
 	// Å¸°ÙÀ¸·Î ºÎÅÍ ³» ÁÂÇ¥¸¦ »©¸é µÊ
 
-	Color = 13;
 
-	Speed = 0.5f;
+	if (pBridge)
+		pBridge->Initialize();
 
 	return this;
 }
@@ -35,7 +37,8 @@ Object* Bullet::Initialize(string _Key)
 int  Bullet::Update()
 { 
 	
-	list<Object*>* Enemy = ObjectManager::GetInstance()->GetObject_list("Enemy");
+	/*
+		list<Object*>* Enemy = ObjectManager::GetInstance()->GetObject_list("Enemy");
 
 	if (Enemy->size() == 0)
 		return 2;
@@ -46,7 +49,7 @@ int  Bullet::Update()
 	Vector3 Temp;
 	for (auto iter = Enemy->begin(); iter != Enemy->end(); ++iter)
 	{
-		float Test = MathManager::GetDistance(TransInfo.Position, (*iter)->Getposition());
+		float Test = MathManager::GetDistance(Info.Position, (*iter)->Getposition());
 		if (Test < Check)
 		{
 			Check = Test;
@@ -54,26 +57,29 @@ int  Bullet::Update()
 		}
 	}
 
-	
-	TransInfo.Direction = MathManager::GetDirection(
-	TransInfo.Position, Temp);
 
-	TransInfo.Position += TransInfo.Direction * Speed;
+	Info.Direction = MathManager::GetDirection(
+		Info.Position, Temp);
 
+	Info.Position += Info.Direction;
+
+	*/
+	if (pBridge)
+		pBridge->Update(TransInfo);
 
 	return 0;
 }
 
 void Bullet::Render() 
 {
-	for (int i = 0; i < 2; ++i)
-		CursorManager::GetInstance()->WriteBuffer(
-			TransInfo.Position.x,
-			TransInfo.Position.y + i,
-			Buffer[i], Color);
+
+	if (pBridge)
+		pBridge->Render();
+	
 
 }
 
 void Bullet::Release()
 {
+	::Safe_Delete(pBridge);
 }

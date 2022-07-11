@@ -13,7 +13,7 @@ public:
 
 
 	Enemy();
-	Enemy(Trasnform _info);
+	Enemy(Transform _info);
 	virtual ~Enemy();
 };
 

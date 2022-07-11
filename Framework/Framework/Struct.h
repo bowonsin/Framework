@@ -31,7 +31,7 @@ struct Vector3
 	}
 };
 
-struct Trasnform
+struct Transform
 {
 	Vector3 Position;
 	Vector3 Rotation;

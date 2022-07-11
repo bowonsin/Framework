@@ -24,16 +24,20 @@ void Stage::Initialize()
 	
 	pUI = new ScrollBox;
 	pUI->Initialize();
-	ObjectManager::GetInstance()->AddObject(Prototype::GetInstance()->ProtoTypeObject("Player"));
+	ObjectManager::GetInstance()->AddObject("Player");
 	pPlayer = ObjectManager::GetInstance()->GetObject_list("Player")->front();
 	
 
-	for (int i = 0; i < 5; i++)
+	for(int i = 0 ; i < 5; i++)
+		ObjectManager::GetInstance()->AddObject("Enemy");
+
+	list<Object*>* Elist = ObjectManager::GetInstance()->GetObject_list("Enemy");
+	int i = 0;
+	for (auto iter = Elist->begin(); iter != Elist->end(); ++iter)
 	{
 		srand((DWORD)GetTickCount64() * (i + 1));
-		Object* pEnemy = Prototype::GetInstance()->ProtoTypeObject("Enemy");
-		pEnemy->Setposition(float(rand() % 118), rand() % 30);
-		ObjectManager::GetInstance()->AddObject(pEnemy->Clone());
+		(*iter)->Setposition(float(rand() % 118), rand() % 30);
+		++i;
 	}
 
 	/*
@@ -84,7 +88,7 @@ void Stage::Update()
 
 	ObjectManager::GetInstance()->Update();
 
-		if (pBulletList != nullptr)
+	if (pBulletList != nullptr)
 	{
 		for (list<Object*>::iterator iter = pBulletList->begin(); iter != pBulletList->end();)
 		{
@@ -101,12 +105,9 @@ void Stage::Update()
  		if (pEnemyList != nullptr)
 		{
 			for (list<Object*>::iterator pEnemyIter = pEnemyList->begin();
-				pEnemyIter != pEnemyList->end(); ++pEnemyIter)
+				pEnemyIter != pEnemyList->end();)
 			{
-				if (CollisionManager::CircleCollision(pPlayer, *pEnemyIter))
-				{ 
-					pEnemyIter = ObjectManager::GetInstance()->ThrowObject(pEnemyIter, (*pEnemyIter));
-				}
+
 				if (pBulletList != nullptr)
 				{
 					for (list<Object*>::iterator pBulletIter = pBulletList->begin();
@@ -115,15 +116,22 @@ void Stage::Update()
 						if (CollisionManager::Collision(*pBulletIter, *pEnemyIter))
 						{
 							pBulletIter = ObjectManager::GetInstance()->ThrowObject(pBulletIter, (*pBulletIter));
-							
 						}
 						else
 							++pBulletIter;
 					}
 				}
+
+				if (CollisionManager::CircleCollision(pPlayer, *pEnemyIter))
+				{
+					pEnemyIter = ObjectManager::GetInstance()->ThrowObject(pEnemyIter, (*pEnemyIter));
+				}
+				else
+					++pEnemyIter;
 			}
 		}
 	}
+
 	//if (pUI)
 	//	pUI->Update();
 }

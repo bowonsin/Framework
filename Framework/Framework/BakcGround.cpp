@@ -22,7 +22,7 @@ BakcGround::BakcGround()
 {
 }
 
-BakcGround::BakcGround(Trasnform _info)
+BakcGround::BakcGround(Transform _info)
 {
 }
 

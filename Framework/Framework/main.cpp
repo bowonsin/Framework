@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "MainUpdate.h"
 #include "Headers.h"
 
@@ -7,18 +8,20 @@ int main(void)
 
 	system("title 홍길동 - 게임명");
 
-	system("mode con cols= 120 line=30"); //  콘솔창 120  30 으로 고정
+	system("mode con cols=120 lines=30");//  콘솔창 120  30 으로 고정
 	
 
 	MainUpdate Main;
 	Main.Initialize();
 	
+	int i = 0;
 	ULONGLONG Time = GetTickCount64();// 1/ 1000;
 	while (true)
 	{
 		if (Time + 50 < GetTickCount64()) //Time + 50 < GetTickCount64() 0.05 초 + 
 		{
 			Time = GetTickCount64();
+			system("cls");
 			Main.Update();
 			Main.Render();
 

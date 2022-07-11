@@ -4,7 +4,7 @@ UserInterface::UserInterface()
 {
 }
 
-UserInterface::UserInterface(Trasnform _info)
+UserInterface::UserInterface(Transform _info)
 {
 }
 

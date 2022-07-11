@@ -9,8 +9,10 @@ public:
 	virtual void Release()override;
 
 	virtual Object* Clone()override { return new Player(*this); }
-
+public:
 	Player();
-	Player(Trasnform _info);
+	Player(Transform _info);
 	virtual ~Player();
 };
+
+

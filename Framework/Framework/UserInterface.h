@@ -3,7 +3,7 @@
 class UserInterface
 {
 protected:
-	Trasnform TransInfo;
+	Transform TransInfo;
 	string strKey;
 
 	vector<string> TextureList;
@@ -25,7 +25,7 @@ public:
 
 public:
 	UserInterface();
-	UserInterface(Trasnform _info);
+	UserInterface(Transform _info);
 	virtual ~UserInterface();
 };
 
