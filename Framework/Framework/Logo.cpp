@@ -20,7 +20,7 @@ void Logo::Initialize()
 	//pEnemy->Initialize();
 	//ObjectManager::GetInstance()->AddObject(pEnemy);
 	// -> 여기서 오브젝트 팩토리르로 그냥 다이렉트로 넣기 
-	SceneManager::GetInstance()->SetScene(STAGE);
+	//SceneManager::GetInstance()->SetScene(STAGE);
 
 }
 

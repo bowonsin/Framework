@@ -1,4 +1,4 @@
-#include "Player.h"
+﻿#include "Player.h"
 #include "Bullet.h"
 
 #include "InputManager.h"
@@ -13,24 +13,27 @@
 
 Player::Player(){}
 Player::Player(Transform _info):Object(_info){}
-Player::~Player(){}
+Player::~Player() { Release(); }
 
 Object* Player::Initialize(string _Key)
 {
 	strKey = "Player";
 	Hp = 10;
 
-	Buffer[0] = (char*)"��";
-	Buffer[1] = (char*)"��";
+	Buffer[0] = (char*)"오";
+	Buffer[1] = (char*)"ㅅ";
 
 	TransInfo.Position = Vector3(20.0f, 15.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);
 	TransInfo.Scale = Vector3(2.0f, 2.0f);
 
-	
-	
+	ch_Buffer.push_back((char*)"＼―≥ ");
+	ch_Buffer.push_back((char*)"｜￣￣￣＼＞");
+	ch_Buffer.push_back((char*)"／￣￣￣￣");
+
 	return this;
 }
+
 
 int Player::Update()
 {
@@ -72,12 +75,13 @@ int Player::Update()
 
 void Player::Render()
 {
-	for (int i = 0; i < 2; ++i)
+	for (int i = 0; i < ch_Buffer.size(); ++i)
+	{
 		CursorManager::GetInstance()->WriteBuffer(
 			TransInfo.Position.x,
 			TransInfo.Position.y + i,
-			Buffer[i], 15);
-
+			ch_Buffer[i], 15);
+	}
 }
 	//cout << "Player" << endl;
 	//cout << "X : " << Horizontal << endl << "Y : " << Vertical << endl << endl;

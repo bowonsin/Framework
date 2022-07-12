@@ -4,6 +4,8 @@
 #include "CursorManager.h"
 #include "Prototype.h"
 
+#include "Player.h"
+
 MainUpdate::MainUpdate() :Count(0) {}
 MainUpdate::~MainUpdate() { Release(); }
 
@@ -61,6 +63,9 @@ void MainUpdate::Update()
 
 void MainUpdate::Render()
 {
+	//Object* Test = new BackGround_1;
+	//Test->Initialize("Ground");
+	//Test->Render();
 	SceneManager::GetInstance()->Render();
 }
 

@@ -9,6 +9,10 @@ public:
 	virtual void Release()override;
 
 	virtual Object* Clone()override { return new Player(*this); }
+
+private:
+	vector<char*> ch_Buffer;
+
 public:
 	Player();
 	Player(Transform _info);

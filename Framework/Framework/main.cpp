@@ -8,7 +8,7 @@ int main(void)
 
 	system("title 홍길동 - 게임명");
 
-	system("mode con cols=120 lines=30");//  콘솔창 120  30 으로 고정
+	system("mode con cols=200 lines=55");
 	
 
 	MainUpdate Main;

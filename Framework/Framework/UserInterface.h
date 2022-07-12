@@ -6,7 +6,7 @@ protected:
 	Transform TransInfo;
 	string strKey;
 
-	vector<string> TextureList;
+	vector<char*> TextureList;
 public:
 	virtual void Initialize()PURE; 
 	virtual int Update()PURE;
