@@ -38,3 +38,10 @@ struct Transform
 	Vector3 Scale;
 	Vector3 Direction;
 };
+
+struct Image_Transform_Data
+{
+	Transform Data;
+	vector<char*> DOT_Image;
+	int Color;
+};

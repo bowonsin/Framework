@@ -1,6 +1,7 @@
 #include "Stage.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "BakcGround.h"
 #include "ScrollBox.h"
 
 #include "SceneManager.h"
@@ -108,6 +109,13 @@ void Stage::Update()
 				pEnemyIter != pEnemyList->end();)
 			{
 
+				if (CollisionManager::CircleCollision(pPlayer, *pEnemyIter))
+				{
+					pEnemyIter = ObjectManager::GetInstance()->ThrowObject(pEnemyIter, (*pEnemyIter));
+				}
+				else
+					++pEnemyIter;
+
 				if (pBulletList != nullptr)
 				{
 					for (list<Object*>::iterator pBulletIter = pBulletList->begin();
@@ -121,13 +129,25 @@ void Stage::Update()
 							++pBulletIter;
 					}
 				}
+			}
+		}
+	}
 
+	// 기능 분리 
+	if (pPlayer != nullptr)
+	{
+		if (pEnemyList != nullptr)
+		{
+			for (list<Object*>::iterator pEnemyIter = pEnemyList->begin();
+				pEnemyIter != pEnemyList->end();)
+			{
 				if (CollisionManager::CircleCollision(pPlayer, *pEnemyIter))
 				{
 					pEnemyIter = ObjectManager::GetInstance()->ThrowObject(pEnemyIter, (*pEnemyIter));
 				}
 				else
 					++pEnemyIter;
+
 			}
 		}
 	}
@@ -138,6 +158,9 @@ void Stage::Update()
 
 void Stage::Render()
 {
+	Object* Back = new BakcGround;
+	Back->Initialize("back");
+	Back->Render();
 	ObjectManager::GetInstance()->Redner();
 
 	//if (Check)

@@ -1,12 +1,15 @@
 #include "Menu.h"
 #include "SceneManager.h"
 #include "InputManager.h"
+#include "MenuInterface.h"
 
 Menu::Menu(){}
 Menu::~Menu(){}
 
 void Menu::Initialize()
 {
+	UI = new MenuInterface;
+	UI->Initialize();
 }
 
 void Menu::Update()
@@ -18,7 +21,7 @@ void Menu::Update()
 
 void Menu::Render()
 {
-	cout << "Menu" << endl;
+	UI->Render();
 }
 
 void Menu::Release()

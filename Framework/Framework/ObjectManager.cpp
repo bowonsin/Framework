@@ -17,7 +17,7 @@ void ObjectManager::AddObject(string str)
 {
 	Object* pObject = ObjectPool::GetInstance()->Recycle(str);
 
-	if (pObject == nullptr)// Bullet 은 임의로 작성 
+	if (pObject == nullptr)
 		pObject = Prototype::GetInstance()->ProtoTypeObject(str)->Clone();
 
 

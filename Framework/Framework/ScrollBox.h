@@ -9,6 +9,7 @@ public:
 	virtual void Release()override;
 
 
+public:
 	ScrollBox();
 	ScrollBox(Transform _info);
 	virtual ~ScrollBox();

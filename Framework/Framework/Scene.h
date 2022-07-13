@@ -1,6 +1,6 @@
 #pragma once
 #include "Headers.h"
-
+class UserInterface;
 class Scene
 {
 public:
@@ -9,6 +9,10 @@ public:
 	virtual void Render()PURE;
 	virtual void Release()PURE;
 
+protected:
+	UserInterface* UI;
+
+public:
 	Scene();
 	virtual ~Scene();
 };

@@ -6,7 +6,7 @@
 int main(void)
 {
 
-	system("title 홍길동 - 게임명");
+	system("title 신보원 - Parodius");
 
 	system("mode con cols=200 lines=55");
 	

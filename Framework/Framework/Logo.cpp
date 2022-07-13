@@ -4,10 +4,7 @@
 #include "ObjectManager.h"
 #include "ObjectFactory.h"
 #include "Prototype.h"
-
-
-#include "Player.h"
-#include "Enemy.h"
+#include "LogoInterface.h"
 
 
 Logo::Logo(){}
@@ -15,6 +12,9 @@ Logo::~Logo(){}
 
 void Logo::Initialize()
 {
+
+	UI= new LogoInterface;
+	UI->Initialize();
 
 	//Object* pEnemy= new Enemy;
 	//pEnemy->Initialize();
@@ -33,7 +33,7 @@ void Logo::Update()
 
 void Logo::Render()
 {
-	cout << "Logo" << endl;
+	UI->Render();
 }
 
 void Logo::Release()

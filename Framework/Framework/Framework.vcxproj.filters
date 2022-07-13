@@ -94,6 +94,12 @@
     <Filter Include="소스 파일\98.Pattern\ObjectPool">
       <UniqueIdentifier>{4ae379ff-cc4a-432a-af49-20f1d9327007}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\03.UserInterface\LogoInterface">
+      <UniqueIdentifier>{b43ba828-14b2-471e-bab0-fbe7323cb0bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.UserInterface\MenuInterface">
+      <UniqueIdentifier>{56a37c9a-2968-4e4e-a6da-6f1a14438e05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -155,6 +161,12 @@
     </ClCompile>
     <ClCompile Include="ObjectPool.cpp">
       <Filter>소스 파일\98.Pattern\ObjectPool</Filter>
+    </ClCompile>
+    <ClCompile Include="LogoInterface.cpp">
+      <Filter>소스 파일\03.UserInterface\LogoInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuInterface.cpp">
+      <Filter>소스 파일\03.UserInterface\MenuInterface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -244,6 +256,12 @@
     </ClInclude>
     <ClInclude Include="ObjectPool.h">
       <Filter>소스 파일\98.Pattern\ObjectPool</Filter>
+    </ClInclude>
+    <ClInclude Include="LogoInterface.h">
+      <Filter>소스 파일\03.UserInterface\LogoInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuInterface.h">
+      <Filter>소스 파일\03.UserInterface\MenuInterface</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

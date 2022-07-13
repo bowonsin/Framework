@@ -6,7 +6,7 @@ protected:
 	Transform TransInfo;
 	string strKey;
 
-	vector<char*> TextureList;
+	vector<Image_Transform_Data> LogoImage;
 public:
 	virtual void Initialize()PURE; 
 	virtual int Update()PURE;

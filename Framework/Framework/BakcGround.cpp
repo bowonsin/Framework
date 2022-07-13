@@ -13,24 +13,37 @@ Object* BakcGround::Initialize(string _Key)
     TransInfo.Rotation = Vector3(0.0f, 0.0f);
     TransInfo.Scale = Vector3(2.0f, 2.0f);
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-    GroundOne.push_back((char*)"   c;:c:;:c:;;ccc:;;:cc;;;:c:;;ccc:;;c:;");
-    GroundOne.push_back((char*)"    ;,::;,;,,,;;;,,,;;;,,,;;,,,;;;,,,;;,");
-    GroundOne.push_back((char*)"   x:,,,,,;;,;;,;;;;,,;;,,,;,,;;,;;;;,;;");
-    GroundOne.push_back((char*)"   ;:;:::cl:;::::c::;::c:;:c::::::c:::cc");
+
+    GroundOne.push_back((char*)"!!!!!~,,,-~;!!***;:~,,,~;!;~~:!*;;!*;~,.");
+    GroundOne.push_back((char*)":-:!;~-~:;!!!:~-~;!;:~-~;;--~;*;~~!!~,--");
+    GroundOne.push_back((char*)"!;;!!~~:!!*!-,..-:!!!;;!*!~~:!!!;;!!:~~~");
+    GroundOne.push_back((char*)"-~~-,~;--,,.,-::~~~-.,--:-,--,.,,----,,-");
+    GroundOne.push_back((char*)".::-        ,~.-~~-,.             -~,   ");
+    GroundOne.push_back((char*)" -             .,.,               ,,    ");
     GroundOne.push_back((char*)"                                        ");
+    GroundOne.push_back((char*)"--~~~~~~~~~~------,,,,-------~~~~~~~~---");
     GroundOne_Info.Position = Vector3(0.0f, 0.0f, 0.0f);
 
-    GroundTwo.push_back((char*)",,;::;,,;:;,,,,,,,;:::;,,::,,,;:;,,;::;,");
-    GroundTwo.push_back((char*)",,,,,,,,,;;,,,,,,,,,;,,,,,,,,,,,,,,,,,,,");
-    GroundTwo.push_back((char*)";:;;;,,;;;,,;:;;;:;;;:::;;::;,;:;;:;;;,,");
-    GroundTwo.push_back((char*)"::::::;;:;;;:::::c::::c:::cc:;:cc::::::;");
-    GroundTwo.push_back((char*)"式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式");
-    GroundTwo_Info.Position = Vector3(40.0f, 0.0f, 0.0f);
-
-
-
-
+    GroundTwo.push_back((char*)"--~~~~~~~~~~------,,,,-------~~~~~~~~---");
+    GroundTwo.push_back((char*)"                                        ");
+    GroundTwo.push_back((char*)" -             .,.,               ,,    ");
+    GroundTwo.push_back((char*)".::-        ,~.-~~-,.             -~,   ");
+    GroundTwo.push_back((char*)"-~~-,~;--,,.,-::~~~-.,--:-,--,.,,----,,-");
+    GroundTwo.push_back((char*)"!;;!!~~:!!*!-,..-:!!!;;!*!~~:!!!;;!!:~~~");
+    GroundTwo.push_back((char*)":-:!;~-~:;!!!:~-~;!;:~-~;;--~;*;~~!!~,--");
+    GroundTwo.push_back((char*)"!!!!!~,,,-~;!!***;:~,,,~;!;~~:!*;;!*;~,.");
+    GroundTwo_Info.Position = Vector3(0.0f, (float)(ConsoleHeightSize - GroundTwo.size()), 0.0f);
 
     return nullptr;
 }
@@ -42,19 +55,27 @@ int BakcGround::Update()
 
 void BakcGround::Render()
 {
-    for (int i = 0; i < GroundOne.size(); ++i)
+    for (int j = 0; j < 5; j++)
     {
-        CursorManager::GetInstance()->WriteBuffer(
-            GroundOne_Info.Position.x,
-            GroundOne_Info.Position.y + i,
-            GroundOne[i], 15);
-    }
-    for (int i = 0; i < GroundTwo.size(); ++i)
-    {
-        CursorManager::GetInstance()->WriteBuffer(
-            GroundTwo_Info.Position.x,
-            GroundTwo_Info.Position.y + i,
-            GroundTwo[i], 15);
+        for (int i = 0; i < GroundOne.size(); ++i)
+        {
+            CursorManager::GetInstance()->WriteBuffer(
+                GroundOne_Info.Position.x,
+                GroundOne_Info.Position.y + i,
+                GroundOne[i], 15);
+        }
+        GroundOne_Info.Position.x += 40;
+
+    
+        for (int i = 0; i < GroundTwo.size(); ++i)
+        {
+            CursorManager::GetInstance()->WriteBuffer(
+                GroundTwo_Info.Position.x,
+                GroundTwo_Info.Position.y + i,
+                GroundTwo[i], 15);
+
+        }
+        GroundTwo_Info.Position.x += 40;
     }
 }
 
