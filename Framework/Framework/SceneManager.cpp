@@ -7,33 +7,32 @@
 // 변수가 선언이 되어있으면 반드시 초기화는 해줘야한다.
 SceneManager* SceneManager::Instance = nullptr; 
 
-SceneManager::SceneManager() :SceneState(nullptr){}
+SceneManager::SceneManager() :Scene_Id(nullptr){}
 SceneManager::~SceneManager() {}
 
-void SceneManager::SetScene(SCENEID _SceneState)
+void SceneManager::SetScene(SCENEID _Scene_Id)
 {
-	if (SceneState != nullptr)
+	if (Scene_Id != nullptr)
 		// :: 앞에 붙어 있는 이유는 인라인 함수라고 명시 하는 경우가 높아서 붙여둔다.
-		::Safe_Delete(SceneState);
+		::Safe_Delete(Scene_Id);
 
-	switch (_SceneState)
+	switch (_Scene_Id)
 	{
 	case LOGO:
-		SceneState = new Logo;
+		Scene_Id = new Logo;
 		break;
 	case MENU:
-		SceneState = new Menu;
+		Scene_Id = new Menu;
 		break;
 
 	case STAGE:
-		SceneState = new Stage;
-
+		Scene_Id = new Stage;
 		break;
 	case EXIT:
 		exit(NULL);
 		break;
 	}
-	SceneState->Initialize();// 주는건 따로 주고 break 를 받고 초기화
+	Scene_Id->Initialize();// 주는건 따로 주고 break 를 받고 초기화
 	/*
 		Logo 로 들어오면 Logo의 데이터를 주고 
 		그 에 관련된 Initialize 를 실행
@@ -42,16 +41,16 @@ void SceneManager::SetScene(SCENEID _SceneState)
 
 void SceneManager::Update()
 {
-	SceneState->Update();
+	Scene_Id->Update();
 }
 
 void SceneManager::Render()
 {
-	SceneState->Render();
+	Scene_Id->Render();
 }
 
 void SceneManager::Release()
 {
-	::Safe_Delete(SceneState);
+	::Safe_Delete(Scene_Id);
 
 }

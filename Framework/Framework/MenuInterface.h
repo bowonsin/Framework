@@ -8,6 +8,12 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 
+private:
+	int m_iSelectMenu;
+
+	vector<char*> make_box();
+	void ImageDrawing(int Order);
+
 public:
 	MenuInterface();
 	MenuInterface(Transform _info);

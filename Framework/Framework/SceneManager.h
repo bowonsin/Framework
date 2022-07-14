@@ -24,7 +24,7 @@ public:
 		return Instance;
 	}
 private:
-	Scene* SceneState;
+	Scene* Scene_Id;
 public:
 	void Update();
 	void Render();

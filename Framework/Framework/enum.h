@@ -6,3 +6,9 @@ enum SCENEID
 	STAGE,
 	EXIT
 };
+
+enum MENU_KIND
+{
+	GAME_START,
+	EIXT
+};

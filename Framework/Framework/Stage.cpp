@@ -15,16 +15,15 @@
 
 //#include "CursorManager.h"
 
-Stage::Stage():pUI(nullptr),Check (0){}
+Stage::Stage():pPlayer(nullptr){}
 Stage::~Stage() { Release(); }
 
 void Stage::Initialize()
 {
 
-	Check = 0;
 	
-	pUI = new ScrollBox;
-	pUI->Initialize();
+	UI = new ScrollBox;
+	UI->Initialize();
 	ObjectManager::GetInstance()->AddObject("Player");
 	pPlayer = ObjectManager::GetInstance()->GetObject_list("Player")->front();
 	
@@ -68,16 +67,10 @@ void Stage::Initialize()
 void Stage::Update()
 {
 
-
 	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObject_list("Bullet");
 	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObject_list("Enemy");
 
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
-	if (dwKey & KEY_TAB)// 
-	{
-		Enable_UI();
-	}
-
 	if (dwKey & KEY_ESCAPE)
 	{
 		if (pBulletList->size())
@@ -108,14 +101,6 @@ void Stage::Update()
 			for (list<Object*>::iterator pEnemyIter = pEnemyList->begin();
 				pEnemyIter != pEnemyList->end();)
 			{
-
-				if (CollisionManager::CircleCollision(pPlayer, *pEnemyIter))
-				{
-					pEnemyIter = ObjectManager::GetInstance()->ThrowObject(pEnemyIter, (*pEnemyIter));
-				}
-				else
-					++pEnemyIter;
-
 				if (pBulletList != nullptr)
 				{
 					for (list<Object*>::iterator pBulletIter = pBulletList->begin();
@@ -129,6 +114,13 @@ void Stage::Update()
 							++pBulletIter;
 					}
 				}
+
+				if (CollisionManager::CircleCollision(pPlayer, *pEnemyIter))
+				{
+					pEnemyIter = ObjectManager::GetInstance()->ThrowObject(pEnemyIter, (*pEnemyIter));
+				}
+				else
+					++pEnemyIter;
 			}
 		}
 	}
@@ -152,8 +144,8 @@ void Stage::Update()
 		}
 	}
 
-	//if (pUI)
-	//	pUI->Update();
+	//if (UI)
+	//	UI->Update();
 }
 
 void Stage::Render()
@@ -164,16 +156,11 @@ void Stage::Render()
 	ObjectManager::GetInstance()->Redner();
 
 	//if (Check)
-	//	pUI->Render();
+	//	UI->Render();
 }
 
 void Stage::Release()
 {
-
+	::Safe_Delete(UI);
 }
 
-void Stage::Enable_UI()
-{
-	Check = !Check;
-	
-}

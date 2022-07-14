@@ -47,6 +47,12 @@ int Player::Update()
 	if (dwKey & KEY_RIGHT)
 		TransInfo.Position.x += 1;
 
+	//if (dwKey & KEY_RIGHT && dwKey & 
+	//{
+	//	TransInfo.Position.x += 1;
+	//	TransInfo.Position.y += 1;
+	//}
+
 	if (dwKey & KEY_SPACE)
 	{
 		/*
@@ -67,7 +73,6 @@ int Player::Update()
 
  		Bridge* pBridge = new NormalBullet;
 		ObjectManager::GetInstance()->AddBullet( pBridge, TransInfo.Position);
-
 	}
 
 	return 0;

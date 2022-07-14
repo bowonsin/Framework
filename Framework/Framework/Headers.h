@@ -10,7 +10,7 @@
 
 
 
-//framework ver9.0 2022-07-12
+//framework ver9.0 2022-07-14
 using namespace std;
 
 #include "Define.h"

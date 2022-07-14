@@ -11,6 +11,8 @@ const DWORD KEY_ALT = 128;
 const DWORD KEY_TAB = 256;
 const DWORD KEY_ESCAPE = 512;
 
+// DWOR 값은  최대 42만 9천 까지 가능함.
+
 const int BUFFER_OVER = 1;
 
 const int MAX_SIZE = 2;

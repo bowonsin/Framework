@@ -20,7 +20,7 @@ void LogoInterface::Initialize()
 	StartImage.DOT_Image.push_back((char*)":......:::........::..:::::..:::::..::::::::..:::::::::..:::::..::..:::::..:::.......:::........:::....:::.......::::......:::");
 	StartImage.Data.Position = Vector3((float)(ConsoleWidthSize * 0.5f - 65), (float)(ConsoleHeightSize * 0.5f - 23));
 	StartImage.Color = 12;
-	LogoImage.push_back(StartImage);
+	TextureImage.push_back(StartImage);
 	StartImage.DOT_Image.clear();
 
 	StartImage.DOT_Image.push_back((char*)"  /$$$$$$  /$$$$$$$$ /$$$$$$  /$$$$$$$  /$$$$$$$$");
@@ -33,7 +33,7 @@ void LogoInterface::Initialize()
 	StartImage.DOT_Image.push_back((char*)" \______/    |__/  |__/  |__/|__/  |__/   |__/   ");
 	StartImage.Data.Position = Vector3((float)(ConsoleWidthSize * 0.5f - 30), (float)(ConsoleHeightSize* 0.5f - 8));
 	StartImage.Color = 9;
-	LogoImage.push_back(StartImage);
+	TextureImage.push_back(StartImage);
 	StartImage.DOT_Image.clear();
 
 	StartImage.DOT_Image.push_back((char*)"               _______   _______   ________   ______    ______         __  ________  __    __  ________  ________  _______    __               ");
@@ -47,7 +47,7 @@ void LogoInterface::Initialize()
 	StartImage.DOT_Image.push_back((char*)"              $$/       $$/   $$/ $$$$$$$$/  $$$$$$/   $$$$$$/            $$$$$$$$/ $$/   $$/    $$/    $$$$$$$$/ $$/   $$/                   ");
 	StartImage.Color = 14;
 	StartImage.Data.Position = Vector3((float)(ConsoleWidthSize *0.5 - 75), (float)(ConsoleHeightSize * 0.5f +StartImage.DOT_Image.size()));
-	LogoImage.push_back(StartImage);
+	TextureImage.push_back(StartImage);
 
 }
 
@@ -59,14 +59,14 @@ int LogoInterface::Update()
 void LogoInterface::Render()
 {
 
-	for (int i = 0; i < LogoImage.size(); ++i)
+	for (int i = 0; i < TextureImage.size(); ++i)
 	{
-		for (int j = 0; j < LogoImage[i].DOT_Image.size(); ++j)
+		for (int j = 0; j < TextureImage[i].DOT_Image.size(); ++j)
 		{
 			CursorManager::GetInstance()->WriteBuffer(
-				LogoImage[i].Data.Position.x,
-				LogoImage[i].Data.Position.y + j,
-				LogoImage[i].DOT_Image[j], LogoImage[i].Color);
+				TextureImage[i].Data.Position.x,
+				TextureImage[i].Data.Position.y + j,
+				TextureImage[i].DOT_Image[j], TextureImage[i].Color);
 		}
 	}
 }

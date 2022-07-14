@@ -8,7 +8,7 @@
 
 
 Logo::Logo(){}
-Logo::~Logo(){}
+Logo::~Logo() { Release(); }
 
 void Logo::Initialize()
 {
@@ -28,7 +28,10 @@ void Logo::Update()
 {
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 	if (dwKey & KEY_ENETER)
-		SceneManager::GetInstance()->SetScene(MENU);
+		SceneManager::GetInstance()->SetScene(SCENEID::MENU);
+
+	if (dwKey & KEY_ESCAPE)
+		SceneManager::GetInstance()->SetScene(SCENEID::EXIT);
 }
 
 void Logo::Render()
@@ -38,6 +41,7 @@ void Logo::Render()
 
 void Logo::Release()
 {
+	::Safe_Delete(UI);
 }
 
 

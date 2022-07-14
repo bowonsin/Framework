@@ -1,5 +1,5 @@
 #include "Scene.h"
 
-Scene::Scene(){}
+Scene::Scene():UI(nullptr){}
 
 Scene::~Scene(){}

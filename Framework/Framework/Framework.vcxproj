@@ -159,6 +159,9 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScrollBox.cpp" />
     <ClCompile Include="Stage.cpp" />
+    <ClCompile Include="StageManager.cpp" />
+    <ClCompile Include="Stage_1.cpp" />
+    <ClCompile Include="Stage_2.cpp" />
     <ClCompile Include="UserInterface.cpp" />
     <ClCompile Include="CursorManager.cpp" />
   </ItemGroup>
@@ -192,6 +195,9 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ScrollBox.h" />
     <ClInclude Include="Stage.h" />
+    <ClInclude Include="StageManager.h" />
+    <ClInclude Include="Stage_1.h" />
+    <ClInclude Include="Stage_2.h" />
     <ClInclude Include="Struct.h" />
     <ClInclude Include="UserInterface.h" />
   </ItemGroup>
