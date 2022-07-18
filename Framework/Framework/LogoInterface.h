@@ -9,7 +9,6 @@ public:
 	virtual void Release()override;
 
 private:
-	;
 
 public:
 	LogoInterface();

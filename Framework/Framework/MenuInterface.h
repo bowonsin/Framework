@@ -11,8 +11,8 @@ public:
 private:
 	int m_iSelectMenu;
 
-	vector<char*> make_box();
-	void ImageDrawing(int Order);
+	vector<char*> Make_Box();
+	void ImageDraw(int Order);
 
 public:
 	MenuInterface();

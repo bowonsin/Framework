@@ -3,6 +3,7 @@
 #include "Logo.h"
 #include "Menu.h"
 #include "Stage.h"
+#include "StageMenu.h"
 //#include "Scene.h" -> 예는 추상클레스 이기 때문에 쓸 필요가 없다.
 // 변수가 선언이 되어있으면 반드시 초기화는 해줘야한다.
 SceneManager* SceneManager::Instance = nullptr; 
@@ -26,6 +27,7 @@ void SceneManager::SetScene(SCENEID _Scene_Id)
 		break;
 
 	case STAGE:
+		Scene_Id = new StageMenu;
 		//Scene_Id = new Stage;
 		// switch 추가해서 추가 STage 형식으로 
 		break;

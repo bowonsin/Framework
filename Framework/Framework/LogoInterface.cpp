@@ -3,7 +3,7 @@
 
 LogoInterface::LogoInterface() {}
 LogoInterface::LogoInterface(Transform _info) {}
-LogoInterface::~LogoInterface() {}
+LogoInterface::~LogoInterface() { Release(); }
 
 void LogoInterface::Initialize()
 {
@@ -73,6 +73,6 @@ void LogoInterface::Render()
 
 void LogoInterface::Release()
 {
+	TextureImage.clear();
 }
-
 

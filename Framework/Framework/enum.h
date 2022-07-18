@@ -12,3 +12,10 @@ enum MENU_KIND
 	GAME_START,
 	EIXT
 };
+
+enum UP_DOWN
+{
+	UP,
+	PAUSE,
+	DOWN
+};

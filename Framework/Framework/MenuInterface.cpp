@@ -14,7 +14,7 @@ void MenuInterface::Initialize()
 	float x_Standard = (float)(ConsoleWidthSize * 0.5f);
 	float y_Standard = (float)(ConsoleHeightSize * 0.5f);
 
-	MenuImage.DOT_Image = make_box();
+	MenuImage.DOT_Image = Make_Box();
 	MenuImage.Data.Position = Vector3(x_Standard - 50.0f,y_Standard - 14.0f);
 	MenuImage.Color = 12;
 	BoxImage.push_back(MenuImage);
@@ -50,7 +50,7 @@ void MenuInterface::Initialize()
 	TextureImage.push_back(MenuImage);
 	MenuImage.DOT_Image.clear();
 
-	MenuImage.DOT_Image = make_box();
+	MenuImage.DOT_Image = Make_Box();
 	MenuImage.Data.Position = Vector3(x_Standard - 20.0f, y_Standard - 16.0f);
 	MenuImage.Color = 9;
 	BoxImage.push_back(MenuImage);
@@ -85,7 +85,7 @@ void MenuInterface::Initialize()
 	//LogoImage.push_back(MenuImage);
 }
 
-vector<char*> MenuInterface::make_box()
+vector<char*> MenuInterface::Make_Box()
 {
 	char* box_front = (char*)"; @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@";
 	char* box_middle1 = (char*)"; ................................................................, #";
@@ -122,15 +122,15 @@ void MenuInterface::Render()
 	if (m_iSelectMenu == 0 )
 	{
 		for (int i = BoxImage.size() - 1; i >= 0; --i)
-			ImageDrawing(i);
+			ImageDraw(i);
 	}
 	else
 	{
 		for (int i = 0 ;  i < BoxImage.size(); ++i )
-			ImageDrawing(i);
+			ImageDraw(i);
 	}
 }
-void MenuInterface::ImageDrawing(int Order)
+void MenuInterface::ImageDraw(int Order)
 {
 	for (int j = 0; j < BoxImage[Order].DOT_Image.size(); ++j)
 	{
@@ -151,4 +151,6 @@ void MenuInterface::ImageDrawing(int Order)
 
 void MenuInterface::Release()
 {
+	TextureImage.clear();
+	BoxImage.clear();
 }

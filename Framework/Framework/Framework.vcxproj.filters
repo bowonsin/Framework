@@ -112,6 +112,12 @@
     <Filter Include="소스 파일\02.Object\Bullet\BulletBiridge\HomingBullet">
       <UniqueIdentifier>{0fdeed58-b3f5-4552-b9ff-7d3c24292f29}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\01.Scene\Stage\StageMenu">
+      <UniqueIdentifier>{a0d4da8c-2a62-4231-9a84-e2d2e874f734}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.UserInterface\StageMenuInterface">
+      <UniqueIdentifier>{31529fab-1057-4480-be00-93822e1439ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -191,6 +197,12 @@
     </ClCompile>
     <ClCompile Include="HomingBullet.cpp">
       <Filter>소스 파일\02.Object\Bullet\BulletBiridge\HomingBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="StageMenuInterface.cpp">
+      <Filter>소스 파일\03.UserInterface\StageMenuInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="StageMenu.cpp">
+      <Filter>소스 파일\01.Scene\Stage\StageMenu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -298,6 +310,12 @@
     </ClInclude>
     <ClInclude Include="HomingBullet.h">
       <Filter>소스 파일\02.Object\Bullet\BulletBiridge\HomingBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="StageMenuInterface.h">
+      <Filter>소스 파일\03.UserInterface\StageMenuInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="StageMenu.h">
+      <Filter>소스 파일\01.Scene\Stage\StageMenu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
