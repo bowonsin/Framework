@@ -103,8 +103,6 @@ void StageMenuInterface::Render()
 			
 			if (Check == BoxImage[i].Data.Position.z || -Check == BoxImage[i].Data.Position.z)
 			{
-				
-
 				ImageDraw(i);
 
 				if (Check == 0)
