@@ -109,6 +109,9 @@
     <Filter Include="소스 파일\01.Scene\Stage\Stage_2">
       <UniqueIdentifier>{b7d165ba-42a0-48b7-9063-6f7f5490b325}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Object\Bullet\BulletBiridge\HomingBullet">
+      <UniqueIdentifier>{0fdeed58-b3f5-4552-b9ff-7d3c24292f29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -185,6 +188,9 @@
     </ClCompile>
     <ClCompile Include="Stage_1.cpp">
       <Filter>소스 파일\01.Scene\Stage\Stage_1</Filter>
+    </ClCompile>
+    <ClCompile Include="HomingBullet.cpp">
+      <Filter>소스 파일\02.Object\Bullet\BulletBiridge\HomingBullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +295,9 @@
     </ClInclude>
     <ClInclude Include="Stage_1.h">
       <Filter>소스 파일\01.Scene\Stage\Stage_1</Filter>
+    </ClInclude>
+    <ClInclude Include="HomingBullet.h">
+      <Filter>소스 파일\02.Object\Bullet\BulletBiridge\HomingBullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

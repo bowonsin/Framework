@@ -142,6 +142,7 @@
     <ClCompile Include="BakcGround.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="HomingBullet.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Logo.cpp" />
     <ClCompile Include="LogoInterface.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enum.h" />
     <ClInclude Include="Headers.h" />
+    <ClInclude Include="HomingBullet.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Logo.h" />
     <ClInclude Include="LogoInterface.h" />
