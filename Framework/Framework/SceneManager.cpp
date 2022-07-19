@@ -27,8 +27,8 @@ void SceneManager::SetScene(SCENEID _Scene_Id)
 		break;
 
 	case STAGE:
-		//Scene_Id = new StageMenu;
-		Scene_Id = new Stage;
+		Scene_Id = new StageMenu;
+		//Scene_Id = new Stage;
 		// switch 추가해서 추가 STage 형식으로 
 		break;
 	case EXIT:

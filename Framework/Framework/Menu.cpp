@@ -17,11 +17,12 @@ void Menu::Update()
 {
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
-	if (m_iSelectMenu <= 0 && (dwKey & KEY_RIGHT))
+	if (dwKey & KEY_RIGHT && m_iSelectMenu != 1)
 		++m_iSelectMenu;
-	else if (m_iSelectMenu >= 1 && (dwKey & KEY_LEFT)) //Menu 갯수가 추가될수록 늘리기
+	else if (dwKey & KEY_LEFT && m_iSelectMenu != 0)
 		--m_iSelectMenu;
-	UI->Update();
+	if (UI)
+		UI->Update();
 	if (dwKey & KEY_ENETER)
 	{
 		switch (m_iSelectMenu)
@@ -39,7 +40,8 @@ void Menu::Update()
 
 void Menu::Render()
 {
-	UI->Render();
+	if (UI)
+		UI->Render();
 }
 
 void Menu::Release()

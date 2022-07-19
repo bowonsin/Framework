@@ -2,20 +2,20 @@
 #include "CursorManager.h"
 #include "InputManager.h"
 
-MenuInterface::MenuInterface():m_iSelectMenu(0) {}
+MenuInterface::MenuInterface() {}
 MenuInterface::MenuInterface(Transform _info) {}
 MenuInterface::~MenuInterface() { Release(); }
 
 void MenuInterface::Initialize()
 {
-	m_iSelectMenu = 0;	
 
 	Image_Transform_Data MenuImage; 
-	float x_Standard = (float)(ConsoleWidthSize * 0.5f);
-	float y_Standard = (float)(ConsoleHeightSize * 0.5f);
 
 	MenuImage.DOT_Image = Make_Box();
-	MenuImage.Data.Position = Vector3(x_Standard - 50.0f,y_Standard - 14.0f);
+	float x_Standard = (float)(ConsoleWidthSize * 0.5f - strlen(MenuImage.DOT_Image.front())/2);
+	float y_Standard = (float)(ConsoleHeightSize * 0.5f - MenuImage.DOT_Image.size()/2);
+	
+	MenuImage.Data.Position = Vector3(x_Standard ,y_Standard ,0);
 	MenuImage.Color = 12;
 	BoxImage.push_back(MenuImage);
 	MenuImage.DOT_Image.clear();
@@ -45,13 +45,13 @@ void MenuInterface::Initialize()
 	MenuImage.DOT_Image.push_back((char*)"       +#+        +#+          +#+     +#+     +#+    ");
 	MenuImage.DOT_Image.push_back((char*)"       #+#        #+#          #+#     #+#     #+#    ");
 	MenuImage.DOT_Image.push_back((char*)"       ###        ##########   ###     ###     ###    ");
-	MenuImage.Data.Position = Vector3(x_Standard - 46.0f, y_Standard - 10.0f);
+	MenuImage.Data.Position = Vector3(x_Standard + 4, y_Standard + 4,0); // 기본 꺼 와 x 4 y 4 차이남
 	MenuImage.Color = 12;
 	TextureImage.push_back(MenuImage);
 	MenuImage.DOT_Image.clear();
 
 	MenuImage.DOT_Image = Make_Box();
-	MenuImage.Data.Position = Vector3(x_Standard - 20.0f, y_Standard - 16.0f);
+	MenuImage.Data.Position = Vector3(x_Standard + 30, y_Standard , 1);
 	MenuImage.Color = 9;
 	BoxImage.push_back(MenuImage);
 	MenuImage.DOT_Image.clear();
@@ -72,17 +72,82 @@ void MenuInterface::Initialize()
 	MenuImage.DOT_Image.push_back((char*)"E:::::::::::::E X::::X       X::::X I::::::::I     T:::::::T    ");
 	MenuImage.DOT_Image.push_back((char*)"E:::::::::::::E X::::X       X::::X I::::::::I     T:::::::T    ");
 	MenuImage.DOT_Image.push_back((char*)"EEEEEEEEEEEEEEE XXXXXX       XXXXXX IIIIIIIIII     TTTTTTTTT    ");
-	MenuImage.Data.Position = Vector3(x_Standard - 17.0f, y_Standard - 7.0f);
+	MenuImage.Data.Position = Vector3(x_Standard + 33, y_Standard + 9, 1);
 	MenuImage.Color = 9;
 	TextureImage.push_back(MenuImage);
 	MenuImage.DOT_Image.clear();
 
-	
+}
 
-	//MenuImage.DOT_Image = make_box();
-	//MenuImage.Color = 14;
-	//MenuImage.Data.Position = Vector3((float)(ConsoleWidthSize * 0.5 - 5), (float)(ConsoleHeightSize * 0.5f - 14));
-	//LogoImage.push_back(MenuImage);
+
+int MenuInterface::Update()
+{
+	DWORD Key = InputManager::GetInstance()->GetKey();
+
+	if (Key & KEY_RIGHT && BoxImage.back().Data.Position.z != 0)
+	{
+		for (int i = 0; i < BoxImage.size(); ++i)
+		{
+			LocationCheck(BoxImage[i].Data.Position, IMAGE_MOVE_DIRECTION::RIGHT);
+			LocationCheck(TextureImage[i].Data.Position, IMAGE_MOVE_DIRECTION::RIGHT);
+		}
+	}
+	else if (Key & KEY_LEFT && BoxImage.front().Data.Position.z != 0) // menu 개수가 늘어 날 수록 정수값 늘리기
+	{
+		for (int i = 0; i < BoxImage.size(); ++i)
+		{
+			LocationCheck(BoxImage[i].Data.Position, IMAGE_MOVE_DIRECTION::LEFT);
+			LocationCheck(TextureImage[i].Data.Position, IMAGE_MOVE_DIRECTION::LEFT);
+		}
+	}
+		
+	return 0;
+}
+
+void MenuInterface::Render()
+{
+	for (int i = BoxImage.size() - 1; i >= 0; --i)
+	{
+		if (BoxImage[i].Data.Position.z > 0)
+			ImageDraw(i);
+	}
+	for (int i = 0; i < BoxImage.size(); ++i)
+	{
+		if (BoxImage[i].Data.Position.z < 0)
+			ImageDraw(i);
+	}
+	for (int i = 0; i < BoxImage.size(); ++i)
+	{
+		if (BoxImage[i].Data.Position.z == 0)
+			ImageDraw(i);
+	}
+}
+
+void MenuInterface::LocationCheck(Vector3& _Position, IMAGE_MOVE_DIRECTION Check)
+{
+	if (Check ==IMAGE_MOVE_DIRECTION::RIGHT)
+	{
+		if (_Position.z == 0 || _Position.z == 1)
+			_Position.x -= 30;
+		else if (_Position.z == -1 || _Position.z == 2)
+			_Position.x -= 20;
+		else if (_Position.z == -2 || _Position.z == 3)
+			_Position.x -= 10;
+
+		--_Position.z;
+
+	}
+	else if (Check== IMAGE_MOVE_DIRECTION::LEFT)
+	{
+		if (_Position.z == 0 || _Position.z == -1)
+			_Position.x += 30;
+		else if (_Position.z == 1 || _Position.z == -2)
+			_Position.x += 20;
+		else if (_Position.z == 2 || _Position.z == -3)
+			_Position.x += 10;
+
+		++_Position.z;
+	}
 }
 
 vector<char*> MenuInterface::Make_Box()
@@ -100,35 +165,6 @@ vector<char*> MenuInterface::Make_Box()
 	Temp.push_back(box_middle1);
 	Temp.push_back(box_end);
 	return Temp;
-}
-
-
-
-
-int MenuInterface::Update()
-{
-	DWORD Key = InputManager::GetInstance()->GetKey();
-
-	if (m_iSelectMenu <= 0 && (Key & KEY_RIGHT))
-		++m_iSelectMenu;
-	else if (m_iSelectMenu >= 1 && (Key & KEY_LEFT)) // menu 개수가 늘어 날 수록 정수값 늘리기
-		--m_iSelectMenu;
-	
-	return 0;
-}
-
-void MenuInterface::Render()
-{
-	if (m_iSelectMenu == 0 )
-	{
-		for (int i = BoxImage.size() - 1; i >= 0; --i)
-			ImageDraw(i);
-	}
-	else
-	{
-		for (int i = 0 ;  i < BoxImage.size(); ++i )
-			ImageDraw(i);
-	}
 }
 void MenuInterface::ImageDraw(int Order)
 {

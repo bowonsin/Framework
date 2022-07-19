@@ -158,13 +158,13 @@
     <ClCompile Include="Prototype.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="ScrollBox.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="StageManager.cpp" />
     <ClCompile Include="StageMenu.cpp" />
     <ClCompile Include="StageMenuInterface.cpp" />
     <ClCompile Include="Stage_1.cpp" />
     <ClCompile Include="Stage_2.cpp" />
+    <ClCompile Include="Stage_3.cpp" />
     <ClCompile Include="UserInterface.cpp" />
     <ClCompile Include="CursorManager.cpp" />
   </ItemGroup>
@@ -197,13 +197,13 @@
     <ClInclude Include="Prototype.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="ScrollBox.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="StageManager.h" />
     <ClInclude Include="StageMenu.h" />
     <ClInclude Include="StageMenuInterface.h" />
     <ClInclude Include="Stage_1.h" />
     <ClInclude Include="Stage_2.h" />
+    <ClInclude Include="Stage_3.h" />
     <ClInclude Include="Struct.h" />
     <ClInclude Include="UserInterface.h" />
   </ItemGroup>

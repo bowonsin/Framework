@@ -1,6 +1,6 @@
 #pragma once
-#include "Stage.h"
-class StageMenu : public Stage
+#include "Scene.h"
+class StageMenu :public Scene
 {
 public:
 	virtual void Initialize()override; //PURE  순수 가상함수와 비슷 하게 작용 된다.
@@ -8,8 +8,10 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 
-public:
+private:
+	int m_iSelect_Stage;
 
+public:
 	StageMenu();
 	virtual ~StageMenu();
 };

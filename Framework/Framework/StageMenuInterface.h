@@ -10,9 +10,7 @@ public:
 
 private:
 	int m_iSelectStage;
-
-	void Location_Check(Vector3 & _Position, UP_DOWN Check);
-	int Z_Count_Check();
+	void Location_Check(Vector3 & _Position, IMAGE_MOVE_DIRECTION Check);
 
 	vector<char*> Make_Box(int Font_Size);
 	void ImageDraw(int order);

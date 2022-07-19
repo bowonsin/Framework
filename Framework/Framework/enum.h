@@ -4,6 +4,9 @@ enum SCENEID
 	LOGO = 0,
 	MENU,
 	STAGE,
+	STAGE_1,
+	STAGE_2,
+	STAGE_3,
 	EXIT
 };
 
@@ -13,9 +16,11 @@ enum MENU_KIND
 	EIXT
 };
 
-enum UP_DOWN
+enum IMAGE_MOVE_DIRECTION
 {
 	UP,
-	PAUSE,
-	DOWN
+	DOWN,
+	RIGHT,
+	LEFT,
+	PAUSE
 };

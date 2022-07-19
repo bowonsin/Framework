@@ -9,7 +9,7 @@ public:
 	virtual void Release()override;
 
 private:
-	int m_iSelectMenu;
+	void LocationCheck(Vector3& _Position,IMAGE_MOVE_DIRECTION Check);
 
 	vector<char*> Make_Box();
 	void ImageDraw(int Order);

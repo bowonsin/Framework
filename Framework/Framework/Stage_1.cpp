@@ -9,6 +9,7 @@ void Stage_1::Initialize()
 
 void Stage_1::Update()
 {
+	
 }
 
 void Stage_1::Render()

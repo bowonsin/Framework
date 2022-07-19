@@ -1,32 +1,74 @@
 #include "Stage.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "BakcGround.h"
-#include "ScrollBox.h"
 
-#include "SceneManager.h"
 #include "ObjectManager.h"
 #include "CollisionManager.h"
-#include "CursorManager.h"
-#include "InputManager.h"
-
-#include "ObjectPool.h"
-#include "Prototype.h"
-
-//#include "CursorManager.h"
 
 Stage::Stage():pPlayer(nullptr){}
-Stage::~Stage() { Release(); }
+Stage::~Stage() { }
 
-void Stage::Initialize()
+void Stage::Stage_Collision_Check()
 {
+	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObject_list("Bullet");
+	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObject_list("Enemy");
 
-	
-	UI = new ScrollBox;
-	UI->Initialize();
+	// Bullet 행동 반경 넘어섯을 떄 Disable로 이동
+	if (pBulletList != nullptr)
+	{
+		for (list<Object*>::iterator pBullet = pBulletList->begin(); pBullet != pBulletList->end();)
+		{
+			// x의 좌표가 맵의 최대치 보다 넘어가는것, x의 좌표가 0 보다 낮은것
+			if ((*pBullet)->Getposition().x >= ConsoleWidthSize || (*pBullet)->Getposition().x <= 0 ||
+				// y의 좌표가 맵의 최대치 보다 넘어가는것, y의 좌표가 0보다 낮은거
+				(*pBullet)->Getposition().y >= ConsoleHeightSize || (*pBullet)->Getposition().y <= 0)
+			{
+				pBullet = ObjectManager::GetInstance()->ThrowObject(pBullet, (*pBullet));
+			}
+			else
+				++pBullet;
+		}
+	}
+
+	// 전체적인 충돌 판정 . 
+	if (pPlayer != nullptr)
+	{
+		if (pEnemyList != nullptr)
+		{
+			for (list<Object*>::iterator pEnemyIter = pEnemyList->begin();
+				pEnemyIter != pEnemyList->end();)
+			{
+				if (pBulletList != nullptr)
+				{
+					for (list<Object*>::iterator pBulletIter = pBulletList->begin();
+						pBulletIter != pBulletList->end();)
+					{
+						// Enemy 와 Bullet의 충돌 확인
+						if (CollisionManager::Collision(*pBulletIter, *pEnemyIter))
+						{
+							pBulletIter = ObjectManager::GetInstance()->ThrowObject(pBulletIter, (*pBulletIter));
+						}
+						else
+							++pBulletIter;
+					}
+				}
+				// 플레이어와 enemy의 충돌 
+				if (CollisionManager::CircleCollision(pPlayer, *pEnemyIter))
+				{
+					pEnemyIter = ObjectManager::GetInstance()->ThrowObject(pEnemyIter, (*pEnemyIter));
+				}
+				else
+					++pEnemyIter;
+			}
+		}
+	}
+}
+
+/*
+		각 스테이지에서 따로 할당 하는걸로
 	ObjectManager::GetInstance()->AddObject("Player");
 	pPlayer = ObjectManager::GetInstance()->GetObject_list("Player")->front();
-	
+
 
 	for(int i = 0 ; i < 5; i++)
 		ObjectManager::GetInstance()->AddObject("Enemy");
@@ -39,7 +81,7 @@ void Stage::Initialize()
 		(*iter)->Setposition(float(rand() % 118), rand() % 30);
 		++i;
 	}
-
+	*/
 	/*
 	for (int i = 0; i < 5; ++i)
 	{
@@ -62,105 +104,3 @@ void Stage::Initialize()
 	//if (pPlayerList != nullptr)
 	//	pPlayer = pPlayerList->front();
 	*/
-}
-
-void Stage::Update()
-{
-
-	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObject_list("Bullet");
-	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObject_list("Enemy");
-
-	DWORD dwKey = InputManager::GetInstance()->GetKey();
-	if (dwKey & KEY_ESCAPE)
-	{
-		if (pBulletList->size())
-		{
-			ObjectPool::GetInstance()->CatchObject(pBulletList->back());
-			pBulletList->pop_back();
-		}
-	}
-
-	ObjectManager::GetInstance()->Update();
-
-	if (pBulletList != nullptr)
-	{
-		for (list<Object*>::iterator iter = pBulletList->begin(); iter != pBulletList->end();)
-		{
-			if ((*iter)->Getposition().x >= 120.0f)
-			{
-				iter = pBulletList->erase(iter);
-			}
-			else
-				++iter;
-		}
-	}
-	if (pPlayer != nullptr)
-	{
- 		if (pEnemyList != nullptr)
-		{
-			for (list<Object*>::iterator pEnemyIter = pEnemyList->begin();
-				pEnemyIter != pEnemyList->end();)
-			{
-				if (pBulletList != nullptr)
-				{
-					for (list<Object*>::iterator pBulletIter = pBulletList->begin();
-						pBulletIter != pBulletList->end();)
-					{
-						if (CollisionManager::Collision(*pBulletIter, *pEnemyIter))
-						{
-							pBulletIter = ObjectManager::GetInstance()->ThrowObject(pBulletIter, (*pBulletIter));
-						}
-						else
-							++pBulletIter;
-					}
-				}
-
-				if (CollisionManager::CircleCollision(pPlayer, *pEnemyIter))
-				{
-					pEnemyIter = ObjectManager::GetInstance()->ThrowObject(pEnemyIter, (*pEnemyIter));
-				}
-				else
-					++pEnemyIter;
-			}
-		}
-	}
-
-	// 기능 분리 
-	if (pPlayer != nullptr)
-	{
-		if (pEnemyList != nullptr)
-		{
-			for (list<Object*>::iterator pEnemyIter = pEnemyList->begin();
-				pEnemyIter != pEnemyList->end();)
-			{
-				if (CollisionManager::CircleCollision(pPlayer, *pEnemyIter))
-				{
-					pEnemyIter = ObjectManager::GetInstance()->ThrowObject(pEnemyIter, (*pEnemyIter));
-				}
-				else
-					++pEnemyIter;
-
-			}
-		}
-	}
-
-	//if (UI)
-	//	UI->Update();
-}
-
-void Stage::Render()
-{
-	Object* Back = new BakcGround;
-	Back->Initialize("back");
-	Back->Render();
-	ObjectManager::GetInstance()->Redner();
-
-	//if (Check)
-	//	UI->Render();
-}
-
-void Stage::Release()
-{
-	::Safe_Delete(UI);
-}
-

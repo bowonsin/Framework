@@ -70,9 +70,6 @@
     <Filter Include="소스 파일\03.UserInterface">
       <UniqueIdentifier>{64de76be-8796-49e6-b4ea-044d41e7d9d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\03.UserInterface\ScrollBox">
-      <UniqueIdentifier>{510bd12e-7f1d-4b79-b979-5beb0f3b0fb5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\99.Manager\MathManager">
       <UniqueIdentifier>{32266c26-729b-4db0-a25c-8956b80fe8ef}</UniqueIdentifier>
     </Filter>
@@ -112,11 +109,14 @@
     <Filter Include="소스 파일\02.Object\Bullet\BulletBiridge\HomingBullet">
       <UniqueIdentifier>{0fdeed58-b3f5-4552-b9ff-7d3c24292f29}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01.Scene\Stage\StageMenu">
-      <UniqueIdentifier>{a0d4da8c-2a62-4231-9a84-e2d2e874f734}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\03.UserInterface\StageMenuInterface">
       <UniqueIdentifier>{31529fab-1057-4480-be00-93822e1439ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Scene\StageMenu">
+      <UniqueIdentifier>{a0d4da8c-2a62-4231-9a84-e2d2e874f734}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Scene\Stage\Stage_3">
+      <UniqueIdentifier>{466c2f8a-01b8-4425-9422-96014ecf0860}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -165,9 +165,6 @@
     <ClCompile Include="UserInterface.cpp">
       <Filter>소스 파일\03.UserInterface</Filter>
     </ClCompile>
-    <ClCompile Include="ScrollBox.cpp">
-      <Filter>소스 파일\03.UserInterface\ScrollBox</Filter>
-    </ClCompile>
     <ClCompile Include="CursorManager.cpp">
       <Filter>소스 파일\99.Manager\CursorManager</Filter>
     </ClCompile>
@@ -202,7 +199,10 @@
       <Filter>소스 파일\03.UserInterface\StageMenuInterface</Filter>
     </ClCompile>
     <ClCompile Include="StageMenu.cpp">
-      <Filter>소스 파일\01.Scene\Stage\StageMenu</Filter>
+      <Filter>소스 파일\01.Scene\StageMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage_3.cpp">
+      <Filter>소스 파일\01.Scene\Stage\Stage_3</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -272,9 +272,6 @@
     <ClInclude Include="UserInterface.h">
       <Filter>소스 파일\03.UserInterface</Filter>
     </ClInclude>
-    <ClInclude Include="ScrollBox.h">
-      <Filter>소스 파일\03.UserInterface\ScrollBox</Filter>
-    </ClInclude>
     <ClInclude Include="MathManager.h">
       <Filter>소스 파일\99.Manager\MathManager</Filter>
     </ClInclude>
@@ -315,7 +312,10 @@
       <Filter>소스 파일\03.UserInterface\StageMenuInterface</Filter>
     </ClInclude>
     <ClInclude Include="StageMenu.h">
-      <Filter>소스 파일\01.Scene\Stage\StageMenu</Filter>
+      <Filter>소스 파일\01.Scene\StageMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage_3.h">
+      <Filter>소스 파일\01.Scene\Stage\Stage_3</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

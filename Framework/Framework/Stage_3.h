@@ -1,17 +1,16 @@
 #pragma once
-#include "UserInterface.h"
-class ScrollBox : public UserInterface
+#include "Stage.h"
+class Stage_3 : public Stage
 {
 public:
 	virtual void Initialize()override; //PURE  순수 가상함수와 비슷 하게 작용 된다.
-	virtual int Update()override;
+	virtual void Update()override;
 	virtual void Render()override;
 	virtual void Release()override;
 
-
 public:
-	ScrollBox();
-	ScrollBox(Transform _info);
-	virtual ~ScrollBox();
+	Stage_3();
+	virtual ~Stage_3();
+
 };
 
