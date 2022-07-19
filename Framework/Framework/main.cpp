@@ -21,7 +21,7 @@ int main(void)
 		if (Time + 50 < GetTickCount64()) //Time + 50 < GetTickCount64() 0.05 ÃÊ + 
 		{
 			Time = GetTickCount64();
-			system("cls");
+
 			Main.Update();
 			Main.Render();
 

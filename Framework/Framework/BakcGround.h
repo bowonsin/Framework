@@ -21,4 +21,3 @@ public:
 	BakcGround(Transform _info);
 	virtual ~BakcGround();
 };
-

@@ -13,16 +13,7 @@ Object* BakcGround::Initialize(string _Key)
     TransInfo.Rotation = Vector3(0.0f, 0.0f);
     TransInfo.Scale = Vector3(2.0f, 2.0f);
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+   
 
 
     GroundOne.push_back((char*)"!!!!!~,,,-~;!!***;:~,,,~;!;~~:!*;;!*;~,.");
