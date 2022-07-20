@@ -3,7 +3,7 @@ enum SCENEID
 {
 	LOGO = 0,
 	MENU,
-	STAGE,
+	STAGE_MENU,
 	STAGE_1,
 	STAGE_2,
 	STAGE_3,
