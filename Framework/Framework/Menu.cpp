@@ -28,7 +28,7 @@ void Menu::Update()
 		switch (m_iSelectMenu)
 		{
 		case MENU_KIND::GAME_START:
-			SceneManager::GetInstance()->SetScene(STAGE);
+			SceneManager::GetInstance()->SetScene(SCENEID::STAGE_MENU);
 			break;
 		case MENU_KIND::EIXT:
 			SceneManager::GetInstance()->SetScene(LOGO);

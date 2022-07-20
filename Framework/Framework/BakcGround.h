@@ -13,9 +13,6 @@ private: //Background 는 map 에 포함된 List로 관리 하는데 BackGround매니저를 만�
 	vector<char*> GroundOne;
 	Transform GroundOne_Info;
 
-	vector<char*> GroundTwo;
-	Transform GroundTwo_Info;
-
 public:
 	BakcGround();
 	BakcGround(Transform _info);

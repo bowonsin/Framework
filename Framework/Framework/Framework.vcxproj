@@ -139,7 +139,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BackGround_Down.cpp" />
+    <ClCompile Include="BackGround_Up.cpp" />
     <ClCompile Include="BakcGround.cpp" />
+    <ClCompile Include="BossEnemy.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="HomingBullet.cpp" />
@@ -150,7 +153,10 @@
     <ClCompile Include="MainUpdate.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MenuInterface.cpp" />
+    <ClCompile Include="NamedEnemy.cpp" />
     <ClCompile Include="NormalBullet.cpp" />
+    <ClCompile Include="NormalEnemy.cpp" />
+    <ClCompile Include="NormalItemEnemy.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="ObjectPool.cpp" />
@@ -169,15 +175,19 @@
     <ClCompile Include="CursorManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BackGround_Down.h" />
+    <ClInclude Include="BackGround_Up.h" />
     <ClInclude Include="BakcGround.h" />
+    <ClInclude Include="BossEnemy.h" />
     <ClInclude Include="Bridge.h" />
     <ClInclude Include="Bullet.h" />
-    <ClInclude Include="BulletBiridge.h" />
+    <ClInclude Include="BulletBridge.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Constant.h" />
     <ClInclude Include="CursorManager.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyBridge.h" />
     <ClInclude Include="Enum.h" />
     <ClInclude Include="Headers.h" />
     <ClInclude Include="HomingBullet.h" />
@@ -188,7 +198,10 @@
     <ClInclude Include="MathManager.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuInterface.h" />
+    <ClInclude Include="NamedEnemy.h" />
     <ClInclude Include="NormalBullet.h" />
+    <ClInclude Include="NormalEnemy.h" />
+    <ClInclude Include="NormalItemEnemy.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectFactory.h" />
     <ClInclude Include="ObjectManager.h" />

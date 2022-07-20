@@ -16,8 +16,8 @@ public:
 	virtual void Render()PURE;
 	virtual void Release()PURE;
 
+	virtual void InputImage()PURE;
 public:
-
 	BulletBridge() : Speed(0),Color(0) {}
 	virtual ~BulletBridge() {}
 };

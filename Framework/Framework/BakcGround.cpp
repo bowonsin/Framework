@@ -23,15 +23,6 @@ Object* BakcGround::Initialize(string _Key)
     GroundOne.push_back((char*)"--~~~~~~~~~~------''''-------~~~~~~~~---");
     GroundOne_Info.Position = Vector3(0.0f, 0.0f, 0.0f);
 
-    GroundTwo.push_back((char*)"--~~~~~~~~~~------,,,,-------~~~~~~~~---");
-    GroundTwo.push_back((char*)"                                        ");
-    GroundTwo.push_back((char*)" -             .,.,               ,,    ");
-    GroundTwo.push_back((char*)".::-        ,~.-~~-,.             -~,   ");
-    GroundTwo.push_back((char*)"-~~-,~;--,,.,-::~~~-.,--:-,--,.,,----,,-");
-    GroundTwo.push_back((char*)"!;;!!~~:!!*!-,..-:!!!;;!*!~~:!!!;;!!:~~~");
-    GroundTwo.push_back((char*)":-:!;~-~:;!!!:~-~;!;:~-~;;--~;*;~~!!~,--");
-    GroundTwo.push_back((char*)"!!!!!~,,,-~;!!***;:~,,,~;!;~~:!*;;!*;~,.");
-    GroundTwo_Info.Position = Vector3(0.0f, (float)(ConsoleHeightSize - GroundTwo.size()), 0.0f);
 
     return nullptr;
 }
@@ -53,17 +44,6 @@ void BakcGround::Render()
                 GroundOne[i], 15);
         }
         GroundOne_Info.Position.x += 40;
-
-    
-        for (int i = 0; i < GroundTwo.size(); ++i)
-        {
-            CursorManager::GetInstance()->WriteBuffer(
-                GroundTwo_Info.Position.x,
-                GroundTwo_Info.Position.y + i,
-                GroundTwo[i], 15);
-
-        }
-        GroundTwo_Info.Position.x += 40;
     }
 }
 

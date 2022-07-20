@@ -12,16 +12,15 @@ Bullet::~Bullet() {}
 
 Object* Bullet::Initialize(string _Key)
 {
-	strKey = "Bullet";
+	strKey = _Key;
 
 	Hp = 1;
-
-	Buffer[0] = (char*)"¡¬";
-	Buffer[1] = (char*)"£¯";
+	ch_Buffer.push_back((char*)"¡¬");
+	ch_Buffer.push_back((char*)"£¯");
 
 	TransInfo.Position = Vector3(0.0f, 0.0f);
 	TransInfo.Rotation = Vector3(0.0f, .0f);
-	TransInfo.Scale = Vector3((float)strlen(Buffer[0]),(float)MAX_SIZE);
+	TransInfo.Scale = Vector3((float)strlen(ch_Buffer[0]),(float)MAX_SIZE);
 
 	TransInfo.Direction= Vector3(0.0f, 0.0f);
 

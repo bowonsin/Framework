@@ -1,5 +1,5 @@
 #pragma once
-#include "BulletBiridge.h"
+#include "BulletBridge.h"
 class HomingBullet :public BulletBridge
 {
 public:
@@ -8,6 +8,7 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 
+	virtual void InputImage()override;
 public:
 
 	HomingBullet();

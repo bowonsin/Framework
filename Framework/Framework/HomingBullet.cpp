@@ -19,3 +19,7 @@ void HomingBullet::Render()
 void HomingBullet::Release()
 {
 }
+
+void HomingBullet::InputImage()
+{
+}

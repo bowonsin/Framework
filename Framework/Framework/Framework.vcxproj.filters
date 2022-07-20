@@ -79,14 +79,8 @@
     <Filter Include="소스 파일\98.Pattern\Prototype">
       <UniqueIdentifier>{41c53e49-9a6f-4f7e-931f-0d3e6b3f629a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02.Object\Bullet\BulletBiridge">
-      <UniqueIdentifier>{8a4a76bf-5339-46f1-9601-03f442658886}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\98.Pattern\Bridge">
       <UniqueIdentifier>{2a3a3b4d-f05e-4e2f-a339-e4897076be20}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02.Object\Bullet\BulletBiridge\NormalBullet">
-      <UniqueIdentifier>{1cfb4930-0013-4f20-8cd8-d1991996c700}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\98.Pattern\ObjectPool">
       <UniqueIdentifier>{4ae379ff-cc4a-432a-af49-20f1d9327007}</UniqueIdentifier>
@@ -106,9 +100,6 @@
     <Filter Include="소스 파일\01.Scene\Stage\Stage_2">
       <UniqueIdentifier>{b7d165ba-42a0-48b7-9063-6f7f5490b325}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02.Object\Bullet\BulletBiridge\HomingBullet">
-      <UniqueIdentifier>{0fdeed58-b3f5-4552-b9ff-7d3c24292f29}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\03.UserInterface\StageMenuInterface">
       <UniqueIdentifier>{31529fab-1057-4480-be00-93822e1439ac}</UniqueIdentifier>
     </Filter>
@@ -117,6 +108,36 @@
     </Filter>
     <Filter Include="소스 파일\01.Scene\Stage\Stage_3">
       <UniqueIdentifier>{466c2f8a-01b8-4425-9422-96014ecf0860}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\BackGround_Up">
+      <UniqueIdentifier>{a4614c4a-f432-4777-ae87-d4833d12807f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\BackGround_Down">
+      <UniqueIdentifier>{b77f60bc-5a89-4219-b0f9-a8ac4620bba0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Enemy\EnemyBridge">
+      <UniqueIdentifier>{82df305e-cd24-4096-930c-f4c0263eed8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Bullet\BulletBridge">
+      <UniqueIdentifier>{8a4a76bf-5339-46f1-9601-03f442658886}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Bullet\BulletBridge\NormalBullet">
+      <UniqueIdentifier>{1cfb4930-0013-4f20-8cd8-d1991996c700}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Bullet\BulletBridge\HomingBullet">
+      <UniqueIdentifier>{0fdeed58-b3f5-4552-b9ff-7d3c24292f29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Enemy\EnemyBridge\NormalEnemy">
+      <UniqueIdentifier>{cf467e12-fce3-4000-be3c-cd443f957424}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Enemy\EnemyBridge\NamedEnemy">
+      <UniqueIdentifier>{3cb664d0-ce0c-4828-b61c-e83566358571}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Enemy\EnemyBridge\BossEnemy">
+      <UniqueIdentifier>{2b5cfccd-d26d-498e-92f3-21d2a415707f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Enemy\EnemyBridge\NormalItemEnemy">
+      <UniqueIdentifier>{3fdc4a65-5d9f-4abd-a4ff-7d4a1a291dde}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -172,7 +193,7 @@
       <Filter>소스 파일\98.Pattern\Prototype</Filter>
     </ClCompile>
     <ClCompile Include="NormalBullet.cpp">
-      <Filter>소스 파일\02.Object\Bullet\BulletBiridge\NormalBullet</Filter>
+      <Filter>소스 파일\02.Object\Bullet\BulletBridge\NormalBullet</Filter>
     </ClCompile>
     <ClCompile Include="ObjectPool.cpp">
       <Filter>소스 파일\98.Pattern\ObjectPool</Filter>
@@ -193,7 +214,7 @@
       <Filter>소스 파일\01.Scene\Stage\Stage_1</Filter>
     </ClCompile>
     <ClCompile Include="HomingBullet.cpp">
-      <Filter>소스 파일\02.Object\Bullet\BulletBiridge\HomingBullet</Filter>
+      <Filter>소스 파일\02.Object\Bullet\BulletBridge\HomingBullet</Filter>
     </ClCompile>
     <ClCompile Include="StageMenuInterface.cpp">
       <Filter>소스 파일\03.UserInterface\StageMenuInterface</Filter>
@@ -203,6 +224,24 @@
     </ClCompile>
     <ClCompile Include="Stage_3.cpp">
       <Filter>소스 파일\01.Scene\Stage\Stage_3</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround_Down.cpp">
+      <Filter>소스 파일\02.Object\BackGround_Down</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround_Up.cpp">
+      <Filter>소스 파일\02.Object\BackGround_Up</Filter>
+    </ClCompile>
+    <ClCompile Include="BossEnemy.cpp">
+      <Filter>소스 파일\02.Object\Enemy\EnemyBridge\BossEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="NamedEnemy.cpp">
+      <Filter>소스 파일\02.Object\Enemy\EnemyBridge\NamedEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalEnemy.cpp">
+      <Filter>소스 파일\02.Object\Enemy\EnemyBridge\NormalEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalItemEnemy.cpp">
+      <Filter>소스 파일\02.Object\Enemy\EnemyBridge\NormalItemEnemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -281,11 +320,11 @@
     <ClInclude Include="Bridge.h">
       <Filter>소스 파일\98.Pattern\Bridge</Filter>
     </ClInclude>
-    <ClInclude Include="BulletBiridge.h">
-      <Filter>소스 파일\02.Object\Bullet\BulletBiridge</Filter>
+    <ClInclude Include="BulletBridge.h">
+      <Filter>소스 파일\02.Object\Bullet\BulletBridge</Filter>
     </ClInclude>
     <ClInclude Include="NormalBullet.h">
-      <Filter>소스 파일\02.Object\Bullet\BulletBiridge\NormalBullet</Filter>
+      <Filter>소스 파일\02.Object\Bullet\BulletBridge\NormalBullet</Filter>
     </ClInclude>
     <ClInclude Include="ObjectPool.h">
       <Filter>소스 파일\98.Pattern\ObjectPool</Filter>
@@ -306,7 +345,7 @@
       <Filter>소스 파일\01.Scene\Stage\Stage_1</Filter>
     </ClInclude>
     <ClInclude Include="HomingBullet.h">
-      <Filter>소스 파일\02.Object\Bullet\BulletBiridge\HomingBullet</Filter>
+      <Filter>소스 파일\02.Object\Bullet\BulletBridge\HomingBullet</Filter>
     </ClInclude>
     <ClInclude Include="StageMenuInterface.h">
       <Filter>소스 파일\03.UserInterface\StageMenuInterface</Filter>
@@ -316,6 +355,27 @@
     </ClInclude>
     <ClInclude Include="Stage_3.h">
       <Filter>소스 파일\01.Scene\Stage\Stage_3</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround_Down.h">
+      <Filter>소스 파일\02.Object\BackGround_Down</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround_Up.h">
+      <Filter>소스 파일\02.Object\BackGround_Up</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBridge.h">
+      <Filter>소스 파일\02.Object\Enemy\EnemyBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="BossEnemy.h">
+      <Filter>소스 파일\02.Object\Enemy\EnemyBridge\BossEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="NamedEnemy.h">
+      <Filter>소스 파일\02.Object\Enemy\EnemyBridge\NamedEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalEnemy.h">
+      <Filter>소스 파일\02.Object\Enemy\EnemyBridge\NormalEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalItemEnemy.h">
+      <Filter>소스 파일\02.Object\Enemy\EnemyBridge\NormalItemEnemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -15,16 +15,17 @@ void StageMenu::Initialize()
 
 void StageMenu::Update()
 {
-	if (UI)
-		UI->Update();
+	
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
 	if (dwKey & KEY_RIGHT && m_iSelect_Stage != 4)
 		++m_iSelect_Stage;
 	else if (dwKey & KEY_LEFT && m_iSelect_Stage != 0)
 		--m_iSelect_Stage;
+
 	if (UI)
 		UI->Update();
+
 	if (dwKey & KEY_ENETER)
 	{
 		switch (m_iSelect_Stage)

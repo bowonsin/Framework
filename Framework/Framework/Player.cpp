@@ -17,19 +17,17 @@ Player::~Player() { Release(); }
 
 Object* Player::Initialize(string _Key)
 {
-	strKey = "Player";
+	strKey = _Key;
 	Hp = 10;
-
-	Buffer[0] = (char*)"오";
-	Buffer[1] = (char*)"ㅅ";
 
 	TransInfo.Position = Vector3(20.0f, 15.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);
-	TransInfo.Scale = Vector3(2.0f, 2.0f);
 
 	ch_Buffer.push_back((char*)"＼―≥ ");
 	ch_Buffer.push_back((char*)"｜￣￣￣＼＞");
 	ch_Buffer.push_back((char*)"／￣￣￣￣");
+
+	TransInfo.Scale = Vector3((float)strlen(ch_Buffer[1]), 2.0f);
 
 	return this;
 }

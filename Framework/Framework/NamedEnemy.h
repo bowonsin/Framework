@@ -1,14 +1,8 @@
 #pragma once
-
-#include "BulletBridge.h"
-class NormalBullet :public BulletBridge
+#include "EnemyBridge.h"
+class NamedEnemy : public EnemyBridge
 {
-protected:
-	// ** Bullet의 데이터만 남음
-
-	
-
-public:
+public :
 	virtual void Initialize()override;
 	virtual int Update(Transform& Info)override;
 	virtual void Render()override;
@@ -16,8 +10,7 @@ public:
 
 	virtual void InputImage()override;
 public:
-
-	NormalBullet();
-	virtual ~NormalBullet();
+	NamedEnemy();
+	virtual ~NamedEnemy();
 };
 

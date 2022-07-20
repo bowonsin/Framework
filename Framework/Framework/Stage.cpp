@@ -82,7 +82,8 @@ void Stage::Stage_Collision_Check()
 		++i;
 	}
 	*/
-	/*
+
+/*
 	for (int i = 0; i < 5; ++i)
 	{
 		srand((DWORD)GetTickCount64() * (i + 1));

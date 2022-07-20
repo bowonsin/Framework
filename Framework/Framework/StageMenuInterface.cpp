@@ -11,22 +11,24 @@ void StageMenuInterface::Initialize()
 	Image_Transform_Data Temp;
 	int Image_Size = 0;
 
-	Temp.DOT_Image.push_back((char*)"MMMMMM               MMMMMM EEEEEEEEEEEEEEE NNNNNN        NNNNNN UUUUUUUU    UUUUUUUU");
-	Temp.DOT_Image.push_back((char*)"M:::::M             M:::::M E:::::::::::::E N:::::N       N::::N U::::::U    U::::::U");
-	Temp.DOT_Image.push_back((char*)"M::::::M           M::::::M E:::::::::::::E N::::::N      N::::N U::::::U    U::::::U");
-	Temp.DOT_Image.push_back((char*)"M:::::::M         M:::::::M EE::::EEEEEE::E N:::::::N     N::::N UU:::::U    U:::::UU");
-	Temp.DOT_Image.push_back((char*)"M::::::::M       M::::::::M   E:::E    EEEE N::::::::N    N::::N  U:::::U    U:::::U ");
-	Temp.DOT_Image.push_back((char*)"M:::::::::M     M:::::::::M   E:::E         N:::::::::N   N::::N  U:::::D    D:::::U ");
-	Temp.DOT_Image.push_back((char*)"M:::::M::::M   M::::M:::::M   E::::EEEEEE   N:::::N::::N  N::::N  U:::::D    D:::::U ");
-	Temp.DOT_Image.push_back((char*)"M::::M M::::M M::::M M::::M   E:::::::::E   N::::N N::::N N::::N  U:::::D    D:::::U ");
-	Temp.DOT_Image.push_back((char*)"M::::M  M::::M::::M  M::::M   E:::::::::E   N::::N  N::::N:::::N  U:::::D    D:::::U ");
-	Temp.DOT_Image.push_back((char*)"M::::M   M:::::::M   M::::M   E::::EEEEEE   N::::N   N:::::::::N  U:::::D    D:::::U ");
-	Temp.DOT_Image.push_back((char*)"M::::M    M:::::M    M::::M   E:::E         N::::N    N::::::::N  U:::::D    D:::::U ");
-	Temp.DOT_Image.push_back((char*)"M::::M     MMMMM     M::::M   E:::E    EEEE N::::N     N:::::::N  U::::::U  U::::::U ");
-	Temp.DOT_Image.push_back((char*)"M::::M               M::::M EE::::EEEEE:::E N::::N      N::::::N  U:::::::UU:::::::U ");
-	Temp.DOT_Image.push_back((char*)"M::::M               M::::M E:::::::::::::E N::::N       N:::::N   UU::::::::::::UU  ");
-	Temp.DOT_Image.push_back((char*)"M::::M               M::::M E:::::::::::::E N::::N        N::::N     UU::::::::UU    ");
-	Temp.DOT_Image.push_back((char*)"MMMMMM               MMMMMM EEEEEEEEEEEEEEE NNNNNN         NNNNN       UUUUUUUU      ");
+
+
+	Temp.DOT_Image.push_back((char*)"EEEEEEEEEEEEEEEEEEEEEE  XXXXXXX       XXXXXXX  IIIIIIIIII  TTTTTTTTTTTTTTTTTTTTTTT");
+	Temp.DOT_Image.push_back((char*)"E::::::::::::::::::::E  X:::::X       X:::::X  I::::::::I  T:::::::::::::::::::::T");
+	Temp.DOT_Image.push_back((char*)"E::::::::::::::::::::E  X:::::X       X:::::X  I::::::::I  T:::::::::::::::::::::T");
+	Temp.DOT_Image.push_back((char*)"EE::::::EEEEEEEEE::::E  X::::::X     X::::::X  II::::::II  T:::::TT:::::::TT:::::T");
+	Temp.DOT_Image.push_back((char*)"  E:::::E       EEEEEE  XXX:::::X   X:::::XXX    I::::I    TTTTTT  T:::::T  TTTTTT");
+	Temp.DOT_Image.push_back((char*)"  E:::::E                  X:::::X X:::::X       I::::I            T:::::T        ");
+	Temp.DOT_Image.push_back((char*)"  E::::::EEEEEEEEEE         X:::::X:::::X        I::::I            T:::::T        ");
+	Temp.DOT_Image.push_back((char*)"  E:::::::::::::::E          X:::::::::X         I::::I            T:::::T        ");
+	Temp.DOT_Image.push_back((char*)"  E:::::::::::::::E          X:::::::::X         I::::I            T:::::T        ");
+	Temp.DOT_Image.push_back((char*)"  E::::::EEEEEEEEEE         X:::::X:::::X        I::::I            T:::::T        ");
+	Temp.DOT_Image.push_back((char*)"  E:::::E                  X:::::X X:::::X       I::::I            T:::::T        ");
+	Temp.DOT_Image.push_back((char*)"  E:::::E       EEEEEE  XXX:::::X   X:::::XXX    I::::I            T:::::T        ");
+	Temp.DOT_Image.push_back((char*)"EE::::::EEEEEEEE:::::E  X::::::X     X::::::X  II::::::II        TT:::::::TT      ");
+	Temp.DOT_Image.push_back((char*)"E::::::::::::::::::::E  X:::::X       X:::::X  I::::::::I        T:::::::::T      ");
+	Temp.DOT_Image.push_back((char*)"E::::::::::::::::::::E  X:::::X       X:::::X  I::::::::I        T:::::::::T      ");
+	Temp.DOT_Image.push_back((char*)"EEEEEEEEEEEEEEEEEEEEEE  XXXXXXX       XXXXXXX  IIIIIIIIII        TTTTTTTTTTT      ");
 	Temp.Color = 15;
 	Image_Size = strlen(Temp.DOT_Image.front());
 	Temp.Data.Position = Vector3((float)(ConsoleWidthSize - Image_Size) * 0.5f, (float)(ConsoleHeightSize - Temp.DOT_Image.size()) * 0.5f , 0);
@@ -128,21 +130,21 @@ void StageMenuInterface::Initialize()
 int StageMenuInterface::Update()
 {
 	DWORD Key = InputManager::GetInstance()->GetKey();
-	if (Key & KEY_UP && BoxImage.front().Data.Position.z != 0)
+	if (Key & KEY_DOWN && BoxImage.front().Data.Position.z != 0)
 	{
 		
 		for (int i = 0; i < BoxImage.size(); ++i)
 		{
-			Location_Check(BoxImage[i].Data.Position, IMAGE_MOVE_DIRECTION::UP);
-			Location_Check(TextureImage[i].Data.Position, IMAGE_MOVE_DIRECTION::UP);
+			Location_Check(BoxImage[i].Data.Position, IMAGE_MOVE_DIRECTION::DOWN);
+			Location_Check(TextureImage[i].Data.Position, IMAGE_MOVE_DIRECTION::DOWN);
 		}
 	}
-	else if (Key & KEY_DOWN && BoxImage.back().Data.Position.z != 0) // 여기서 조건 예외 조건 걸어버리면 될거 같다.
+	else if (Key & KEY_UP && BoxImage.back().Data.Position.z != 0) // 여기서 조건 예외 조건 걸어버리면 될거 같다.
 	{
 		for (int i = 0; i < BoxImage.size(); ++i)
 		{
-			Location_Check(BoxImage[i].Data.Position, IMAGE_MOVE_DIRECTION::DOWN);
-			Location_Check(TextureImage[i].Data.Position, IMAGE_MOVE_DIRECTION::DOWN);
+			Location_Check(BoxImage[i].Data.Position, IMAGE_MOVE_DIRECTION::UP);
+			Location_Check(TextureImage[i].Data.Position, IMAGE_MOVE_DIRECTION::UP);
 		}
 	}
 	return 0;
@@ -170,7 +172,7 @@ void StageMenuInterface::Render()
 void StageMenuInterface::Location_Check(Vector3& _Position , IMAGE_MOVE_DIRECTION Check)
 {
 	// 예외 처리 하자 
-	if (Check == IMAGE_MOVE_DIRECTION::DOWN)
+	if (Check == IMAGE_MOVE_DIRECTION::UP)
 	{
 		if (_Position.z == 0 || _Position.z == 1)
 			_Position.y += 8;
@@ -182,7 +184,7 @@ void StageMenuInterface::Location_Check(Vector3& _Position , IMAGE_MOVE_DIRECTIO
 		--_Position.z;
 
 	}
-	else if (Check == IMAGE_MOVE_DIRECTION::UP)
+	else if (Check == IMAGE_MOVE_DIRECTION::DOWN)
 	{
 		if (_Position.z == 0 || _Position.z == -1)
 			_Position.y -= 8;
