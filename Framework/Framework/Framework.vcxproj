@@ -139,9 +139,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BackGround_Down.cpp" />
-    <ClCompile Include="BackGround_Up.cpp" />
-    <ClCompile Include="BakcGround.cpp" />
+    <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="BackGround_Bridge_Down.cpp" />
+    <ClCompile Include="BackGround_Bridge_Up.cpp" />
     <ClCompile Include="BossEnemy.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -164,6 +164,7 @@
     <ClCompile Include="Prototype.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="ScoreInterface.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="StageManager.cpp" />
     <ClCompile Include="StageMenu.cpp" />
@@ -175,9 +176,10 @@
     <ClCompile Include="CursorManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BackGround_Down.h" />
-    <ClInclude Include="BackGround_Up.h" />
-    <ClInclude Include="BakcGround.h" />
+    <ClInclude Include="BackGround.h" />
+    <ClInclude Include="BackGroundBridge.h" />
+    <ClInclude Include="BackGround_Bridge_Down.h" />
+    <ClInclude Include="BackGround_Bridge_Up.h" />
     <ClInclude Include="BossEnemy.h" />
     <ClInclude Include="Bridge.h" />
     <ClInclude Include="Bullet.h" />
@@ -210,6 +212,7 @@
     <ClInclude Include="Prototype.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="ScoreInterface.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="StageManager.h" />
     <ClInclude Include="StageMenu.h" />

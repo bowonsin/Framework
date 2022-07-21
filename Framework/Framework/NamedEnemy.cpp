@@ -19,3 +19,15 @@ void NamedEnemy::Render()
 void NamedEnemy::Release()
 {
 }
+
+void NamedEnemy::InputImage()
+{
+}
+
+void NamedEnemy::MoveImage()
+{
+}
+
+void NamedEnemy::DieImage()
+{
+}

@@ -7,11 +7,11 @@ public:
 	virtual int Update()override;
 	virtual void Render()override;
 	virtual void Release()override;
-
+	virtual vector<char*> Make_Box(int Font_Size)override;
 private:
 	void LocationCheck(Vector3& _Position,IMAGE_MOVE_DIRECTION Check);
 
-	vector<char*> Make_Box();
+	
 	void ImageDraw(int Order);
 
 public:

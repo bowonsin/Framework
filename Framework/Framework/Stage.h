@@ -18,6 +18,7 @@ protected:
 	list<Object*> BulletList;
 
 	void Stage_Collision_Check();
+	void Obejct_Disable();
 
 public:
 	Stage();

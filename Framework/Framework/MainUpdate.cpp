@@ -5,10 +5,10 @@
 #include "Prototype.h"
 
 #include "Player.h"
-#include "BakcGround.h"
+#include "BackGround.h"
 #include "LogoInterface.h"
 
-MainUpdate::MainUpdate() :Count(0) {}
+MainUpdate::MainUpdate() :Count(0),SceneState(0) {}
 MainUpdate::~MainUpdate() { Release(); }
 
 void MainUpdate::Initialize()

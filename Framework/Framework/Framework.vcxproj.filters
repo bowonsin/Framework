@@ -109,12 +109,6 @@
     <Filter Include="소스 파일\01.Scene\Stage\Stage_3">
       <UniqueIdentifier>{466c2f8a-01b8-4425-9422-96014ecf0860}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02.Object\BackGround_Up">
-      <UniqueIdentifier>{a4614c4a-f432-4777-ae87-d4833d12807f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02.Object\BackGround_Down">
-      <UniqueIdentifier>{b77f60bc-5a89-4219-b0f9-a8ac4620bba0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\02.Object\Enemy\EnemyBridge">
       <UniqueIdentifier>{82df305e-cd24-4096-930c-f4c0263eed8e}</UniqueIdentifier>
     </Filter>
@@ -138,6 +132,18 @@
     </Filter>
     <Filter Include="소스 파일\02.Object\Enemy\EnemyBridge\NormalItemEnemy">
       <UniqueIdentifier>{3fdc4a65-5d9f-4abd-a4ff-7d4a1a291dde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\BackGround\BackGroundBridge">
+      <UniqueIdentifier>{059cc61a-300d-4f80-9ce5-9fbce752822a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\BackGround\BackGroundBridge\BackGround_Bridge_Up">
+      <UniqueIdentifier>{10ce8095-8b39-4d97-86e3-2eb6abc43f55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\BackGround\BackGroundBridge\BackGround_Bridge_Down">
+      <UniqueIdentifier>{49450e36-800e-4e24-b485-35d4c34650e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.UserInterface\ScoreInterface">
+      <UniqueIdentifier>{34189acf-ec6b-48e6-a40d-784a5317b2f0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -180,7 +186,7 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>소스 파일\02.Object\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="BakcGround.cpp">
+    <ClCompile Include="BackGround.cpp">
       <Filter>소스 파일\02.Object\BackGround</Filter>
     </ClCompile>
     <ClCompile Include="UserInterface.cpp">
@@ -225,12 +231,6 @@
     <ClCompile Include="Stage_3.cpp">
       <Filter>소스 파일\01.Scene\Stage\Stage_3</Filter>
     </ClCompile>
-    <ClCompile Include="BackGround_Down.cpp">
-      <Filter>소스 파일\02.Object\BackGround_Down</Filter>
-    </ClCompile>
-    <ClCompile Include="BackGround_Up.cpp">
-      <Filter>소스 파일\02.Object\BackGround_Up</Filter>
-    </ClCompile>
     <ClCompile Include="BossEnemy.cpp">
       <Filter>소스 파일\02.Object\Enemy\EnemyBridge\BossEnemy</Filter>
     </ClCompile>
@@ -242,6 +242,15 @@
     </ClCompile>
     <ClCompile Include="NormalItemEnemy.cpp">
       <Filter>소스 파일\02.Object\Enemy\EnemyBridge\NormalItemEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround_Bridge_Down.cpp">
+      <Filter>소스 파일\02.Object\BackGround\BackGroundBridge\BackGround_Bridge_Down</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround_Bridge_Up.cpp">
+      <Filter>소스 파일\02.Object\BackGround\BackGroundBridge\BackGround_Bridge_Up</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreInterface.cpp">
+      <Filter>소스 파일\03.UserInterface\ScoreInterface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -305,7 +314,7 @@
     <ClInclude Include="ObjectFactory.h">
       <Filter>소스 파일\99.Manager\ObjectFactory</Filter>
     </ClInclude>
-    <ClInclude Include="BakcGround.h">
+    <ClInclude Include="BackGround.h">
       <Filter>소스 파일\02.Object\BackGround</Filter>
     </ClInclude>
     <ClInclude Include="UserInterface.h">
@@ -356,12 +365,6 @@
     <ClInclude Include="Stage_3.h">
       <Filter>소스 파일\01.Scene\Stage\Stage_3</Filter>
     </ClInclude>
-    <ClInclude Include="BackGround_Down.h">
-      <Filter>소스 파일\02.Object\BackGround_Down</Filter>
-    </ClInclude>
-    <ClInclude Include="BackGround_Up.h">
-      <Filter>소스 파일\02.Object\BackGround_Up</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyBridge.h">
       <Filter>소스 파일\02.Object\Enemy\EnemyBridge</Filter>
     </ClInclude>
@@ -376,6 +379,18 @@
     </ClInclude>
     <ClInclude Include="NormalItemEnemy.h">
       <Filter>소스 파일\02.Object\Enemy\EnemyBridge\NormalItemEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGroundBridge.h">
+      <Filter>소스 파일\02.Object\BackGround\BackGroundBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround_Bridge_Down.h">
+      <Filter>소스 파일\02.Object\BackGround\BackGroundBridge\BackGround_Bridge_Down</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround_Bridge_Up.h">
+      <Filter>소스 파일\02.Object\BackGround\BackGroundBridge\BackGround_Bridge_Up</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreInterface.h">
+      <Filter>소스 파일\03.UserInterface\ScoreInterface</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

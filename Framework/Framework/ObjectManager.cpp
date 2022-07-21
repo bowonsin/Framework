@@ -43,6 +43,7 @@ void ObjectManager::AddObject(string _Key, Bridge* _Bridge)
 	_Bridge->Initialize();
 	_Bridge->SetObject(pObject);
 
+	pObject->SetScale(_Bridge->Get_Scale());
 	pObject->SetBridge(_Bridge);
 
 	map<string, list<Object*>>::iterator iter = EnableList->find(_Key);

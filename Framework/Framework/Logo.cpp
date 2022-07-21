@@ -1,10 +1,9 @@
 #include "Logo.h"
 #include "SceneManager.h"
 #include "InputManager.h"
-#include "ObjectManager.h"
-#include "ObjectFactory.h"
-#include "Prototype.h"
+
 #include "LogoInterface.h"
+#include "ScoreInterface.h"
 
 
 Logo::Logo(){}
@@ -12,16 +11,10 @@ Logo::~Logo() { Release(); }
 
 void Logo::Initialize()
 {
-
+	pUI = new ScoreInterface;
 	UI= new LogoInterface;
+	pUI->Initialize();
 	UI->Initialize();
-
-	//Object* pEnemy= new Enemy;
-	//pEnemy->Initialize();
-	//ObjectManager::GetInstance()->AddObject(pEnemy);
-	// -> 여기서 오브젝트 팩토리르로 그냥 다이렉트로 넣기 
-	//SceneManager::GetInstance()->SetScene(STAGE);
-
 }
 
 void Logo::Update()
@@ -36,6 +29,7 @@ void Logo::Update()
 
 void Logo::Render()
 {
+	pUI->Render();
 	UI->Render();
 }
 

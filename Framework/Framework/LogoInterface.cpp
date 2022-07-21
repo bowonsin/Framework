@@ -18,9 +18,9 @@ void LogoInterface::Initialize()
 	StartImage.DOT_Image.push_back((char*)"'##::: ##: ##:::::::: ##:. ##::::: ##::::::: ##:::::::: ##.... ##: ##::. ##:: ##:::: ##: ##:::: ##:: ##:: ##:::: ##:'##::: ##:");
 	StartImage.DOT_Image.push_back((char*)". ######:: ########: ##:::. ##:::: ##::::::: ##:::::::: ##:::: ##: ##:::. ##:. #######:: ########::'####:. #######::. ######::");
 	StartImage.DOT_Image.push_back((char*)":......:::........::..:::::..:::::..::::::::..:::::::::..:::::..::..:::::..:::.......:::........:::....:::.......::::......:::");
-	StartImage.Data.Position = Vector3((float)(ConsoleWidthSize * 0.5f - 65), (float)(ConsoleHeightSize * 0.5f - 23));
+	StartImage.Data.Position = Vector3((float)(InGameConsole_WidthSize * 0.5f - 65), (float)(ConsoleHeightSize * 0.5f - 23));
 	StartImage.Color = 12;
-	TextureImage.push_back(StartImage);
+	m_vecTextureImage.push_back(StartImage);
 	StartImage.DOT_Image.clear();
 
 	StartImage.DOT_Image.push_back((char*)"  /$$$$$$  /$$$$$$$$ /$$$$$$  /$$$$$$$  /$$$$$$$$");
@@ -31,9 +31,9 @@ void LogoInterface::Initialize()
 	StartImage.DOT_Image.push_back((char*)" /$$    $$   | $$  | $$  | $$| $$    $$   | $$   ");
 	StartImage.DOT_Image.push_back((char*)"|  $$$$$$/   | $$  | $$  | $$| $$  | $$   | $$   ");
 	StartImage.DOT_Image.push_back((char*)" \______/    |__/  |__/  |__/|__/  |__/   |__/   ");
-	StartImage.Data.Position = Vector3((float)(ConsoleWidthSize * 0.5f - 30), (float)(ConsoleHeightSize* 0.5f - 8));
+	StartImage.Data.Position = Vector3((float)(InGameConsole_WidthSize * 0.5f - 30), (float)(ConsoleHeightSize* 0.5f - 8));
 	StartImage.Color = 9;
-	TextureImage.push_back(StartImage);
+	m_vecTextureImage.push_back(StartImage);
 	StartImage.DOT_Image.clear();
 
 	StartImage.DOT_Image.push_back((char*)"               _______   _______   ________   ______    ______         __  ________  __    __  ________  ________  _______    __               ");
@@ -46,8 +46,8 @@ void LogoInterface::Initialize()
 	StartImage.DOT_Image.push_back((char*)"              $$ |      $$ |  $$ |$$       |$$    $$/ $$    $$/           $$       |$$ | $$$ |   $$ |   $$       |$$ |  $$ |                  ");
 	StartImage.DOT_Image.push_back((char*)"              $$/       $$/   $$/ $$$$$$$$/  $$$$$$/   $$$$$$/            $$$$$$$$/ $$/   $$/    $$/    $$$$$$$$/ $$/   $$/                   ");
 	StartImage.Color = 14;
-	StartImage.Data.Position = Vector3((float)(ConsoleWidthSize *0.5 - 75), (float)(ConsoleHeightSize * 0.5f +StartImage.DOT_Image.size()));
-	TextureImage.push_back(StartImage);
+	StartImage.Data.Position = Vector3((float)(InGameConsole_WidthSize *0.5 - 75), (float)(ConsoleHeightSize * 0.5f +StartImage.DOT_Image.size()));
+	m_vecTextureImage.push_back(StartImage);
 
 }
 
@@ -59,20 +59,25 @@ int LogoInterface::Update()
 void LogoInterface::Render()
 {
 
-	for (int i = 0; i < TextureImage.size(); ++i)
+	for (int i = 0; i < m_vecTextureImage.size(); ++i)
 	{
-		for (int j = 0; j < TextureImage[i].DOT_Image.size(); ++j)
+		for (int j = 0; j < m_vecTextureImage[i].DOT_Image.size(); ++j)
 		{
 			CursorManager::GetInstance()->WriteBuffer(
-				TextureImage[i].Data.Position.x,
-				TextureImage[i].Data.Position.y + j,
-				TextureImage[i].DOT_Image[j], TextureImage[i].Color);
+				m_vecTextureImage[i].Data.Position.x,
+				m_vecTextureImage[i].Data.Position.y + j,
+				m_vecTextureImage[i].DOT_Image[j], m_vecTextureImage[i].Color);
 		}
 	}
 }
 
 void LogoInterface::Release()
 {
-	TextureImage.clear();
+	m_vecTextureImage.clear();
+}
+
+vector<char*> LogoInterface::Make_Box(int Font_Size)
+{
+	return vector<char*>();
 }
 

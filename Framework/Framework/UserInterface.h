@@ -4,19 +4,17 @@ class UserInterface
 {
 protected:
 	Transform TransInfo;
-	string strKey;
 
-	vector<Image_Transform_Data> TextureImage;
-	vector<Image_Transform_Data> BoxImage;
+	vector<Image_Transform_Data> m_vecTextureImage;
+	vector<Image_Transform_Data> m_vecBoxImage;
 public:
 	virtual void Initialize()PURE; 
 	virtual int Update()PURE;
 	virtual void Render()PURE;
 	virtual void Release()PURE;
+	virtual vector<char*> Make_Box(int Font_Size)PURE;
 
 public:
-	string GetKey() const { return strKey; }
-
 	Vector3 Getposition() const { return TransInfo.Position; }
 	void Setposition(float _x, float _y) { TransInfo.Position = Vector3(_x, _y); }
 	void Setposition(Vector3 _Position) { TransInfo.Position = _Position; }

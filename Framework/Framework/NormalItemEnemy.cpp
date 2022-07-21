@@ -21,6 +21,14 @@ void NormalItemEnemy::InputImage()
 {
 }
 
+void NormalItemEnemy::MoveImage()
+{
+}
+
+void NormalItemEnemy::DieImage()
+{
+}
+
 NormalItemEnemy::NormalItemEnemy()
 {
 }

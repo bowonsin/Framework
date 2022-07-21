@@ -9,6 +9,8 @@ public :
 	virtual void Release()override;
 
 	virtual void InputImage()override;
+	virtual void MoveImage()override;
+	virtual void DieImage()override;
 public:
 	NamedEnemy();
 	virtual ~NamedEnemy();

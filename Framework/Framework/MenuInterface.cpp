@@ -11,13 +11,13 @@ void MenuInterface::Initialize()
 
 	Image_Transform_Data MenuImage; 
 
-	MenuImage.DOT_Image = Make_Box();
-	float x_Standard = (float)(ConsoleWidthSize * 0.5f - strlen(MenuImage.DOT_Image.front())/2);
+	MenuImage.DOT_Image = Make_Box(NULL);
+	float x_Standard = (float)(InGameConsole_WidthSize * 0.5f - strlen(MenuImage.DOT_Image.front())/2);
 	float y_Standard = (float)(ConsoleHeightSize * 0.5f - MenuImage.DOT_Image.size()/2);
 	
 	MenuImage.Data.Position = Vector3(x_Standard ,y_Standard ,0);
 	MenuImage.Color = 12;
-	BoxImage.push_back(MenuImage);
+	m_vecBoxImage.push_back(MenuImage);
 	MenuImage.DOT_Image.clear();
 
 	MenuImage.DOT_Image.push_back((char*)"                   ::::::::::: ::::    ::: ");
@@ -47,13 +47,13 @@ void MenuInterface::Initialize()
 	MenuImage.DOT_Image.push_back((char*)"       ###        ##########   ###     ###     ###    ");
 	MenuImage.Data.Position = Vector3(x_Standard + 4, y_Standard + 4,0); // 기본 꺼 와 x 4 y 4 차이남
 	MenuImage.Color = 12;
-	TextureImage.push_back(MenuImage);
+	m_vecTextureImage.push_back(MenuImage);
 	MenuImage.DOT_Image.clear();
 
-	MenuImage.DOT_Image = Make_Box();
+	MenuImage.DOT_Image = Make_Box(NULL);
 	MenuImage.Data.Position = Vector3(x_Standard + 30, y_Standard , 1);
 	MenuImage.Color = 9;
-	BoxImage.push_back(MenuImage);
+	m_vecBoxImage.push_back(MenuImage);
 	MenuImage.DOT_Image.clear();
 
 	MenuImage.DOT_Image.push_back((char*)"EEEEEEEEEEEEEEE XXXXXX       XXXXXX IIIIIIIIII TTTTTTTTTTTTTTTTT");
@@ -74,7 +74,7 @@ void MenuInterface::Initialize()
 	MenuImage.DOT_Image.push_back((char*)"EEEEEEEEEEEEEEE XXXXXX       XXXXXX IIIIIIIIII     TTTTTTTTT    ");
 	MenuImage.Data.Position = Vector3(x_Standard + 33, y_Standard + 9, 1);
 	MenuImage.Color = 9;
-	TextureImage.push_back(MenuImage);
+	m_vecTextureImage.push_back(MenuImage);
 	MenuImage.DOT_Image.clear();
 
 }
@@ -84,20 +84,20 @@ int MenuInterface::Update()
 {
 	DWORD Key = InputManager::GetInstance()->GetKey();
 
-	if (Key & KEY_RIGHT && BoxImage.back().Data.Position.z != 0)
+	if (Key & KEY_RIGHT && m_vecBoxImage.back().Data.Position.z != 0)
 	{
-		for (int i = 0; i < BoxImage.size(); ++i)
+		for (int i = 0; i < m_vecBoxImage.size(); ++i)
 		{
-			LocationCheck(BoxImage[i].Data.Position, IMAGE_MOVE_DIRECTION::RIGHT);
-			LocationCheck(TextureImage[i].Data.Position, IMAGE_MOVE_DIRECTION::RIGHT);
+			LocationCheck(m_vecBoxImage[i].Data.Position, IMAGE_MOVE_DIRECTION::RIGHT);
+			LocationCheck(m_vecTextureImage[i].Data.Position, IMAGE_MOVE_DIRECTION::RIGHT);
 		}
 	}
-	else if (Key & KEY_LEFT && BoxImage.front().Data.Position.z != 0) // menu 개수가 늘어 날 수록 정수값 늘리기
+	else if (Key & KEY_LEFT && m_vecBoxImage.front().Data.Position.z != 0) // menu 개수가 늘어 날 수록 정수값 늘리기
 	{
-		for (int i = 0; i < BoxImage.size(); ++i)
+		for (int i = 0; i < m_vecBoxImage.size(); ++i)
 		{
-			LocationCheck(BoxImage[i].Data.Position, IMAGE_MOVE_DIRECTION::LEFT);
-			LocationCheck(TextureImage[i].Data.Position, IMAGE_MOVE_DIRECTION::LEFT);
+			LocationCheck(m_vecBoxImage[i].Data.Position, IMAGE_MOVE_DIRECTION::LEFT);
+			LocationCheck(m_vecTextureImage[i].Data.Position, IMAGE_MOVE_DIRECTION::LEFT);
 		}
 	}
 		
@@ -106,19 +106,19 @@ int MenuInterface::Update()
 
 void MenuInterface::Render()
 {
-	for (int i = BoxImage.size() - 1; i >= 0; --i)
+	for (int i = m_vecBoxImage.size() - 1; i >= 0; --i)
 	{
-		if (BoxImage[i].Data.Position.z > 0)
+		if (m_vecBoxImage[i].Data.Position.z > 0)
 			ImageDraw(i);
 	}
-	for (int i = 0; i < BoxImage.size(); ++i)
+	for (int i = 0; i < m_vecBoxImage.size(); ++i)
 	{
-		if (BoxImage[i].Data.Position.z < 0)
+		if (m_vecBoxImage[i].Data.Position.z < 0)
 			ImageDraw(i);
 	}
-	for (int i = 0; i < BoxImage.size(); ++i)
+	for (int i = 0; i < m_vecBoxImage.size(); ++i)
 	{
-		if (BoxImage[i].Data.Position.z == 0)
+		if (m_vecBoxImage[i].Data.Position.z == 0)
 			ImageDraw(i);
 	}
 }
@@ -150,7 +150,7 @@ void MenuInterface::LocationCheck(Vector3& _Position, IMAGE_MOVE_DIRECTION Check
 	}
 }
 
-vector<char*> MenuInterface::Make_Box()
+vector<char*> MenuInterface::Make_Box(int Font_Size)
 {
 	char* box_front = (char*)"; @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@";
 	char* box_middle1 = (char*)"; ................................................................, #";
@@ -168,25 +168,25 @@ vector<char*> MenuInterface::Make_Box()
 }
 void MenuInterface::ImageDraw(int Order)
 {
-	for (int j = 0; j < BoxImage[Order].DOT_Image.size(); ++j)
+	for (int j = 0; j < m_vecBoxImage[Order].DOT_Image.size(); ++j)
 	{
 		CursorManager::GetInstance()->WriteBuffer(
-			BoxImage[Order].Data.Position.x,
-			BoxImage[Order].Data.Position.y + j,
-			BoxImage[Order].DOT_Image[j], BoxImage[Order].Color);
+			m_vecBoxImage[Order].Data.Position.x,
+			m_vecBoxImage[Order].Data.Position.y + j,
+			m_vecBoxImage[Order].DOT_Image[j], m_vecBoxImage[Order].Color);
 	}
 
-	for (int j = 0; j < TextureImage[Order].DOT_Image.size(); ++j)
+	for (int j = 0; j < m_vecTextureImage[Order].DOT_Image.size(); ++j)
 	{
 		CursorManager::GetInstance()->WriteBuffer(
-			TextureImage[Order].Data.Position.x,
-			TextureImage[Order].Data.Position.y + j,
-			TextureImage[Order].DOT_Image[j], TextureImage[Order].Color);
+			m_vecTextureImage[Order].Data.Position.x,
+			m_vecTextureImage[Order].Data.Position.y + j,
+			m_vecTextureImage[Order].DOT_Image[j], m_vecTextureImage[Order].Color);
 	}
 }
 
 void MenuInterface::Release()
 {
-	TextureImage.clear();
-	BoxImage.clear();
+	m_vecTextureImage.clear();
+	m_vecBoxImage.clear();
 }

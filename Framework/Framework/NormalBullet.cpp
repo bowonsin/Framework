@@ -24,6 +24,7 @@ int NormalBullet::Update(Transform& Info)
 	if (Enemy->size() == 0)
 		return 2;
 
+	/*
 	//가장 가까이 좌표에 있는 적을 향해서 출동
 	// 유도탄 함수
 	//Vector3 Enemy_Position  = Enemy->front()->Getposition();
@@ -40,14 +41,13 @@ int NormalBullet::Update(Transform& Info)
 	//}
 	//Info.Direction = MathManager::GetDirection(
 	//	Info.Position, Temp);
-
+	*/
 
 	Info.Direction.x = 1;
 	Info.Position += Info.Direction;
 	
-	//Info.Direction = MathManager::GetDirection(
-	//	Info.Position, Vector3(60.0f, 15.0f));
-	//
+	//Info.Direction = MathManager::GetDirection(Info.Position, Vector3(60.0f, 15.0f));
+
 	//Info.Position += Info.Direction * Speed;
 	
 
@@ -66,5 +66,9 @@ void NormalBullet::Render()
 }
 
 void NormalBullet::Release()
+{
+}
+
+void NormalBullet::InputImage()
 {
 }

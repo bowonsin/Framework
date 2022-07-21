@@ -10,7 +10,7 @@ void StageMenu::Initialize()
 {
 	UI = new StageMenuInterface;
 	UI->Initialize();
-	m_iSelect_Stage = 0;;
+	m_iSelect_Stage = SCENEID::MENU;
 }
 
 void StageMenu::Update()
@@ -18,10 +18,24 @@ void StageMenu::Update()
 	
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
-	if (dwKey & KEY_RIGHT && m_iSelect_Stage != 4)
-		++m_iSelect_Stage;
-	else if (dwKey & KEY_LEFT && m_iSelect_Stage != 0)
-		--m_iSelect_Stage;
+	if (dwKey & KEY_UP && m_iSelect_Stage != 4)
+	{
+		if (m_iSelect_Stage == SCENEID::MENU)
+			m_iSelect_Stage = SCENEID::STAGE_1;
+		else if (m_iSelect_Stage == SCENEID::STAGE_1)
+			m_iSelect_Stage = SCENEID::STAGE_2;
+		else if (m_iSelect_Stage == SCENEID::STAGE_2)
+			m_iSelect_Stage = SCENEID::STAGE_3;
+	}
+	else if (dwKey & KEY_DOWN && m_iSelect_Stage != 0)
+	{
+		if (m_iSelect_Stage == SCENEID::STAGE_1)
+			m_iSelect_Stage = SCENEID::MENU;
+		else if (m_iSelect_Stage == SCENEID::STAGE_2)
+			m_iSelect_Stage = SCENEID::STAGE_1;
+		else if (m_iSelect_Stage == SCENEID::STAGE_3)
+			m_iSelect_Stage = SCENEID::STAGE_2;
+	}
 
 	if (UI)
 		UI->Update();

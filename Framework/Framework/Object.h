@@ -28,6 +28,7 @@ public:
 
 	Vector3 GetScale() const { return TransInfo.Scale; }
 	void SetSacle(float _x, float _y) { TransInfo.Scale = Vector3(_x, _y); }
+	void SetScale(Vector3 _Scale) { TransInfo.Scale = _Scale; }
 
 	void SetBridge(Bridge* _Bridge) { pBridge = _Bridge; }
 public:

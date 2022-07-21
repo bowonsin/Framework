@@ -17,5 +17,8 @@ const int BUFFER_OVER = 1;
 
 const int MAX_SIZE = 2;
 
-const SHORT ConsoleWidthSize = 200;
-const SHORT ConsoleHeightSize = 55;
+const SHORT ConsoleWidthSize = 240;
+const SHORT ConsoleHeightSize = 60;
+
+const float InGameConsole_WidthSize = ConsoleWidthSize - 40;
+

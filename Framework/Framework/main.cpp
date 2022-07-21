@@ -8,7 +8,7 @@ int main(void)
 
 	system("title ½Åº¸¿ø - Parodius");
 
-	system("mode con cols=200 lines=55");
+	system("mode con cols=240 lines=60");
 	
 
 	MainUpdate Main;

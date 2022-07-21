@@ -52,16 +52,48 @@ void Stage::Stage_Collision_Check()
 							++pBulletIter;
 					}
 				}
-				// 플레이어와 enemy의 충돌 
+				// 플레이어와 enemy의 충돌 또는 맵 밖으로 나가는것
 				if (CollisionManager::CircleCollision(pPlayer, *pEnemyIter))
 				{
 					pEnemyIter = ObjectManager::GetInstance()->ThrowObject(pEnemyIter, (*pEnemyIter));
 				}
+				else if ((*pEnemyIter)->Getposition().x >= ConsoleWidthSize || (*pEnemyIter)->Getposition().x <= 0 ||
+					(*pEnemyIter)->Getposition().y >= ConsoleHeightSize || (*pEnemyIter)->Getposition().y <= 0)	
+
+					pEnemyIter = ObjectManager::GetInstance()->ThrowObject(pEnemyIter, (*pEnemyIter));
 				else
 					++pEnemyIter;
 			}
 		}
 	}
+}
+
+
+void Stage::Obejct_Disable()
+{
+	list<Object*>* Dis_Object = ObjectManager::GetInstance()->GetObject_list("BossEnemy");
+	if (Dis_Object)
+		ObjectManager::GetInstance()->ThrowObject(Dis_Object->begin(), Dis_Object->front());
+
+	Dis_Object = ObjectManager::GetInstance()->GetObject_list("NamedEnemy");
+	if (Dis_Object)
+		ObjectManager::GetInstance()->ThrowObject(Dis_Object->begin(), Dis_Object->front());
+
+	Dis_Object = ObjectManager::GetInstance()->GetObject_list("NormalEnemy");
+	if (Dis_Object)
+		for (auto Enemyiter = Dis_Object->begin(); Enemyiter != Dis_Object->end(); ++Enemyiter)
+			ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
+
+	Dis_Object = ObjectManager::GetInstance()->GetObject_list("NormalItemEnemy");
+	if (Dis_Object)
+		for (auto Enemyiter = Dis_Object->begin(); Enemyiter != Dis_Object->end(); ++Enemyiter)
+			ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
+
+	Dis_Object = ObjectManager::GetInstance()->GetObject_list("Bullet");
+	if (Dis_Object)
+		for (auto Enemyiter = Dis_Object->begin(); Enemyiter != Dis_Object->end(); ++Enemyiter)
+			ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
+
 }
 
 /*

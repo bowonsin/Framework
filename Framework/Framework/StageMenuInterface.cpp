@@ -31,14 +31,14 @@ void StageMenuInterface::Initialize()
 	Temp.DOT_Image.push_back((char*)"EEEEEEEEEEEEEEEEEEEEEE  XXXXXXX       XXXXXXX  IIIIIIIIII        TTTTTTTTTTT      ");
 	Temp.Color = 15;
 	Image_Size = strlen(Temp.DOT_Image.front());
-	Temp.Data.Position = Vector3((float)(ConsoleWidthSize - Image_Size) * 0.5f, (float)(ConsoleHeightSize - Temp.DOT_Image.size()) * 0.5f , 0);
-	TextureImage.push_back(Temp);
+	Temp.Data.Position = Vector3((float)(InGameConsole_WidthSize - Image_Size) * 0.5f, (float)(ConsoleHeightSize - Temp.DOT_Image.size()) * 0.5f , 0);
+	m_vecTextureImage.push_back(Temp);
 
 	Temp.DOT_Image = Make_Box(Temp.DOT_Image.size());
 	Temp.Color = 15;
 	Image_Size = strlen(Temp.DOT_Image.front());
-	Temp.Data.Position = Vector3((float)(ConsoleWidthSize - Image_Size) * 0.5f, (float)(ConsoleHeightSize - Temp.DOT_Image.size()) * 0.5f, 0);
-	BoxImage.push_back(Temp);
+	Temp.Data.Position = Vector3((float)(InGameConsole_WidthSize - Image_Size) * 0.5f, (float)(ConsoleHeightSize - Temp.DOT_Image.size()) * 0.5f, 0);
+	m_vecBoxImage.push_back(Temp);
 	Temp.DOT_Image.clear();
 
 	
@@ -59,14 +59,14 @@ void StageMenuInterface::Initialize()
 	Temp.DOT_Image.push_back((char*)" SSSSSSSSSSSSS           TTTTTTTTT  AAAAA               AAAAA   GGGGG  GGGG EEEEEEEEEEEEE 111111111111");
 	Temp.Color = 15;
 	Image_Size = strlen(Temp.DOT_Image.front());
-	Temp.Data.Position = Vector3((float)(ConsoleWidthSize - Image_Size) * 0.5f, (float)(ConsoleHeightSize - Temp.DOT_Image.size()) * 0.5f - 8, 1);
-	TextureImage.push_back(Temp);
+	Temp.Data.Position = Vector3((float)(InGameConsole_WidthSize - Image_Size) * 0.5f, (float)(ConsoleHeightSize - Temp.DOT_Image.size()) * 0.5f - 8, 1);
+	m_vecTextureImage.push_back(Temp);
 
 	Temp.DOT_Image = Make_Box(Temp.DOT_Image.size());
 	Temp.Color = 15;
 	Image_Size = strlen(Temp.DOT_Image.front());
-	Temp.Data.Position = Vector3((float)(ConsoleWidthSize - Image_Size) * 0.5f, (float)(ConsoleHeightSize - Temp.DOT_Image.size()) * 0.5f - 8, 1);
-	BoxImage.push_back(Temp);
+	Temp.Data.Position = Vector3((float)(InGameConsole_WidthSize - Image_Size) * 0.5f, (float)(ConsoleHeightSize - Temp.DOT_Image.size()) * 0.5f - 8, 1);
+	m_vecBoxImage.push_back(Temp);
 	Temp.DOT_Image.clear();
 
 
@@ -85,14 +85,14 @@ void StageMenuInterface::Initialize()
 	Temp.DOT_Image.push_back((char*)" SSSSSSSSSS          TTTTTTTTT  AAAAAA                AAAAA    GGGGGG   GGGG EEEEEEEEEEEEE 222222222222222");
 	Temp.Color = 15;
 	Image_Size = strlen(Temp.DOT_Image.front());
-	Temp.Data.Position = Vector3((float)(ConsoleWidthSize - Image_Size) * 0.5f, (float)(ConsoleHeightSize - Temp.DOT_Image.size()) * 0.5f - 13, 2);
-	TextureImage.push_back(Temp);
+	Temp.Data.Position = Vector3((float)(InGameConsole_WidthSize - Image_Size) * 0.5f, (float)(ConsoleHeightSize - Temp.DOT_Image.size()) * 0.5f - 13, 2);
+	m_vecTextureImage.push_back(Temp);
 
 	Temp.DOT_Image = Make_Box(Temp.DOT_Image.size());
 	Temp.Color = 15;
 	Image_Size = strlen(Temp.DOT_Image.front());
-	Temp.Data.Position = Vector3((float)(ConsoleWidthSize - Image_Size) * 0.5f , (float)(ConsoleHeightSize - Temp.DOT_Image.size()) * 0.5f - 13, 2);
-	BoxImage.push_back(Temp);
+	Temp.Data.Position = Vector3((float)(InGameConsole_WidthSize - Image_Size) * 0.5f , (float)(ConsoleHeightSize - Temp.DOT_Image.size()) * 0.5f - 13, 2);
+	m_vecBoxImage.push_back(Temp);
 	Temp.DOT_Image.clear();
 
 	
@@ -112,14 +112,14 @@ void StageMenuInterface::Initialize()
 	Temp.DOT_Image.push_back((char*)" SSSSSSSSSSS          TTTTTTTTT  AAAAA                 AAAAA    GGGGGG   GGG EEEEEEEEEEEEEE  33333333   ");
 	Temp.Color = 15;
 	Image_Size = strlen(Temp.DOT_Image.front());
-	Temp.Data.Position = Vector3((float)(ConsoleWidthSize - Image_Size) * 0.5f, (float)(ConsoleHeightSize - Temp.DOT_Image.size()) * 0.5f - 15, 3);
-	TextureImage.push_back(Temp);
+	Temp.Data.Position = Vector3((float)(InGameConsole_WidthSize - Image_Size) * 0.5f, (float)(ConsoleHeightSize - Temp.DOT_Image.size()) * 0.5f - 15, 3);
+	m_vecTextureImage.push_back(Temp);
 
 	Temp.DOT_Image = Make_Box(Temp.DOT_Image.size());
 	Temp.Color = 15;
 	Image_Size = strlen(Temp.DOT_Image.front());
-	Temp.Data.Position = Vector3((float)(ConsoleWidthSize - Image_Size) * 0.5f, (float)(ConsoleHeightSize - Temp.DOT_Image.size()) * 0.5f - 15, 3);
-	BoxImage.push_back(Temp);
+	Temp.Data.Position = Vector3((float)(InGameConsole_WidthSize - Image_Size) * 0.5f, (float)(ConsoleHeightSize - Temp.DOT_Image.size()) * 0.5f - 15, 3);
+	m_vecBoxImage.push_back(Temp);
 	Temp.DOT_Image.clear();
 
 	
@@ -130,21 +130,21 @@ void StageMenuInterface::Initialize()
 int StageMenuInterface::Update()
 {
 	DWORD Key = InputManager::GetInstance()->GetKey();
-	if (Key & KEY_DOWN && BoxImage.front().Data.Position.z != 0)
+	if (Key & KEY_DOWN && m_vecBoxImage.front().Data.Position.z != 0)
 	{
 		
-		for (int i = 0; i < BoxImage.size(); ++i)
+		for (int i = 0; i < m_vecBoxImage.size(); ++i)
 		{
-			Location_Check(BoxImage[i].Data.Position, IMAGE_MOVE_DIRECTION::DOWN);
-			Location_Check(TextureImage[i].Data.Position, IMAGE_MOVE_DIRECTION::DOWN);
+			Location_Check(m_vecBoxImage[i].Data.Position, IMAGE_MOVE_DIRECTION::DOWN);
+			Location_Check(m_vecTextureImage[i].Data.Position, IMAGE_MOVE_DIRECTION::DOWN);
 		}
 	}
-	else if (Key & KEY_UP && BoxImage.back().Data.Position.z != 0) // 여기서 조건 예외 조건 걸어버리면 될거 같다.
+	else if (Key & KEY_UP && m_vecBoxImage.back().Data.Position.z != 0) // 여기서 조건 예외 조건 걸어버리면 될거 같다.
 	{
-		for (int i = 0; i < BoxImage.size(); ++i)
+		for (int i = 0; i < m_vecBoxImage.size(); ++i)
 		{
-			Location_Check(BoxImage[i].Data.Position, IMAGE_MOVE_DIRECTION::UP);
-			Location_Check(TextureImage[i].Data.Position, IMAGE_MOVE_DIRECTION::UP);
+			Location_Check(m_vecBoxImage[i].Data.Position, IMAGE_MOVE_DIRECTION::UP);
+			Location_Check(m_vecTextureImage[i].Data.Position, IMAGE_MOVE_DIRECTION::UP);
 		}
 	}
 	return 0;
@@ -152,19 +152,19 @@ int StageMenuInterface::Update()
 
 void StageMenuInterface::Render()
 {
-	for (int i = BoxImage.size() - 1; i >= 0; --i)
+	for (int i = m_vecBoxImage.size() - 1; i >= 0; --i)
 	{
-		if (BoxImage[i].Data.Position.z > 0)
+		if (m_vecBoxImage[i].Data.Position.z > 0)
 			ImageDraw(i);
 	}
-	for (int i = 0; i < BoxImage.size(); ++i)
+	for (int i = 0; i < m_vecBoxImage.size(); ++i)
 	{
-		if (BoxImage[i].Data.Position.z <0)
+		if (m_vecBoxImage[i].Data.Position.z <0)
 			ImageDraw(i);
 	}
-	for (int i = 0; i < BoxImage.size(); ++i)
+	for (int i = 0; i < m_vecBoxImage.size(); ++i)
 	{
-		if (BoxImage[i].Data.Position.z == 0)
+		if (m_vecBoxImage[i].Data.Position.z == 0)
 			ImageDraw(i);
 	}
 }
@@ -211,25 +211,25 @@ vector<char*> StageMenuInterface::Make_Box(int Font_Size)
 
 void StageMenuInterface::ImageDraw(int order)
 {
-	for (int j = 0; j < BoxImage[order].DOT_Image.size(); ++j)
+	for (int j = 0; j < m_vecBoxImage[order].DOT_Image.size(); ++j)
 	{
 		CursorManager::GetInstance()->WriteBuffer(
-			BoxImage[order].Data.Position.x,
-			BoxImage[order].Data.Position.y + j,
-			BoxImage[order].DOT_Image[j], BoxImage[order].Color);
+			m_vecBoxImage[order].Data.Position.x,
+			m_vecBoxImage[order].Data.Position.y + j,
+			m_vecBoxImage[order].DOT_Image[j], m_vecBoxImage[order].Color);
 	}
 
-	for (int j = 0; j < TextureImage[order].DOT_Image.size(); ++j)
+	for (int j = 0; j < m_vecTextureImage[order].DOT_Image.size(); ++j)
 	{
 		CursorManager::GetInstance()->WriteBuffer(
-			TextureImage[order].Data.Position.x,
-			TextureImage[order].Data.Position.y + j,
-			TextureImage[order].DOT_Image[j], TextureImage[order].Color);
+			m_vecTextureImage[order].Data.Position.x,
+			m_vecTextureImage[order].Data.Position.y + j,
+			m_vecTextureImage[order].DOT_Image[j], m_vecTextureImage[order].Color);
 	}
 }
            
 void StageMenuInterface::Release()
 {
-	TextureImage.clear();
-	BoxImage.clear();
+	m_vecTextureImage.clear();
+	m_vecBoxImage.clear();
 }
