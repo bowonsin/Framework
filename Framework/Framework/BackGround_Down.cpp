@@ -1,6 +1,7 @@
 #include "BackGround_Down.h"
 
 BackGround_Down::BackGround_Down() {}
+BackGround_Down::BackGround_Down(Transform _Info){}
 BackGround_Down::~BackGround_Down() { Release();  }
 
 Object* BackGround_Down::Initialize(string _Key)

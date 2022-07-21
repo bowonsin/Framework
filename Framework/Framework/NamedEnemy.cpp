@@ -19,10 +19,3 @@ void NamedEnemy::Render()
 void NamedEnemy::Release()
 {
 }
-
-vector<char*>* NamedEnemy::GetImageShape()
-{
-    vector<char*> Temp;
-
-    return &Temp;
-}

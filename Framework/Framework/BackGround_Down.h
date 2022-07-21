@@ -11,5 +11,6 @@ public:
 	virtual Object* Clone()override { return new BackGround_Down(*this); }
 
 	BackGround_Down();
+	BackGround_Down(Transform _Info);
 	virtual ~BackGround_Down();
 };
