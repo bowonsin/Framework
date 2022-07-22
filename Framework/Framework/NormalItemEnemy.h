@@ -7,10 +7,10 @@ class NormalItemEnemy : public EnemyBridge
 	virtual void Render()override;
 	virtual void Release()override;
 
-	virtual void InputImage()override;
+private:
+	virtual void InputImage(OBJECT_STATE State)override;
+	virtual void Image_Initialize()override;
 
-	virtual void MoveImage()override;
-	virtual void DieImage()override;
 public:
 
 	NormalItemEnemy();

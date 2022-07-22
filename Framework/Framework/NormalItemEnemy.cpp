@@ -17,15 +17,11 @@ void NormalItemEnemy::Release()
 {
 }
 
-void NormalItemEnemy::InputImage()
+void NormalItemEnemy::InputImage(OBJECT_STATE State)
 {
 }
 
-void NormalItemEnemy::MoveImage()
-{
-}
-
-void NormalItemEnemy::DieImage()
+void NormalItemEnemy::Image_Initialize()
 {
 }
 

@@ -24,7 +24,6 @@ int main(void)
 
 			Main.Update();
 			Main.Render();
-
 		}
 	}
 	return 0;

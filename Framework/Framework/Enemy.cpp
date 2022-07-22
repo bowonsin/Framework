@@ -12,13 +12,9 @@ Object* Enemy::Initialize(string _Key)
 	strKey = _Key;
 
 	Hp = 3;
-	ch_Buffer.push_back((char*)"È£");
-	ch_Buffer.push_back((char*)"¤µ");
 
 	TransInfo.Position = Vector3(0.0f, 0.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);
-	TransInfo.Scale = Vector3((float)strlen(ch_Buffer[0]), (float)MAX_SIZE);
-
 
 	if (pBridge)
 		pBridge->Initialize();
@@ -47,4 +43,5 @@ void Enemy::Render()
 
 void Enemy::Release()
 {
+	::Safe_Delete(pBridge);
 }

@@ -7,12 +7,14 @@ protected:
 
 	vector<Image_Transform_Data> m_vecTextureImage;
 	vector<Image_Transform_Data> m_vecBoxImage;
+	void ImageDraw(int Order);
+
 public:
 	virtual void Initialize()PURE; 
 	virtual int Update()PURE;
 	virtual void Render()PURE;
 	virtual void Release()PURE;
-	virtual vector<char*> Make_Box(int Font_Size)PURE;
+	
 
 public:
 	Vector3 Getposition() const { return TransInfo.Position; }

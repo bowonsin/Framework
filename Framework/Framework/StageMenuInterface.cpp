@@ -209,25 +209,6 @@ vector<char*> StageMenuInterface::Make_Box(int Font_Size)
 	return Temp;
 }
 
-void StageMenuInterface::ImageDraw(int order)
-{
-	for (int j = 0; j < m_vecBoxImage[order].DOT_Image.size(); ++j)
-	{
-		CursorManager::GetInstance()->WriteBuffer(
-			m_vecBoxImage[order].Data.Position.x,
-			m_vecBoxImage[order].Data.Position.y + j,
-			m_vecBoxImage[order].DOT_Image[j], m_vecBoxImage[order].Color);
-	}
-
-	for (int j = 0; j < m_vecTextureImage[order].DOT_Image.size(); ++j)
-	{
-		CursorManager::GetInstance()->WriteBuffer(
-			m_vecTextureImage[order].Data.Position.x,
-			m_vecTextureImage[order].Data.Position.y + j,
-			m_vecTextureImage[order].DOT_Image[j], m_vecTextureImage[order].Color);
-	}
-}
-           
 void StageMenuInterface::Release()
 {
 	m_vecTextureImage.clear();

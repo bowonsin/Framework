@@ -45,3 +45,9 @@ struct Image_Transform_Data
 	vector<char*> DOT_Image;
 	int Color;
 };
+
+struct Image_State
+{
+	vector<char*> Dot_Image;
+	OBJECT_STATE State;
+};

@@ -7,14 +7,11 @@ public:
 	virtual int Update()override;
 	virtual void Render()override;
 	virtual void Release()override;
-	virtual vector<char*> Make_Box(int Font_Size)override;
-
 private:
 	int m_iSelectStage;
 	void Location_Check(Vector3 & _Position, IMAGE_MOVE_DIRECTION Check);
 
-	
-	void ImageDraw(int order);
+	vector<char*> Make_Box(int Box_Size);
 public:
 	StageMenuInterface();
 	StageMenuInterface(Transform _info);

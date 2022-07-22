@@ -2,6 +2,7 @@
 #include "SceneManager.h"
 #include "InputManager.h"
 #include "MenuInterface.h"
+#include "ScoreInterface.h"
 
 Menu::Menu() : m_iSelectMenu(0){}
 Menu::~Menu() { Release(); }
@@ -10,6 +11,9 @@ void Menu::Initialize()
 {
 	UI = new MenuInterface;
 	UI->Initialize();
+
+	OutSide_UI = new ScoreInterface;
+	OutSide_UI->Initialize();
 	m_iSelectMenu = 0;
 }
 
@@ -23,6 +27,8 @@ void Menu::Update()
 		--m_iSelectMenu;
 	if (UI)
 		UI->Update();
+	if (OutSide_UI)
+		OutSide_UI->Update();
 	if (dwKey & KEY_ENETER)
 	{
 		switch (m_iSelectMenu)
@@ -42,11 +48,14 @@ void Menu::Render()
 {
 	if (UI)
 		UI->Render();
+	if (OutSide_UI)
+		OutSide_UI->Render();
 }
 
 void Menu::Release()
 {
 	::Safe_Delete(UI);
+	::Safe_Delete(OutSide_UI);
 }
 
 

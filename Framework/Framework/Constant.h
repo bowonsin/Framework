@@ -20,5 +20,8 @@ const int MAX_SIZE = 2;
 const SHORT ConsoleWidthSize = 240;
 const SHORT ConsoleHeightSize = 60;
 
-const float InGameConsole_WidthSize = ConsoleWidthSize - 40;
+const float InGameConsole_WidthSize = ConsoleWidthSize - 30;
 
+const float PlayerDataInfoSize = 20;
+
+const float Boss_Y_Position = 10;

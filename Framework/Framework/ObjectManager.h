@@ -22,8 +22,8 @@ public:
 
 	void AddObject(string str);
 	void AddObject(string _Key, Bridge* _Bridge);
-
-	void AddBullet(Bridge* _Bridge, Vector3 _Position);
+	
+	void AddBullet(string _Key,Bridge* _Bridge, Vector3 _Position);
 
 	list<Object*>* GetObject_list(string _Key);
 	list<Object*>::iterator ThrowObject(list<Object*>::iterator _Where,Object* _Object);

@@ -11,7 +11,7 @@ public:
 	virtual void Release()override;
 
 private:
-	UserInterface* pUI;
+
 	
 public:
 	Logo();

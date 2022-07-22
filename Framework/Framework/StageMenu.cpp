@@ -2,6 +2,7 @@
 #include "StageMenuInterface.h"
 #include "InputManager.h"
 #include "SceneManager.h"
+#include "ScoreInterface.h"
 
 StageMenu::StageMenu(): m_iSelect_Stage(0){}
 StageMenu::~StageMenu() { Release(); }
@@ -10,6 +11,9 @@ void StageMenu::Initialize()
 {
 	UI = new StageMenuInterface;
 	UI->Initialize();
+	OutSide_UI = new ScoreInterface;
+	OutSide_UI->Initialize();
+
 	m_iSelect_Stage = SCENEID::MENU;
 }
 
@@ -39,6 +43,8 @@ void StageMenu::Update()
 
 	if (UI)
 		UI->Update();
+	if (OutSide_UI)
+		OutSide_UI->Update();
 
 	if (dwKey & KEY_ENETER)
 	{
@@ -67,9 +73,12 @@ void StageMenu::Render()
 {
 	if (UI)
 		UI->Render();
+	if (OutSide_UI)
+		OutSide_UI->Render();
 }
 
 void StageMenu::Release()
 {
 	::Safe_Delete(UI);
+	::Safe_Delete(OutSide_UI);
 }

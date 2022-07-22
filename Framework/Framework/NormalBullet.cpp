@@ -21,7 +21,7 @@ int NormalBullet::Update(Transform& Info)
 
 	list<Object*>* Enemy = ObjectManager::GetInstance()->GetObject_list("Enemy");
 
-	if (Enemy->size() == 0)
+	if (Enemy->size() == 0) // 적이 하나도 없으면 바로 delete 인거 같다.
 		return 2;
 
 	/*
@@ -69,6 +69,6 @@ void NormalBullet::Release()
 {
 }
 
-void NormalBullet::InputImage()
+void NormalBullet::InputImage(OBJECT_STATE State)
 {
 }

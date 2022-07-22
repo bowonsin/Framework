@@ -13,13 +13,13 @@ public:
 	virtual void Render()PURE;
 	virtual void Release()PURE;
 
-	virtual void InputImage()PURE;
+	virtual void InputImage(OBJECT_STATE State)PURE;
 
 public:
 	void SetObject(Object* _Object)	{	pObject = _Object;	}
 	virtual vector<char*> GetImageShape() const { return m_vecImage; }
 
-	Vector3 Get_Scale(){ return Vector3(strlen(m_vecImage.front()), m_vecImage.size());}
+	Vector3 Get_Scale(){ return Vector3(strlen(m_vecImage.front()) - 4, m_vecImage.size() - 2);}
 
 public:
 	Bridge() :pObject(nullptr) {}

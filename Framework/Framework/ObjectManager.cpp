@@ -7,10 +7,7 @@
 #include "Bridge.h"
 
 ObjectManager* ObjectManager::Instance = nullptr;
-ObjectManager::ObjectManager()
-{
-	EnableList = ObjectPool::GetEnableList();
-}
+ObjectManager::ObjectManager(){	EnableList = ObjectPool::GetEnableList();}
 ObjectManager::~ObjectManager(){}
 
 void ObjectManager::AddObject(string str)
@@ -58,12 +55,12 @@ void ObjectManager::AddObject(string _Key, Bridge* _Bridge)
 		iter->second.push_back(pObject);
 }
 
-void ObjectManager::AddBullet(Bridge* _Bridge, Vector3 _Position)
+void ObjectManager::AddBullet(string _Key,Bridge* _Bridge, Vector3 _Position)
 {
-	Object* pObject = ObjectPool::GetInstance()->Recycle("Bullet");
+	Object* pObject = ObjectPool::GetInstance()->Recycle(_Key);
 
 	if (pObject == nullptr)
-		pObject = Prototype::GetInstance()->ProtoTypeObject("Bullet")->Clone();
+		pObject = Prototype::GetInstance()->ProtoTypeObject(_Key)->Clone();
 
 	_Bridge->Initialize();
 	_Bridge->SetObject(pObject);
@@ -71,7 +68,7 @@ void ObjectManager::AddBullet(Bridge* _Bridge, Vector3 _Position)
 	pObject->SetBridge(_Bridge);
 	pObject->Setposition(_Position);
 
-	map<string, list<Object*>>::iterator iter = EnableList->find("Bullet");
+	map<string, list<Object*>>::iterator iter = EnableList->find(_Key);
 
 	if (iter == EnableList->end())
 	{

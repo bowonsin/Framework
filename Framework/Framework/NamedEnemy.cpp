@@ -20,14 +20,11 @@ void NamedEnemy::Release()
 {
 }
 
-void NamedEnemy::InputImage()
+void NamedEnemy::InputImage(OBJECT_STATE State)
 {
 }
 
-void NamedEnemy::MoveImage()
+void NamedEnemy::Image_Initialize()
 {
 }
 
-void NamedEnemy::DieImage()
-{
-}

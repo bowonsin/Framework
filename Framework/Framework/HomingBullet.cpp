@@ -20,6 +20,6 @@ void HomingBullet::Release()
 {
 }
 
-void HomingBullet::InputImage()
+void HomingBullet::InputImage(OBJECT_STATE State)
 {
 }

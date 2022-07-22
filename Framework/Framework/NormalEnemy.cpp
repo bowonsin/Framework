@@ -20,16 +20,10 @@ void NormalEnemy::Release()
 {
 }
 
-void NormalEnemy::InputImage()
+void NormalEnemy::InputImage(OBJECT_STATE State)
 {
 }
 
-void NormalEnemy::MoveImage()
+void NormalEnemy::Image_Initialize()
 {
 }
-
-void NormalEnemy::DieImage()
-{
-}
-
-

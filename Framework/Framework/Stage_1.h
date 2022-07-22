@@ -8,6 +8,8 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 
+private:
+	void Regen_Enemy(int Time);
 
 public:
 	Stage_1();

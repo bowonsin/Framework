@@ -8,24 +8,19 @@ class EnemyBridge : public Bridge
 protected: 
 	float m_iSpeed;
 	int m_iColor;
+	OBJECT_STATE m_eState;
+	vector<Image_State> m_vecImageList;
 
-	ENEMY_STATE m_eState;
+	virtual void InputImage(OBJECT_STATE State)PURE;
+	virtual void Image_Initialize()PURE;
 
-	
 public:
 	virtual void Initialize()PURE;
 	virtual int Update(Transform& Info)PURE;
 	virtual void Render()PURE;
 	virtual void Release()PURE;
-
-	virtual void InputImage()PURE;
-
-	virtual void MoveImage()PURE;
-	virtual void DieImage()PURE;
-	
-	
 public:
 
-	EnemyBridge() : m_iSpeed (0), m_iColor(0), m_eState(ENEMY_STATE::STATE_NORMAL){}
+	EnemyBridge() : m_iSpeed (0), m_iColor(0), m_eState(OBJECT_STATE::STATE_NORMAL){}
 	virtual  ~EnemyBridge() {}
 };

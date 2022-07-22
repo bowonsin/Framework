@@ -6,14 +6,16 @@
 #include "ScoreInterface.h"
 
 
+
+
 Logo::Logo(){}
 Logo::~Logo() { Release(); }
 
 void Logo::Initialize()
 {
-	pUI = new ScoreInterface;
-	UI= new LogoInterface;
-	pUI->Initialize();
+	OutSide_UI = new ScoreInterface;
+	UI = new LogoInterface;
+	OutSide_UI->Initialize();
 	UI->Initialize();
 }
 
@@ -29,13 +31,16 @@ void Logo::Update()
 
 void Logo::Render()
 {
-	pUI->Render();
-	UI->Render();
+	if (UI)
+		UI->Render();
+	if (OutSide_UI)
+		OutSide_UI->Render();
 }
 
 void Logo::Release()
 {
 	::Safe_Delete(UI);
+	::Safe_Delete(OutSide_UI);
 }
 
 

@@ -11,7 +11,7 @@ Stage::~Stage() { }
 void Stage::Stage_Collision_Check()
 {
 	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObject_list("Bullet");
-	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObject_list("Enemy");
+	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObject_list("BossEnemy");
 
 	// Bullet 행동 반경 넘어섯을 떄 Disable로 이동
 	if (pBulletList != nullptr)

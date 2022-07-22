@@ -7,7 +7,9 @@ public:
 	virtual int Update()override;
 	virtual void Render()override;
 	virtual void Release()override;
-	virtual vector<char*> Make_Box(int Font_Size)override;
+
+private:
+	vector<char*> Make_Box(int Font_Size);
 
 public:
 	ScoreInterface();

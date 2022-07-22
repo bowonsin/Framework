@@ -11,7 +11,7 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 
-	virtual void InputImage()override;
+	virtual void InputImage(OBJECT_STATE State)override;
 public:
 
 	NormalBullet();

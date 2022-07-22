@@ -11,8 +11,8 @@ void MenuInterface::Initialize()
 
 	Image_Transform_Data MenuImage; 
 
-	MenuImage.DOT_Image = Make_Box(NULL);
-	float x_Standard = (float)(InGameConsole_WidthSize * 0.5f - strlen(MenuImage.DOT_Image.front())/2);
+	MenuImage.DOT_Image = Make_Box();
+	float x_Standard = (float)(InGameConsole_WidthSize * 0.5f - strlen(MenuImage.DOT_Image.front())/2) + PlayerDataInfoSize;
 	float y_Standard = (float)(ConsoleHeightSize * 0.5f - MenuImage.DOT_Image.size()/2);
 	
 	MenuImage.Data.Position = Vector3(x_Standard ,y_Standard ,0);
@@ -50,7 +50,7 @@ void MenuInterface::Initialize()
 	m_vecTextureImage.push_back(MenuImage);
 	MenuImage.DOT_Image.clear();
 
-	MenuImage.DOT_Image = Make_Box(NULL);
+	MenuImage.DOT_Image = Make_Box();
 	MenuImage.Data.Position = Vector3(x_Standard + 30, y_Standard , 1);
 	MenuImage.Color = 9;
 	m_vecBoxImage.push_back(MenuImage);
@@ -150,7 +150,7 @@ void MenuInterface::LocationCheck(Vector3& _Position, IMAGE_MOVE_DIRECTION Check
 	}
 }
 
-vector<char*> MenuInterface::Make_Box(int Font_Size)
+vector<char*> MenuInterface::Make_Box()
 {
 	char* box_front = (char*)"; @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@";
 	char* box_middle1 = (char*)"; ................................................................, #";
@@ -166,25 +166,6 @@ vector<char*> MenuInterface::Make_Box(int Font_Size)
 	Temp.push_back(box_end);
 	return Temp;
 }
-void MenuInterface::ImageDraw(int Order)
-{
-	for (int j = 0; j < m_vecBoxImage[Order].DOT_Image.size(); ++j)
-	{
-		CursorManager::GetInstance()->WriteBuffer(
-			m_vecBoxImage[Order].Data.Position.x,
-			m_vecBoxImage[Order].Data.Position.y + j,
-			m_vecBoxImage[Order].DOT_Image[j], m_vecBoxImage[Order].Color);
-	}
-
-	for (int j = 0; j < m_vecTextureImage[Order].DOT_Image.size(); ++j)
-	{
-		CursorManager::GetInstance()->WriteBuffer(
-			m_vecTextureImage[Order].Data.Position.x,
-			m_vecTextureImage[Order].Data.Position.y + j,
-			m_vecTextureImage[Order].DOT_Image[j], m_vecTextureImage[Order].Color);
-	}
-}
-
 void MenuInterface::Release()
 {
 	m_vecTextureImage.clear();

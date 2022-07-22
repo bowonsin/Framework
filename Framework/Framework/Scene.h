@@ -10,7 +10,9 @@ public:
 	virtual void Release()PURE;
 
 protected:
+	UserInterface* OutSide_UI;
 	UserInterface* UI;
+
 
 public:
 	Scene();

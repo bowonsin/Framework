@@ -8,7 +8,7 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 
-	virtual vector<char*> Make_Box(int Font_Size)override;
+	vector<char*> Make_Box();
 
 public:
 	LogoInterface();
