@@ -10,10 +10,16 @@ Stage::~Stage() { }
 
 void Stage::Stage_Collision_Check()
 {
-	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObject_list("Bullet");
-	list<Object*>* pEnemyList = ObjectManager::GetInstance()->GetObject_list("BossEnemy");
+	Object* Player = ObjectManager::GetInstance()->GetObject_list("Player")->front();
+	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObject_list("NormalBullet");
+	list<Object*>* pBossEnemy = ObjectManager::GetInstance()->GetObject_list("BossEnemy");
+	list<Object*>* pNamedEnemyList = ObjectManager::GetInstance()->GetObject_list("NamedEnemy");
+	list<Object*>* pNormalEnemyList = ObjectManager::GetInstance()->GetObject_list("NormalEnemy");
+	list<Object*>* pEnemyNormalBulletList = ObjectManager::GetInstance()->GetObject_list("EnemyNormalBullet");
+	list<Object*>* pEnemyHomimgBulletList = ObjectManager::GetInstance()->GetObject_list("EnemyHomimgBullet");
 
 	// Bullet 행동 반경 넘어섯을 떄 Disable로 이동
+	/* // 각기 다른 Bullet을 BulletBridge에서 이미 정리 하고 ObjectPool 에서 이미 터진거 관리하고 있음.
 	if (pBulletList != nullptr)
 	{
 		for (list<Object*>::iterator pBullet = pBulletList->begin(); pBullet != pBulletList->end();)
@@ -29,14 +35,34 @@ void Stage::Stage_Collision_Check()
 				++pBullet;
 		}
 	}
+	*/
+
+	if (Player != nullptr)
+	{
+		if (pBossEnemy != nullptr)
+			Player_Enemy_Collision_Check(Player, pBossEnemy);
+
+		if (pNamedEnemyList != nullptr)
+			Player_Enemy_Collision_Check(Player, pNamedEnemyList);
+
+		if (pNormalEnemyList != nullptr)
+			Player_Enemy_Collision_Check(Player, pNormalEnemyList);
+
+		if (pEnemyNormalBulletList != nullptr)
+			Player_EnemyBullet_Collision_Check(Player, pEnemyNormalBulletList);
+
+		if (pBulletList != nullptr)
+			PlayerBullet_Enemy_Collision_Check(pBulletList, pNamedEnemyList);
+	}
 
 	// 전체적인 충돌 판정 . 
-	if (pPlayer != nullptr)
+	/*
+	if (Player != nullptr)
 	{
-		if (pEnemyList != nullptr)
+		if (pBossEnemy != nullptr)
 		{
-			for (list<Object*>::iterator pEnemyIter = pEnemyList->begin();
-				pEnemyIter != pEnemyList->end();)
+			for (list<Object*>::iterator pEnemyIter = pBossEnemy->begin();
+				pEnemyIter != pBossEnemy->end();)
 			{
 				if (pBulletList != nullptr)
 				{
@@ -53,7 +79,7 @@ void Stage::Stage_Collision_Check()
 					}
 				}
 				// 플레이어와 enemy의 충돌 또는 맵 밖으로 나가는것
-				if (CollisionManager::CircleCollision(pPlayer, *pEnemyIter))
+				if (CollisionManager::CircleCollision(Player, *pEnemyIter))
 				{
 					pEnemyIter = ObjectManager::GetInstance()->ThrowObject(pEnemyIter, (*pEnemyIter));
 				}
@@ -65,6 +91,59 @@ void Stage::Stage_Collision_Check()
 					++pEnemyIter;
 			}
 		}
+	}
+	*/
+}
+
+void Stage::Player_Enemy_Collision_Check(Object* Player, list<Object*>* EnemyList)
+{
+	for (list<Object*>::iterator Enemy = EnemyList->begin();
+		Enemy != EnemyList->end();)
+	{
+		if (CollisionManager::Collision(Player, (*Enemy)))
+			Enemy = ObjectManager::GetInstance()->ThrowObject(Enemy, (*Enemy));
+		else
+			++Enemy;
+	}
+}
+
+void Stage::Player_EnemyBullet_Collision_Check(Object* Player, list<Object*>* EnemyBullet)
+{
+	for (list<Object*>::iterator Bullet = EnemyBullet->begin();
+		Bullet != EnemyBullet->end();)
+	{
+		if (CollisionManager::Collision(Player, (*Bullet)))
+		{
+			Bullet = ObjectManager::GetInstance()->ThrowObject(Bullet, (*Bullet));
+			// Player 와 적 Bullet이 충돌 했으니 Player에게 충돌 판정이후 들어가는 데미지 등 관리
+		}
+		else
+			++Bullet;
+	}
+}
+
+void Stage::PlayerBullet_Enemy_Collision_Check(list<Object*>* Player_Bullet, list<Object*>* EnemyList)
+{
+	bool EnemyCheck = false;
+	for (list<Object*>::iterator Enemy = EnemyList->begin();
+		Enemy != EnemyList->end();)
+	{
+		for (list<Object*>::iterator Bullet = Player_Bullet->begin();
+			Bullet != Player_Bullet->end();)
+		{
+			if (CollisionManager::Collision((*Enemy), (*Bullet)))
+			{
+				Bullet = ObjectManager::GetInstance()->ThrowObject(Bullet, (*Bullet));
+				EnemyCheck = true;
+			}
+			else 
+				++Bullet;
+		}
+
+		if (!EnemyCheck)
+			++Enemy;
+		else
+			EnemyCheck = false;
 	}
 }
 

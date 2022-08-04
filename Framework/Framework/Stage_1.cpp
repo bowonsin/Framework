@@ -24,7 +24,7 @@ void Stage_1::Initialize()
 	OutSide_UI = new ScoreInterface;
 	OutSide_UI->Initialize();
 
-	pPlayer = Prototype::GetInstance()->ProtoTypeObject("Player")->Clone();
+	ObjectManager::GetInstance()->AddObject("Player");
 
 	Bridge* Kind_of_Enemy = new NamedEnemy;
 	ObjectManager::GetInstance()->AddObject("NamedEnemy", Kind_of_Enemy);

@@ -34,15 +34,11 @@ void Prototype::Initialize()
 	Key = "BossEnemy";
 	ProtoTypeList[Key] = (new Enemy(Info))->Initialize(Key);
 
-	Key = "Bullet";
+	Key = "NormalBullet";
 	ProtoTypeList[Key] = (new Bullet(Info))->Initialize(Key);
 
 	Key = "EnemyNormalBullet";
 	ProtoTypeList[Key] = (new Bullet(Info))->Initialize(Key);
-
-	Key = "EnemyHomingBullet";
-	ProtoTypeList[Key] = (new Bullet(Info))->Initialize(Key);
-
 
 	Key = "BackGround";
 	ProtoTypeList[Key] = (new BackGround(Info))->Initialize(Key);

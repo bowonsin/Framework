@@ -37,7 +37,7 @@ int NamedEnemy::Update(Transform& Info)
         }
         break;
     case MONSTER_MOVING::MOVE_STOP: // 일정 시간마다 공격 하도록 
-        if (m_lTimer + 500< GetTickCount64())
+        if (m_lTimer + 1000< GetTickCount64())
         {
             m_lTimer = GetTickCount64();
             if (m_iState_Time == 30)

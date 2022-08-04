@@ -37,8 +37,8 @@ void ObjectManager::AddObject(string _Key, Bridge* _Bridge)
 	if (pObject == nullptr)
 		pObject = Prototype::GetInstance()->ProtoTypeObject(_Key)->Clone();
 
-	_Bridge->Initialize();
 	_Bridge->SetObject(pObject);
+	_Bridge->Initialize();
 
 	pObject->SetScale(_Bridge->Get_Scale());
 	pObject->SetBridge(_Bridge);
@@ -62,11 +62,11 @@ void ObjectManager::AddObject_Bullet(string _Key, Bridge* _Bridge, Vector3 _Posi
 	if (pObject == nullptr)
 		pObject = Prototype::GetInstance()->ProtoTypeObject(_Key)->Clone();
 
-	_Bridge->Initialize();
-	_Bridge->SetObject(pObject);
-
 	pObject->SetBridge(_Bridge);
 	pObject->Setposition(_Position);
+
+	_Bridge->SetObject(pObject);
+	_Bridge->Initialize();
 
 	map<string, list<Object*>>::iterator iter = EnableList->find(_Key);
 

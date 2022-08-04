@@ -12,6 +12,8 @@ public:
 
 private:
 	
+	int Speed;
+	ULONGLONG m_lTimer;
 
 public:
 	Player();

@@ -13,6 +13,7 @@ protected:
 	// ** Bullet의 데이터만 남음
 	float Speed;
 	int Color;
+	Vector3 Target_Direction;
 
 	int Console_OutSide_Check() 
 	{

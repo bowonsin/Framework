@@ -18,12 +18,12 @@ void NormalBullet::Initialize()
 
 int NormalBullet::Update(Transform& Info)
 {
-
+	/*
 	list<Object*>* Enemy = ObjectManager::GetInstance()->GetObject_list("Enemy");
 
 	if (Enemy->size() == 0) // 적이 하나도 없으면 바로 delete 인거 같다.
 		return 2;
-
+	*/
 	/*
 	//가장 가까이 좌표에 있는 적을 향해서 출동
 	// 유도탄 함수

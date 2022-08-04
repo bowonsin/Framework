@@ -13,8 +13,6 @@ public:
 	virtual void Render()PURE;
 	virtual void Release() { m_vecImage.clear(); ::Safe_Delete(pObject); };
 
-	
-
 public:
 	void SetObject(Object* _Object)	{	pObject = _Object;	}
 	virtual vector<char*> GetImageShape() const { return m_vecImage; }

@@ -146,7 +146,6 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletBridge.cpp" />
     <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="EnemyHomginBullet.cpp" />
     <ClCompile Include="EnemyNormalBullet.cpp" />
     <ClCompile Include="HomingBullet.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -193,7 +192,6 @@
     <ClInclude Include="Define.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBridge.h" />
-    <ClInclude Include="EnemyHomginBullet.h" />
     <ClInclude Include="EnemyNormalBullet.h" />
     <ClInclude Include="Enum.h" />
     <ClInclude Include="Headers.h" />
