@@ -64,9 +64,8 @@ int  Bullet::Update()
 
 	*/
 	if (pBridge)
-		pBridge->Update(TransInfo);
-
-	return 0;
+		return pBridge->Update(TransInfo);
+	
 }
 
 void Bullet::Render() 

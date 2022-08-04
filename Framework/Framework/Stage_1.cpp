@@ -26,10 +26,13 @@ void Stage_1::Initialize()
 
 	pPlayer = Prototype::GetInstance()->ProtoTypeObject("Player")->Clone();
 
+	Bridge* Kind_of_Enemy = new NamedEnemy;
+	ObjectManager::GetInstance()->AddObject("NamedEnemy", Kind_of_Enemy);
+
+	/*
 	Bridge* Kind_of_Enemy = new BossEnemy;
 	ObjectManager::GetInstance()->AddObject("BossEnemy",Kind_of_Enemy);
 
-	/*
 	Kind_of_Enemy = new NamedEnemy;
 	ObjectManager::GetInstance()->AddObject("NamedEnemy", Kind_of_Enemy);
 
@@ -54,6 +57,7 @@ void Stage_1::Update()
 {
 	if (OutSide_UI)
 		OutSide_UI->Update();
+
 	ObjectManager::GetInstance()->Update();
 	Stage::Stage_Collision_Check(); // 충돌판정
 }
@@ -74,6 +78,6 @@ void Stage_1::Release()
 
 void Stage_1::Regen_Enemy(int Time)
 {
-	ObjectManager::GetInstance()->AddObject("BossEnemy");
-	ObjectManager::GetInstance()->GetObject_list("BossEnemy")->front()->Setposition(InGameConsole_WidthSize, Boss_Y_Position);
+	ObjectManager::GetInstance()->AddObject("NamedEnemy");
+	ObjectManager::GetInstance()->GetObject_list("NamedEnemy")->front()->Setposition(InGameConsole_WidthSize, Boss_Y_Position);
 }

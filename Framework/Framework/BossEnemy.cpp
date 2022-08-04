@@ -45,6 +45,7 @@ void BossEnemy::InputImage(OBJECT_STATE State)
         {
             m_eState = State;
             m_vecImage = m_vecImageList[i].Dot_Image;
+            break;
         }
     }
 }

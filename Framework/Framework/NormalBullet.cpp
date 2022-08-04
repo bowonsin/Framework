@@ -47,11 +47,9 @@ int NormalBullet::Update(Transform& Info)
 	Info.Position += Info.Direction;
 	
 	//Info.Direction = MathManager::GetDirection(Info.Position, Vector3(60.0f, 15.0f));
-
 	//Info.Position += Info.Direction * Speed;
 	
-
-    return 0;
+    return BulletBridge::Console_OutSide_Check();
 }
 
 void NormalBullet::Render()
@@ -66,9 +64,5 @@ void NormalBullet::Render()
 }
 
 void NormalBullet::Release()
-{
-}
-
-void NormalBullet::InputImage(OBJECT_STATE State)
 {
 }

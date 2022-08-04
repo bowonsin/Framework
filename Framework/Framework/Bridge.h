@@ -11,9 +11,9 @@ public:
 	virtual void Initialize()PURE;
 	virtual int Update(Transform& Info)PURE;
 	virtual void Render()PURE;
-	virtual void Release()PURE;
+	virtual void Release() { m_vecImage.clear(); ::Safe_Delete(pObject); };
 
-	virtual void InputImage(OBJECT_STATE State)PURE;
+	
 
 public:
 	void SetObject(Object* _Object)	{	pObject = _Object;	}

@@ -55,7 +55,7 @@ void ObjectManager::AddObject(string _Key, Bridge* _Bridge)
 		iter->second.push_back(pObject);
 }
 
-void ObjectManager::AddBullet(string _Key,Bridge* _Bridge, Vector3 _Position)
+void ObjectManager::AddObject_Bullet(string _Key, Bridge* _Bridge, Vector3 _Position)
 {
 	Object* pObject = ObjectPool::GetInstance()->Recycle(_Key);
 
@@ -78,6 +78,7 @@ void ObjectManager::AddBullet(string _Key,Bridge* _Bridge, Vector3 _Position)
 	}
 	else
 		iter->second.push_back(pObject);
+
 
 }
 

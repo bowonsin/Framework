@@ -1,8 +1,10 @@
 #include "Prototype.h"
+
 #include "Player.h"
 #include "Bullet.h"
 #include "Enemy.h"
 #include "BackGround.h"
+
 #include "InputManager.h"
 
 Prototype* Prototype::Instance = nullptr ;
@@ -34,6 +36,13 @@ void Prototype::Initialize()
 
 	Key = "Bullet";
 	ProtoTypeList[Key] = (new Bullet(Info))->Initialize(Key);
+
+	Key = "EnemyNormalBullet";
+	ProtoTypeList[Key] = (new Bullet(Info))->Initialize(Key);
+
+	Key = "EnemyHomingBullet";
+	ProtoTypeList[Key] = (new Bullet(Info))->Initialize(Key);
+
 
 	Key = "BackGround";
 	ProtoTypeList[Key] = (new BackGround(Info))->Initialize(Key);

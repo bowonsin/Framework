@@ -11,6 +11,8 @@ protected:
 	OBJECT_STATE m_eState;
 	vector<Image_State> m_vecImageList;
 
+	ULONGLONG m_lTimer;
+
 	virtual void InputImage(OBJECT_STATE State)PURE;
 	virtual void Image_Initialize()PURE;
 
@@ -18,7 +20,7 @@ public:
 	virtual void Initialize()PURE;
 	virtual int Update(Transform& Info)PURE;
 	virtual void Render()PURE;
-	virtual void Release()PURE;
+	virtual void Release() { m_vecImageList.clear(); };
 public:
 
 	EnemyBridge() : m_iSpeed (0), m_iColor(0), m_eState(OBJECT_STATE::STATE_NORMAL){}

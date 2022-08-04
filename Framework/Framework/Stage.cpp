@@ -89,7 +89,12 @@ void Stage::Obejct_Disable()
 		for (auto Enemyiter = Dis_Object->begin(); Enemyiter != Dis_Object->end(); ++Enemyiter)
 			ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
 
-	Dis_Object = ObjectManager::GetInstance()->GetObject_list("Bullet");
+	Dis_Object = ObjectManager::GetInstance()->GetObject_list("NormalBullet");
+	if (Dis_Object)
+		for (auto Enemyiter = Dis_Object->begin(); Enemyiter != Dis_Object->end(); ++Enemyiter)
+			ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
+
+	Dis_Object = ObjectManager::GetInstance()->GetObject_list("EnemyNormalBullet");
 	if (Dis_Object)
 		for (auto Enemyiter = Dis_Object->begin(); Enemyiter != Dis_Object->end(); ++Enemyiter)
 			ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
@@ -114,7 +119,6 @@ void Stage::Obejct_Disable()
 		++i;
 	}
 	*/
-
 /*
 	for (int i = 0; i < 5; ++i)
 	{

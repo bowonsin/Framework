@@ -70,7 +70,7 @@ int Player::Update()
 		*/
 
  		Bridge* pBridge = new NormalBullet;
-		ObjectManager::GetInstance()->AddBullet( pBridge, TransInfo.Position);
+		//ObjectManager::GetInstance()->AddBullet( pBridge, TransInfo.Position);
 	}
 
 	return 0;

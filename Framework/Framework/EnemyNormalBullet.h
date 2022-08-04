@@ -1,6 +1,6 @@
 #pragma once
 #include "BulletBridge.h"
-class HomingBullet :public BulletBridge
+class EnemyNormalBullet: public BulletBridge
 {
 public:
 	virtual void Initialize()override;
@@ -9,6 +9,7 @@ public:
 	virtual void Release()override;
 public:
 
-	HomingBullet();
-	virtual ~HomingBullet();
+	EnemyNormalBullet();
+	virtual ~EnemyNormalBullet();
 };
+

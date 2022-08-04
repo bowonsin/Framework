@@ -26,13 +26,11 @@ int Enemy::Update()
 	//TransInfo.Position.x -= 2;
 	// 일정 시간마다 플레이어 방향으로 총알이 쏘도록
 
-	if (TransInfo.Position.x <= 0)
+	if (TransInfo.Position.x <= 0 )
 		return BUFFER_OVER;
 
 	if (pBridge)
-		pBridge->Update(TransInfo);
-
-	return 0;
+		return pBridge->Update(TransInfo);
 }
 
 void Enemy::Render()
