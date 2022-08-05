@@ -11,9 +11,9 @@ public :
 private:
 	virtual void InputImage(OBJECT_STATE State)override;
 	virtual void Image_Initialize()override;
+	
 
-	MONSTER_MOVING m_eMoving;
-	int m_iState_Time;
+	
 public:
 	NamedEnemy();
 	virtual ~NamedEnemy();

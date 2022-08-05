@@ -12,7 +12,7 @@ public:
 
 private:
 	
-	int Speed;
+	float Speed;
 	ULONGLONG m_lTimer;
 
 public:

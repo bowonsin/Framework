@@ -5,12 +5,11 @@
 #include "ObjectManager.h"
 #include "CollisionManager.h"
 
-Stage::Stage():pPlayer(nullptr){}
+Stage::Stage():pPlayer(nullptr), m_LTimer(0) {}
 Stage::~Stage() { }
 
 void Stage::Stage_Collision_Check()
 {
-	Object* Player = ObjectManager::GetInstance()->GetObject_list("Player")->front();
 	list<Object*>* pBulletList = ObjectManager::GetInstance()->GetObject_list("NormalBullet");
 	list<Object*>* pBossEnemy = ObjectManager::GetInstance()->GetObject_list("BossEnemy");
 	list<Object*>* pNamedEnemyList = ObjectManager::GetInstance()->GetObject_list("NamedEnemy");
@@ -37,19 +36,19 @@ void Stage::Stage_Collision_Check()
 	}
 	*/
 
-	if (Player != nullptr)
+	if (pPlayer != nullptr)
 	{
 		if (pBossEnemy != nullptr)
-			Player_Enemy_Collision_Check(Player, pBossEnemy);
+			Player_Enemy_Collision_Check(pBossEnemy);
 
 		if (pNamedEnemyList != nullptr)
-			Player_Enemy_Collision_Check(Player, pNamedEnemyList);
+			Player_Enemy_Collision_Check(pNamedEnemyList);
 
 		if (pNormalEnemyList != nullptr)
-			Player_Enemy_Collision_Check(Player, pNormalEnemyList);
+			Player_Enemy_Collision_Check( pNormalEnemyList);
 
 		if (pEnemyNormalBulletList != nullptr)
-			Player_EnemyBullet_Collision_Check(Player, pEnemyNormalBulletList);
+			Player_EnemyBullet_Collision_Check(pEnemyNormalBulletList);
 
 		if (pBulletList != nullptr)
 			PlayerBullet_Enemy_Collision_Check(pBulletList, pNamedEnemyList);
@@ -95,24 +94,24 @@ void Stage::Stage_Collision_Check()
 	*/
 }
 
-void Stage::Player_Enemy_Collision_Check(Object* Player, list<Object*>* EnemyList)
+void Stage::Player_Enemy_Collision_Check( list<Object*>* EnemyList)
 {
 	for (list<Object*>::iterator Enemy = EnemyList->begin();
 		Enemy != EnemyList->end();)
 	{
-		if (CollisionManager::Collision(Player, (*Enemy)))
+		if (CollisionManager::Collision(pPlayer, (*Enemy)))
 			Enemy = ObjectManager::GetInstance()->ThrowObject(Enemy, (*Enemy));
 		else
 			++Enemy;
 	}
 }
 
-void Stage::Player_EnemyBullet_Collision_Check(Object* Player, list<Object*>* EnemyBullet)
+void Stage::Player_EnemyBullet_Collision_Check(list<Object*>* EnemyBullet)
 {
 	for (list<Object*>::iterator Bullet = EnemyBullet->begin();
 		Bullet != EnemyBullet->end();)
 	{
-		if (CollisionManager::Collision(Player, (*Bullet)))
+		if (CollisionManager::Collision(pPlayer, (*Bullet)))
 		{
 			Bullet = ObjectManager::GetInstance()->ThrowObject(Bullet, (*Bullet));
 			// Player 와 적 Bullet이 충돌 했으니 Player에게 충돌 판정이후 들어가는 데미지 등 관리
@@ -150,6 +149,7 @@ void Stage::PlayerBullet_Enemy_Collision_Check(list<Object*>* Player_Bullet, lis
 
 void Stage::Obejct_Disable()
 {
+	
 	list<Object*>* Dis_Object = ObjectManager::GetInstance()->GetObject_list("BossEnemy");
 	if (Dis_Object)
 		ObjectManager::GetInstance()->ThrowObject(Dis_Object->begin(), Dis_Object->front());
@@ -177,7 +177,6 @@ void Stage::Obejct_Disable()
 	if (Dis_Object)
 		for (auto Enemyiter = Dis_Object->begin(); Enemyiter != Dis_Object->end(); ++Enemyiter)
 			ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
-
 }
 
 /*

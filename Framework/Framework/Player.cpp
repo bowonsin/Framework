@@ -20,7 +20,7 @@ Object* Player::Initialize(string _Key)
 	strKey = _Key;
 	Hp = 10;
 	
-	Speed = 2.0f;
+	Speed = 3.0f;
 
 	TransInfo.Position = Vector3(20.0f, 15.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);
@@ -29,7 +29,7 @@ Object* Player::Initialize(string _Key)
 	ch_Buffer.push_back((char*)"｜￣￣￣＼＞");
 	ch_Buffer.push_back((char*)"／￣￣￣￣");
 
-	TransInfo.Scale = Vector3((float)strlen(ch_Buffer[1]), ch_Buffer.size() );
+	TransInfo.Scale = Vector3((float)strlen(ch_Buffer[0]), ch_Buffer.size() - 0.5f );
 	m_lTimer = GetTickCount64();
 
 	return this;

@@ -3,7 +3,7 @@
 #include "ObjectManager.h"
 #include "EnemyNormalBullet.h"
 
-NamedEnemy::NamedEnemy() :m_eMoving(MONSTER_MOVING::MOVE_STOP), m_iState_Time(0){}
+NamedEnemy::NamedEnemy() { Image_Initialize(); }
 NamedEnemy::~NamedEnemy() { Release(); }
 
 void NamedEnemy::Initialize()
@@ -17,9 +17,9 @@ void NamedEnemy::Initialize()
     m_eMoving = MONSTER_MOVING::MOVE_FORNT;
 
     m_iState_Time = 0;
-
-    Image_Initialize();
     InputImage(OBJECT_STATE::STATE_NORMAL);
+
+
 }
 
 int NamedEnemy::Update(Transform& Info)
@@ -27,20 +27,25 @@ int NamedEnemy::Update(Transform& Info)
     switch (m_eMoving)
     {
     case MONSTER_MOVING::MOVE_FORNT:
-        if (m_lTimer + 250 < GetTickCount64()) // 1000 을 1초 기준으로 이동 
+        if (m_lTimer + 50 < GetTickCount64()) // 1000 을 1초 기준으로 이동 
         {
             m_lTimer = GetTickCount64();
             Info.Direction.x = -1;
             Info.Position += Info.Direction * m_iSpeed;
             if (Info.Position.x == NamedMonster_Maximum_Width)
                 m_eMoving = MONSTER_MOVING::MOVE_STOP;
+
+            if (m_eState == OBJECT_STATE::STATE_MOVE)
+                InputImage(OBJECT_STATE::STATE_NORMAL);
+            else if (m_eState == OBJECT_STATE::STATE_NORMAL)
+                InputImage(OBJECT_STATE::STATE_MOVE);
         }
         break;
     case MONSTER_MOVING::MOVE_STOP: // 일정 시간마다 공격 하도록 
-        if (m_lTimer + 1000< GetTickCount64())
+        if (m_lTimer + 1500< GetTickCount64())
         {
             m_lTimer = GetTickCount64();
-            if (m_iState_Time == 30)
+            if (m_iState_Time == 60)
             {
                 m_iState_Time = 0;
                 m_eMoving = MONSTER_MOVING::MOVE_BACK;
@@ -98,146 +103,153 @@ void NamedEnemy::InputImage(OBJECT_STATE State)
 void NamedEnemy::Image_Initialize()
 {
     Image_State Image_Data;
-    vector<char*> Input_Data;
-    Input_Data.push_back((char*)"              .  ");
-    Input_Data.push_back((char*)"          ,;,... ");
-    Input_Data.push_back((char*)"          -!*!:* ");
-    Input_Data.push_back((char*)" ,,    , -,=*;!* ");
-    Input_Data.push_back((char*)" - .-,.. ..=****,");
-    Input_Data.push_back((char*)" .,-, .,   ;****~");
-    Input_Data.push_back((char*)" ,-:,  -   ~!=**=");
-    Input_Data.push_back((char*)",  -:.,-   ~-.:*-");
-    Input_Data.push_back((char*)"-,:,.::~,,~,~    ");
-    Input_Data.push_back((char*)" ,:~ ...,::~:    ");
-    Input_Data.push_back((char*)"  -.-;..***~.    ");
-    Input_Data.push_back((char*)"   -:,,,***;- .. ");
-    Input_Data.push_back((char*)"   -~.,-***=~~*- ");
-    Input_Data.push_back((char*)"   ,..,,==*==*=. ");
-    Input_Data.push_back((char*)"   ~.::~;::***!  ");
-    Input_Data.push_back((char*)"   -::,~-;~**=.  ");
-    Input_Data.push_back((char*)"     ,--~::!.,   ");
-    Input_Data.push_back((char*)"         .~      ");
+    Image_Data.Dot_Image.push_back((char*)"              .  ");
+    Image_Data.Dot_Image.push_back((char*)"          ,;,... ");
+    Image_Data.Dot_Image.push_back((char*)"          -!*!:* ");
+    Image_Data.Dot_Image.push_back((char*)" ,,    , -,=*;!* ");
+    Image_Data.Dot_Image.push_back((char*)" - .-,.. ..=****,");
+    Image_Data.Dot_Image.push_back((char*)" .,-, .,   ;****~");
+    Image_Data.Dot_Image.push_back((char*)" ,-:,  -   ~!=**=");
+    Image_Data.Dot_Image.push_back((char*)",  -:.,-   ~-.:*-");
+    Image_Data.Dot_Image.push_back((char*)"-,:,.::~,,~,~    ");
+    Image_Data.Dot_Image.push_back((char*)" ,:~ ...,::~:    ");
+    Image_Data.Dot_Image.push_back((char*)"  -.-;..***~.    ");
+    Image_Data.Dot_Image.push_back((char*)"   -:,,,***;- .. ");
+    Image_Data.Dot_Image.push_back((char*)"   -~.,-***=~~*- ");
+    Image_Data.Dot_Image.push_back((char*)"   ,..,,==*==*=. ");
+    Image_Data.Dot_Image.push_back((char*)"   ~.::~;::***!  ");
+    Image_Data.Dot_Image.push_back((char*)"   -::,~-;~**=.  ");
+    Image_Data.Dot_Image.push_back((char*)"     ,--~::!.,   ");
+    Image_Data.Dot_Image.push_back((char*)"         .~      ");
     Image_Data.State = OBJECT_STATE::STATE_HIT;
-    Image_Data.Dot_Image = Input_Data;
-    Input_Data.clear();
     m_vecImageList.push_back(Image_Data);
+    Image_Data.Dot_Image.clear();
 
-    Input_Data.push_back((char*)"   ..      -:.   ");
-    Input_Data.push_back((char*)"   ,.-     **=~  ");
-    Input_Data.push_back((char*)"   -.,. ,,-:*!!- ");
-    Input_Data.push_back((char*)"    ,~.~. .,***~ ");
-    Input_Data.push_back((char*)"   -~;  -   ~**=-");
-    Input_Data.push_back((char*)"   .-,,.~   :;==,");
-    Input_Data.push_back((char*)" ,,. *-:. .-. .  ");
-    Input_Data.push_back((char*)" ,-, , : :*=*    ");
-    Input_Data.push_back((char*)"    ,-,~.**!,    ");
-    Input_Data.push_back((char*)"    ,~~,.**-:..  ");
-    Input_Data.push_back((char*)"     ~- ,**=:*   ");
-    Input_Data.push_back((char*)"     .-:~;.-=*   ");
-    Input_Data.push_back((char*)"      :-~;~~=;   ");
-    Input_Data.push_back((char*)"      .---.~.    ");
-    Input_Data.push_back((char*)"          ..     ");
+    Image_Data.Dot_Image.push_back((char*)"   ..      -:.   ");
+    Image_Data.Dot_Image.push_back((char*)"   ,.-     **=~  ");
+    Image_Data.Dot_Image.push_back((char*)"   -.,. ,,-:*!!- ");
+    Image_Data.Dot_Image.push_back((char*)"    ,~.~. .,***~ ");
+    Image_Data.Dot_Image.push_back((char*)"   -~;  -   ~**=-");
+    Image_Data.Dot_Image.push_back((char*)"   .-,,.~   :;==,");
+    Image_Data.Dot_Image.push_back((char*)" ,,. *-:. .-. .  ");
+    Image_Data.Dot_Image.push_back((char*)" ,-, , : :*=*    ");
+    Image_Data.Dot_Image.push_back((char*)"    ,-,~.**!,    ");
+    Image_Data.Dot_Image.push_back((char*)"    ,~~,.**-:..  ");
+    Image_Data.Dot_Image.push_back((char*)"     ~- ,**=:*   ");
+    Image_Data.Dot_Image.push_back((char*)"     .-:~;.-=*   ");
+    Image_Data.Dot_Image.push_back((char*)"      :-~;~~=;   ");
+    Image_Data.Dot_Image.push_back((char*)"      .---.~.    ");
+    Image_Data.Dot_Image.push_back((char*)"          ..     ");
     Image_Data.State = OBJECT_STATE::STATE_HIT2;
-    Image_Data.Dot_Image = Input_Data;
-    Input_Data.clear();
     m_vecImageList.push_back(Image_Data);
+    Image_Data.Dot_Image.clear();
 
 
-    Input_Data.push_back((char*)"       .~--.--   ");
-    Input_Data.push_back((char*)"      ;***.=*:--~");
-    Input_Data.push_back((char*)"     --****=-;**-");
-    Input_Data.push_back((char*)"  ~!!*=~..~=****=");
-    Input_Data.push_back((char*)"  :**-      .=**-");
-    Input_Data.push_back((char*)"   :. ,      .*=.");
-    Input_Data.push_back((char*)"   ~.         !~ ");
-    Input_Data.push_back((char*)"   ~...       ~  ");
-    Input_Data.push_back((char*)" ~  -!        .  ");
-    Input_Data.push_back((char*)" , , ~       -,-.");
-    Input_Data.push_back((char*)"  --:.    , .-*~ ");
-    Input_Data.push_back((char*)"   .~-~.:*=.**** ");
-    Input_Data.push_back((char*)" .~. -, -..,**** ");
-    Input_Data.push_back((char*)".,...;,: .;-****~");
-    Input_Data.push_back((char*)" --;-:::,*******=");
-    Input_Data.push_back((char*)"  .-,-::~:.=**** ");
-    Input_Data.push_back((char*)"    :;-  ,~:, .. ");
-    Input_Data.push_back((char*)"      ~:         ");
+    Image_Data.Dot_Image.push_back((char*)"         ---  -.         ");
+    Image_Data.Dot_Image.push_back((char*)"       .;==*~;**- ..,    ");
+    Image_Data.Dot_Image.push_back((char*)"   .. -*:=***==!!=**!-   ");
+    Image_Data.Dot_Image.push_back((char*)"  .:;;==!:--~;*=*****-   ");
+    Image_Data.Dot_Image.push_back((char*)"  ,:==~.     ..,=***!.   ");
+    Image_Data.Dot_Image.push_back((char*)"   :*~,,.       ,**=-    ");
+    Image_Data.Dot_Image.push_back((char*)"    :.  ,        ~=:.    ");
+    Image_Data.Dot_Image.push_back((char*)"    -.  ..       ,:.     ");
+    Image_Data.Dot_Image.push_back((char*)"   ,:,.,~.       .-      ");
+    Image_Data.Dot_Image.push_back((char*)"  ,.,~-~,        .-      ");
+    Image_Data.Dot_Image.push_back((char*)" ~.  .:.         .~.     ");
+    Image_Data.Dot_Image.push_back((char*)" ~ .~..,       .~,.--    ");
+    Image_Data.Dot_Image.push_back((char*)" ,-:. -.    .,-,..,-,    ");
+    Image_Data.Dot_Image.push_back((char*)"  ,:-~-.   .,, .,~!,     ");
+    Image_Data.Dot_Image.push_back((char*)"    .;:-. .*!.-:!**-     ");
+    Image_Data.Dot_Image.push_back((char*)"    -,,~:.;=*=!****;     ");
+    Image_Data.Dot_Image.push_back((char*)" .,~..--.,:,.,:*****,    ");
+    Image_Data.Dot_Image.push_back((char*)".-,,..~. .;:, -*;***~    ");
+    Image_Data.Dot_Image.push_back((char*)".,,...-:-~-.~,-!****;    ");
+    Image_Data.Dot_Image.push_back((char*)" -----~:~,.,~~!****!;    ");
+    Image_Data.Dot_Image.push_back((char*)"  :::-,:,:-=*********    ");
+    Image_Data.Dot_Image.push_back((char*)"  ~-, .~:,--=*******,    ");
+    Image_Data.Dot_Image.push_back((char*)"   :,.,-;~-:,*******     ");
+    Image_Data.Dot_Image.push_back((char*)"   .-~-::-..--~:!=*~     ");
+    Image_Data.Dot_Image.push_back((char*)"     .:;..-~~::--.~      ");
+    Image_Data.Dot_Image.push_back((char*)"        -,.              ");
     Image_Data.State = OBJECT_STATE::STATE_NORMAL;
-    Image_Data.Dot_Image = Input_Data;
-    Input_Data.clear();
     m_vecImageList.push_back(Image_Data);
+    Image_Data.Dot_Image.clear();
 
-    Input_Data.push_back((char*)"       .~--.--   ");
-    Input_Data.push_back((char*)"      ;***.=*:--~");
-    Input_Data.push_back((char*)"     --****=-;**-");
-    Input_Data.push_back((char*)"  ~!!*=~..~=****=");
-    Input_Data.push_back((char*)"  :**-      .=**-");
-    Input_Data.push_back((char*)"   :. ,      .*=.");
-    Input_Data.push_back((char*)"   ~.         !~ ");
-    Input_Data.push_back((char*)"   ~...       ~  ");
-    Input_Data.push_back((char*)" ~  -!        .  ");
-    Input_Data.push_back((char*)" , , ~       -,-.");
-    Input_Data.push_back((char*)"  --:.    , .-*~ ");
-    Input_Data.push_back((char*)"   .~-~.:*=.**** ");
-    Input_Data.push_back((char*)"   ,..-,*:=***** ");
-    Input_Data.push_back((char*)" .~. -, -..,**** ");
-    Input_Data.push_back((char*)".,...;,: .;-****~");
-    Input_Data.push_back((char*)" --;-:::,*******=");
-    Input_Data.push_back((char*)"  ~. .;-::****** ");
-    Input_Data.push_back((char*)"  .-,-::~:.=**** ");
-    Input_Data.push_back((char*)"    :;-  ,~:, .. ");
-    Input_Data.push_back((char*)"      ~:         ");
+
+    Image_Data.Dot_Image.push_back((char*)"             .~~~~::.  ");
+    Image_Data.Dot_Image.push_back((char*)"        .::!**!!* ,.~  ");
+    Image_Data.Dot_Image.push_back((char*)"        ,=,!***=-,=*-  ");
+    Image_Data.Dot_Image.push_back((char*)"     ~!-**!-,,:=****:  ");
+    Image_Data.Dot_Image.push_back((char*)"     :**;,.     -=*=~  ");
+    Image_Data.Dot_Image.push_back((char*)"     ,*:...,     ,=*   ");
+    Image_Data.Dot_Image.push_back((char*)"      -,.  ,      ;.   ");
+    Image_Data.Dot_Image.push_back((char*)"      --- .,      ,    ");
+    Image_Data.Dot_Image.push_back((char*)"      :~,..-      .    ");
+    Image_Data.Dot_Image.push_back((char*)"     ,.,~-~       .    ");
+    Image_Data.Dot_Image.push_back((char*)"    -   .~.       ,~   ");
+    Image_Data.Dot_Image.push_back((char*)"    - ,;~,,     ,,..-  ");
+    Image_Data.Dot_Image.push_back((char*)"     --  ,   ..-..,:   ");
+    Image_Data.Dot_Image.push_back((char*)"       -;~.  *==,!*!   ");
+    Image_Data.Dot_Image.push_back((char*)"      .~,,:.,***=***   ");
+    Image_Data.Dot_Image.push_back((char*)"      -.--,-!;;-,-**   ");
+    Image_Data.Dot_Image.push_back((char*)"    ,,, -..;!*~ .,~*-  ");
+    Image_Data.Dot_Image.push_back((char*)"    ,.. -..;-*:~~,**!  ");
+    Image_Data.Dot_Image.push_back((char*)"    ,.. -:-:.=**- =**  ");
+    Image_Data.Dot_Image.push_back((char*)"    .~.,~~;,~=**!.~,:- ");
+    Image_Data.Dot_Image.push_back((char*)"     :~-:::!,,*;*::!=  ");
+    Image_Data.Dot_Image.push_back((char*)"     :;,~,,-::!*!-:*~  ");
+    Image_Data.Dot_Image.push_back((char*)"     -~~-.,-~:-!- .,   ");
+    Image_Data.Dot_Image.push_back((char*)"     ---,..-:::;,.,.   ");
+    Image_Data.Dot_Image.push_back((char*)"        .---.,,,..     ");
     Image_Data.State = OBJECT_STATE::STATE_MOVE;
-    Image_Data.Dot_Image = Input_Data;
-    Input_Data.clear();
     m_vecImageList.push_back(Image_Data);
+    Image_Data.Dot_Image.clear();
 
-    Input_Data.push_back((char*)"     ,,.,.        ");
-    Input_Data.push_back((char*)"   .,,     ..     ");
-    Input_Data.push_back((char*)"  .,..     ...    ");
-    Input_Data.push_back((char*)"  .               ");
-    Input_Data.push_back((char*)" ,             .  ");
-    Input_Data.push_back((char*)"..             ,  ");
-    Input_Data.push_back((char*)" ..            .  ");
-    Input_Data.push_back((char*)".               , ");
-    Input_Data.push_back((char*)",               . ");
-    Input_Data.push_back((char*)",               . ");
-    Input_Data.push_back((char*)",                 ");
-    Input_Data.push_back((char*)" ,              , ");
-    Input_Data.push_back((char*)"               ,, ");
-    Input_Data.push_back((char*)"               ,  ");
-    Input_Data.push_back((char*)"  .           ..  ");
-    Input_Data.push_back((char*)"   ....     ...   ");
-    Input_Data.push_back((char*)"    .. .   .-     ");
-    Input_Data.push_back((char*)"       .,,,-      ");
+
+
+    Image_Data.Dot_Image.push_back((char*)"     ,,.,.        ");
+    Image_Data.Dot_Image.push_back((char*)"   .,,     ..     ");
+    Image_Data.Dot_Image.push_back((char*)"  .,..     ...    ");
+    Image_Data.Dot_Image.push_back((char*)"  .               ");
+    Image_Data.Dot_Image.push_back((char*)" ,             .  ");
+    Image_Data.Dot_Image.push_back((char*)"..             ,  ");
+    Image_Data.Dot_Image.push_back((char*)" ..            .  ");
+    Image_Data.Dot_Image.push_back((char*)".               , ");
+    Image_Data.Dot_Image.push_back((char*)",               . ");
+    Image_Data.Dot_Image.push_back((char*)",               . ");
+    Image_Data.Dot_Image.push_back((char*)",                 ");
+    Image_Data.Dot_Image.push_back((char*)" ,              , ");
+    Image_Data.Dot_Image.push_back((char*)"               ,, ");
+    Image_Data.Dot_Image.push_back((char*)"               ,  ");
+    Image_Data.Dot_Image.push_back((char*)"  .           ..  ");
+    Image_Data.Dot_Image.push_back((char*)"   ....     ...   ");
+    Image_Data.Dot_Image.push_back((char*)"    .. .   .-     ");
+    Image_Data.Dot_Image.push_back((char*)"       .,,,-      ");
     Image_Data.State = OBJECT_STATE::STATE_DIE1;
-    Image_Data.Dot_Image = Input_Data;
-    Input_Data.clear();
     m_vecImageList.push_back(Image_Data);
+    Image_Data.Dot_Image.clear();
 
 
-    Input_Data.push_back((char*)"     .,.  .,.     ");
-    Input_Data.push_back((char*)"     ,,,. ,,,.    ");
-    Input_Data.push_back((char*)"    ,    .   ,.   ");
-    Input_Data.push_back((char*)"  ,,.        .-.  ");
-    Input_Data.push_back((char*)" ,, .          ,  ");
-    Input_Data.push_back((char*)"  .            ., ");
-    Input_Data.push_back((char*)" ,.             , ");
-    Input_Data.push_back((char*)" ..             , ");
-    Input_Data.push_back((char*)"  .            .. ");
-    Input_Data.push_back((char*)"  .               ");
-    Input_Data.push_back((char*)"  .            .. ");
-    Input_Data.push_back((char*)" ..             , ");
-    Input_Data.push_back((char*)" ..             , ");
-    Input_Data.push_back((char*)"  .            ., ");
-    Input_Data.push_back((char*)" ,. .          ,. ");
-    Input_Data.push_back((char*)"   -,        .,,  ");
-    Input_Data.push_back((char*)"    ,   ..   ,.   ");
-    Input_Data.push_back((char*)"     -,,  ,,,     ");
-    Input_Data.push_back((char*)"      ,.   ..     ");
+
+    Image_Data.Dot_Image.push_back((char*)"     .,.  .,.     ");
+    Image_Data.Dot_Image.push_back((char*)"     ,,,. ,,,.    ");
+    Image_Data.Dot_Image.push_back((char*)"    ,    .   ,.   ");
+    Image_Data.Dot_Image.push_back((char*)"  ,,.        .-.  ");
+    Image_Data.Dot_Image.push_back((char*)" ,, .          ,  ");
+    Image_Data.Dot_Image.push_back((char*)"  .            ., ");
+    Image_Data.Dot_Image.push_back((char*)" ,.             , ");
+    Image_Data.Dot_Image.push_back((char*)" ..             , ");
+    Image_Data.Dot_Image.push_back((char*)"  .            .. ");
+    Image_Data.Dot_Image.push_back((char*)"  .               ");
+    Image_Data.Dot_Image.push_back((char*)"  .            .. ");
+    Image_Data.Dot_Image.push_back((char*)" ..             , ");
+    Image_Data.Dot_Image.push_back((char*)" ..             , ");
+    Image_Data.Dot_Image.push_back((char*)"  .            ., ");
+    Image_Data.Dot_Image.push_back((char*)" ,. .          ,. ");
+    Image_Data.Dot_Image.push_back((char*)"   -,        .,,  ");
+    Image_Data.Dot_Image.push_back((char*)"    ,   ..   ,.   ");
+    Image_Data.Dot_Image.push_back((char*)"     -,,  ,,,     ");
+    Image_Data.Dot_Image.push_back((char*)"      ,.   ..     ");
     Image_Data.State = OBJECT_STATE::STATE_DIE2;
-    Image_Data.Dot_Image = Input_Data;
-    Input_Data.clear();
     m_vecImageList.push_back(Image_Data);
-
 }
-

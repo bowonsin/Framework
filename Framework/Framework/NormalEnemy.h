@@ -9,6 +9,8 @@ public:
 	virtual void Release()override;
 
 private:
+	int m_iUpDown;
+
 	virtual void InputImage(OBJECT_STATE State)override;
 	virtual void Image_Initialize()override;
 public:

@@ -17,7 +17,7 @@ public:
 	void SetObject(Object* _Object)	{	pObject = _Object;	}
 	virtual vector<char*> GetImageShape() const { return m_vecImage; }
 
-	Vector3 Get_Scale(){ return Vector3(strlen(m_vecImage.front()) - 4, m_vecImage.size() - 2);}
+	Vector3 Get_Scale(){ return Vector3(strlen(m_vecImage.front()), m_vecImage.size());}
 
 public:
 	Bridge() :pObject(nullptr) {}

@@ -9,7 +9,9 @@ public:
 	virtual void Release()override;
 
 private:
-	void Regen_Enemy(int Time);
+	void Regen_Enemy(string EnemyName);
+
+	void Time_to_RegenMonster();
 
 public:
 	Stage_1();

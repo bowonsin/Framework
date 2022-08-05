@@ -58,7 +58,7 @@ void NormalBullet::Render()
 		CursorManager::GetInstance()->WriteBuffer(
 			pObject->Getposition().x,
 			pObject->Getposition().y + i,
-			(char*)"Bullet", Color);
+			(char*)"->", Color);
 
 //			버퍼와 컬러 알아서 받아오기
 }

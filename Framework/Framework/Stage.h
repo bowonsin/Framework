@@ -14,12 +14,12 @@ public:
 protected:
 
 	Object* pPlayer;
+	ULONGLONG m_LTimer;
 
 	void Stage_Collision_Check();
 
-	void Player_Enemy_Collision_Check(Object* Player,list<Object*>* NormalEnemy);
-	void Player_EnemyBullet_Collision_Check(Object* Player,list<Object*>* EnemyBullet);
-
+	void Player_Enemy_Collision_Check(list<Object*>* NormalEnemy);
+	void Player_EnemyBullet_Collision_Check(list<Object*>* EnemyBullet);
 	void PlayerBullet_Enemy_Collision_Check(list<Object*>* Player_Bullet, list<Object*>* EnemyList);
 
 	void Obejct_Disable();
