@@ -22,9 +22,13 @@ const SHORT ConsoleHeightSize = 60;
 
 const float InGameConsole_WidthSize = ConsoleWidthSize - 30;
 
-
 const float NamedMonster_Maximum_Width = InGameConsole_WidthSize - 30;
 
 const float PlayerDataInfoSize = 20;
 
 const float Boss_Y_Position = 30;
+
+const float NormalMonster_Max_Plus_Y = 30.0f;
+
+const float Player_Limit_x_Min = 19;
+

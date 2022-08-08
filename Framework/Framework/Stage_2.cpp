@@ -16,6 +16,10 @@ void Stage_2::Release()
 {
 }
 
+void Stage_2::Monster_Regein()
+{
+}
+
 Stage_2::Stage_2()
 {
 }

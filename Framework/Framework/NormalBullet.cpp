@@ -12,7 +12,7 @@ void NormalBullet::Initialize()
 {
 	// ** Bullet의 데이터 초기화
 
-	Speed = 0.5f;
+	Speed = 4.5f;
 	Color = 12;
 }
 
@@ -43,7 +43,7 @@ int NormalBullet::Update(Transform& Info)
 	//	Info.Position, Temp);
 	*/
 
-	Info.Direction.x = 1;
+	Info.Direction.x = 1 * Speed;
 	Info.Position += Info.Direction;
 	
 	//Info.Direction = MathManager::GetDirection(Info.Position, Vector3(60.0f, 15.0f));

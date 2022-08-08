@@ -10,8 +10,8 @@ public:
 
 private:
 	virtual void InputImage(OBJECT_STATE State)override;
-
 	virtual void Image_Initialize()override;
+	virtual void Shoot_Bullet()override;
 
 public:
 	BossEnemy();

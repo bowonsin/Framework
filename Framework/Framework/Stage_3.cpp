@@ -18,3 +18,7 @@ void Stage_3::Render()
 void Stage_3::Release()
 {
 }
+
+void Stage_3::Monster_Regein()
+{
+}

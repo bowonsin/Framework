@@ -49,9 +49,22 @@ void Stage::Stage_Collision_Check()
 
 		if (pEnemyNormalBulletList != nullptr)
 			Player_EnemyBullet_Collision_Check(pEnemyNormalBulletList);
+	}
 
-		if (pBulletList != nullptr)
+	if (pBulletList != nullptr)
+	{
+		if (pBossEnemy != nullptr)
+			PlayerBullet_Enemy_Collision_Check(pBulletList, pBossEnemy);
+
+		if (pNamedEnemyList != nullptr)
 			PlayerBullet_Enemy_Collision_Check(pBulletList, pNamedEnemyList);
+
+		if (pNormalEnemyList != nullptr)
+			PlayerBullet_Enemy_Collision_Check(pBulletList, pNormalEnemyList);
+
+		if (pEnemyNormalBulletList != nullptr)
+			PlayerBullet_Enemy_Collision_Check(pBulletList, pEnemyNormalBulletList);
+		
 	}
 
 	// 전체적인 충돌 판정 . 
@@ -146,6 +159,11 @@ void Stage::PlayerBullet_Enemy_Collision_Check(list<Object*>* Player_Bullet, lis
 	}
 }
 
+void Stage::Enemy_Check(list<Object*>* EnemyList)
+{
+
+}
+
 
 void Stage::Obejct_Disable()
 {
@@ -161,22 +179,22 @@ void Stage::Obejct_Disable()
 	Dis_Object = ObjectManager::GetInstance()->GetObject_list("NormalEnemy");
 	if (Dis_Object)
 		for (auto Enemyiter = Dis_Object->begin(); Enemyiter != Dis_Object->end(); ++Enemyiter)
-			ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
+			Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
 
 	Dis_Object = ObjectManager::GetInstance()->GetObject_list("NormalItemEnemy");
 	if (Dis_Object)
 		for (auto Enemyiter = Dis_Object->begin(); Enemyiter != Dis_Object->end(); ++Enemyiter)
-			ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
+			Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
 
 	Dis_Object = ObjectManager::GetInstance()->GetObject_list("NormalBullet");
 	if (Dis_Object)
-		for (auto Enemyiter = Dis_Object->begin(); Enemyiter != Dis_Object->end(); ++Enemyiter)
-			ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
+		for (auto BulletIter = Dis_Object->begin(); BulletIter != Dis_Object->end(); ++BulletIter)
+			BulletIter = ObjectManager::GetInstance()->ThrowObject(BulletIter, (*BulletIter));
 
 	Dis_Object = ObjectManager::GetInstance()->GetObject_list("EnemyNormalBullet");
 	if (Dis_Object)
-		for (auto Enemyiter = Dis_Object->begin(); Enemyiter != Dis_Object->end(); ++Enemyiter)
-			ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
+		for (auto BulletIter = Dis_Object->begin(); BulletIter != Dis_Object->end(); ++BulletIter)
+			BulletIter = ObjectManager::GetInstance()->ThrowObject(BulletIter, (*BulletIter));
 }
 
 /*

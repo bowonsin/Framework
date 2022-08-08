@@ -8,16 +8,18 @@ class EnemyBridge : public Bridge
 protected: 
 	float m_iSpeed;
 	int m_iColor;
-	int m_iState_Time;
+	int m_iState_Time; // 그림 형태 
 
 	OBJECT_STATE m_eState;
 	vector<Image_State> m_vecImageList;
 	MONSTER_MOVING m_eMoving;
 
-	ULONGLONG m_lTimer;
+	ULONGLONG m_lTimer; // 시간 타이머
 
 	virtual void InputImage(OBJECT_STATE State)PURE;
 	virtual void Image_Initialize()PURE;
+	virtual void Shoot_Bullet()PURE;
+	
 
 public:
 	virtual void Initialize()PURE;

@@ -8,6 +8,8 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 
+	virtual void LifeCheck()override;
+
 	virtual Object* Clone()override { return new Bullet(*this); }
 public:
 	Bullet();

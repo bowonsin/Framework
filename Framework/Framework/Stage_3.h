@@ -8,6 +8,9 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 
+private:
+	virtual void Monster_Regein()override;
+
 public:
 	Stage_3();
 	virtual ~Stage_3();

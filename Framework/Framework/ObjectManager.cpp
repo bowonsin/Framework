@@ -8,17 +8,17 @@
 
 ObjectManager* ObjectManager::Instance = nullptr;
 ObjectManager::ObjectManager(){	EnableList = ObjectPool::GetEnableList();}
-ObjectManager::~ObjectManager(){}
+ObjectManager::~ObjectManager() { Release(); }
 
-void ObjectManager::AddObject(string str)
+void ObjectManager::AddObject(string _Key)
 {
-	Object* pObject = ObjectPool::GetInstance()->Recycle(str);
+	Object* pObject = ObjectPool::GetInstance()->Recycle(_Key);
 
 	if (pObject == nullptr)
-		pObject = Prototype::GetInstance()->ProtoTypeObject(str)->Clone();
+		pObject = Prototype::GetInstance()->ProtoTypeObject(_Key)->Clone();
 
 
-	map<string, list<Object*>>::iterator iter = EnableList->find(str);
+	map<string, list<Object*>>::iterator iter = EnableList->find(_Key);
 
 	if (iter == EnableList->end())
 	{
@@ -53,6 +53,29 @@ void ObjectManager::AddObject(string _Key, Bridge* _Bridge)
 	}
 	else
 		iter->second.push_back(pObject);
+}
+
+void ObjectManager::Active_Unit(string _Key, Vector3 _SetPosition)
+{
+
+	Object* pObject = ObjectPool::GetInstance()->Recycle(_Key);
+	
+	if (pObject == nullptr)
+		pObject = Prototype::GetInstance()->ProtoTypeObject(_Key)->Clone();
+
+	map<string, list<Object*>>::iterator iter = EnableList->find(_Key);
+
+	pObject->Setposition(_SetPosition);
+
+	if (iter == EnableList->end())
+	{
+		list<Object*> TempList;
+		TempList.push_back(pObject);
+		EnableList->insert(make_pair(pObject->GetKey(), TempList));
+	}
+	else
+		iter->second.push_back(pObject);
+	
 }
 
 void ObjectManager::AddObject_Bullet(string _Key, Bridge* _Bridge, Vector3 _Position)
@@ -117,4 +140,19 @@ void ObjectManager::Redner() // ¾È½áµÎ µÊ
 void ObjectManager::Update()
 {
 	ObjectPool::GetInstance()->Update();
+}
+
+void ObjectManager::Release()
+{
+	for (auto iter = EnableList->begin(); iter != EnableList->end(); ++iter)
+	{
+		for (auto iter1 = iter->second.begin(); iter1 != iter->second.end(); ++iter1)
+		{
+			Object* Temp = (*iter1);
+			iter1 = iter->second.erase(iter1);
+			::Safe_Delete((Temp));
+			if (iter1 == iter->second.end())
+				iter = EnableList->erase(iter);
+		}
+	}
 }

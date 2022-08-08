@@ -22,6 +22,7 @@ protected:
 	void Player_Enemy_Collision_Check(list<Object*>* NormalEnemy);
 	void Player_EnemyBullet_Collision_Check(list<Object*>* EnemyBullet);
 	void PlayerBullet_Enemy_Collision_Check(list<Object*>* Player_Bullet, list<Object*>* EnemyList);
+	void Enemy_Check(list<Object*>* EnemyList);
 
 	void Obejct_Disable();
 

@@ -22,6 +22,9 @@ void BackGround::Render()
 void BackGround::Release()
 {
 }
+void BackGround::LifeCheck()
+{
+}
 //GroundOne.push_back((char*)"!!!!!~,,,-~;!!***;:~,,,~;!;~~:!*;;!*;~,.");
 //GroundOne.push_back((char*)":-:!;~-~:;!!!:~-~;!;:~-~;;--~;*;~~!!~,--");
 //GroundOne.push_back((char*)"!;;!!~~:!!*!-,..-:!!!;;!*!~~:!!!;;!!:~~~");

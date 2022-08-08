@@ -207,49 +207,42 @@ void NamedEnemy::Image_Initialize()
 
 
 
-    Image_Data.Dot_Image.push_back((char*)"     ,,.,.        ");
-    Image_Data.Dot_Image.push_back((char*)"   .,,     ..     ");
-    Image_Data.Dot_Image.push_back((char*)"  .,..     ...    ");
-    Image_Data.Dot_Image.push_back((char*)"  .               ");
-    Image_Data.Dot_Image.push_back((char*)" ,             .  ");
-    Image_Data.Dot_Image.push_back((char*)"..             ,  ");
-    Image_Data.Dot_Image.push_back((char*)" ..            .  ");
-    Image_Data.Dot_Image.push_back((char*)".               , ");
-    Image_Data.Dot_Image.push_back((char*)",               . ");
-    Image_Data.Dot_Image.push_back((char*)",               . ");
-    Image_Data.Dot_Image.push_back((char*)",                 ");
-    Image_Data.Dot_Image.push_back((char*)" ,              , ");
-    Image_Data.Dot_Image.push_back((char*)"               ,, ");
-    Image_Data.Dot_Image.push_back((char*)"               ,  ");
-    Image_Data.Dot_Image.push_back((char*)"  .           ..  ");
-    Image_Data.Dot_Image.push_back((char*)"   ....     ...   ");
-    Image_Data.Dot_Image.push_back((char*)"    .. .   .-     ");
-    Image_Data.Dot_Image.push_back((char*)"       .,,,-      ");
+    Image_Data.Dot_Image.push_back((char*)"       :#*+==+++*");
+    Image_Data.Dot_Image.push_back((char*)"  :*##****=:.  ..=++**#+=.");
+    Image_Data.Dot_Image.push_back((char*)" #*+:.    ....  .     :+=*:");
+    Image_Data.Dot_Image.push_back((char*)"*#=.        ..         .+.#");
+    Image_Data.Dot_Image.push_back((char*)"***+=:.. .+=+:.         :.*+");
+    Image_Data.Dot_Image.push_back((char*)"+:=:.:.. :. :            :+=#");
+    Image_Data.Dot_Image.push_back((char*)".+.             .  .     .+.#");
+    Image_Data.Dot_Image.push_back((char*)"++:    .: .     =::+..:.=+=+.");
+    Image_Data.Dot_Image.push_back((char*)":* =   .+:+:.  :==:  ..:=**#.");
+    Image_Data.Dot_Image.push_back((char*)" #.+.    .::.           .+#+");
+    Image_Data.Dot_Image.push_back((char*)" .#=+:.    .  ........:=+#+");
+    Image_Data.Dot_Image.push_back((char*)"   :+***++=.:   :=**##**+.");
+    Image_Data.Dot_Image.push_back((char*)"           ++**++*#*");
     Image_Data.State = OBJECT_STATE::STATE_DIE1;
     m_vecImageList.push_back(Image_Data);
     Image_Data.Dot_Image.clear();
 
 
-
-    Image_Data.Dot_Image.push_back((char*)"     .,.  .,.     ");
-    Image_Data.Dot_Image.push_back((char*)"     ,,,. ,,,.    ");
-    Image_Data.Dot_Image.push_back((char*)"    ,    .   ,.   ");
-    Image_Data.Dot_Image.push_back((char*)"  ,,.        .-.  ");
-    Image_Data.Dot_Image.push_back((char*)" ,, .          ,  ");
-    Image_Data.Dot_Image.push_back((char*)"  .            ., ");
-    Image_Data.Dot_Image.push_back((char*)" ,.             , ");
-    Image_Data.Dot_Image.push_back((char*)" ..             , ");
-    Image_Data.Dot_Image.push_back((char*)"  .            .. ");
-    Image_Data.Dot_Image.push_back((char*)"  .               ");
-    Image_Data.Dot_Image.push_back((char*)"  .            .. ");
-    Image_Data.Dot_Image.push_back((char*)" ..             , ");
-    Image_Data.Dot_Image.push_back((char*)" ..             , ");
-    Image_Data.Dot_Image.push_back((char*)"  .            ., ");
-    Image_Data.Dot_Image.push_back((char*)" ,. .          ,. ");
-    Image_Data.Dot_Image.push_back((char*)"   -,        .,,  ");
-    Image_Data.Dot_Image.push_back((char*)"    ,   ..   ,.   ");
-    Image_Data.Dot_Image.push_back((char*)"     -,,  ,,,     ");
-    Image_Data.Dot_Image.push_back((char*)"      ,.   ..     ");
+    Image_Data.Dot_Image.push_back((char*)"       *#*+**#:+#*+**#:");
+    Image_Data.Dot_Image.push_back((char*)"  ::.:##+=.   .   .:+*#=...");
+    Image_Data.Dot_Image.push_back((char*)" *+#*+==:           .:+++#+ :");
+    Image_Data.Dot_Image.push_back((char*)" =#+=                   :+*#");
+    Image_Data.Dot_Image.push_back((char*)".*+=:   ::      .===     ==#..");
+    Image_Data.Dot_Image.push_back((char*)"# #:  .=::         .     .+*::");
+    Image_Data.Dot_Image.push_back((char*)"  :+.                    =* :");
+    Image_Data.Dot_Image.push_back((char*)"#.#.                ...  .=*:=");
+    Image_Data.Dot_Image.push_back((char*)" *+=:     :        =+=.  ==#.");
+    Image_Data.Dot_Image.push_back((char*)" =#+=.    :=+.          :+**");
+    Image_Data.Dot_Image.push_back((char*)" ++**++==           ::++*#++:");
+    Image_Data.Dot_Image.push_back((char*)"  .: .*#+=..  .. ..:+*#: .:");
+    Image_Data.Dot_Image.push_back((char*)"       +#****#:+#***#*.");
+    Image_Data.Dot_Image.push_back((char*)"        .:==.   .:=:.");
     Image_Data.State = OBJECT_STATE::STATE_DIE2;
     m_vecImageList.push_back(Image_Data);
+}
+
+void NamedEnemy::Shoot_Bullet()
+{
 }

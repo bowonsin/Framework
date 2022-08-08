@@ -81,3 +81,7 @@ void Bullet::Release()
 {
 	::Safe_Delete(pBridge);
 }
+
+void Bullet::LifeCheck()
+{
+}

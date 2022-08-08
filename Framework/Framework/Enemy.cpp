@@ -43,3 +43,7 @@ void Enemy::Release()
 {
 	::Safe_Delete(pBridge);
 }
+
+void Enemy::LifeCheck()
+{
+}

@@ -8,12 +8,17 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 
+	virtual void LifeCheck()override;
+
+
 	virtual Object* Clone()override { return new Player(*this); }
 
 private:
 	
 	float Speed;
 	ULONGLONG m_lTimer;
+
+	bool limit_Move_x(bool Check);
 
 public:
 	Player();

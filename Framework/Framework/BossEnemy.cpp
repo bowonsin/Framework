@@ -195,3 +195,7 @@ void BossEnemy::Image_Initialize()
     m_vecImageList.push_back(Image_Data);
 
 }
+
+void BossEnemy::Shoot_Bullet()
+{
+}

@@ -29,13 +29,20 @@ void Stage_1::Initialize()
 
 	ObjectManager::GetInstance()->AddObject("Player");
 	pPlayer = ObjectManager::GetInstance()->GetObject_list("Player")->front();
-
-	Bridge* Kind_of_Enemy = new NamedEnemy;
-	ObjectManager::GetInstance()->AddObject("NamedEnemy", Kind_of_Enemy);
+	Bridge* Kind_of_Enemy;
+	for (int i = 0; i < 10; ++i)
+	{
+		Kind_of_Enemy = new NormalEnemy;
+		ObjectManager::GetInstance()->AddObject("NormalEnemy", Kind_of_Enemy);
+	}
 
 	/*
 	 Bridge* Kind_of_Enemy = new BossEnemy;
 	ObjectManager::GetInstance()->AddObject("BossEnemy",Kind_of_Enemy);
+
+	Bridge* Kind_of_Enemy = new NamedEnemy;
+	ObjectManager::GetInstance()->AddObject("NamedEnemy", Kind_of_Enemy);
+
 	for (int i = 0; i < 10; ++i)
 	{
 		Kind_of_Enemy = new NormalEnemy;
@@ -49,19 +56,23 @@ void Stage_1::Initialize()
 	}
 	*/
 	Stage::Obejct_Disable();
-
-	Regen_Enemy("NamedEnemy");
+	Regen_Enemy("NormalEnemy");
 }
 
 void Stage_1::Monster_Regein()
 {
 	if (m_iTime_Setting == 10)
 	{
-		Regen_Enemy("NamedEnemy");
-		m_iTime_Setting = 0;
+		Regen_Enemy("NormalEnemy");
 	}
 	 
 }
+
+void Stage_1::Regen_Enemy(string EnemyName)
+{
+	ObjectManager::GetInstance()->Active_Unit(EnemyName,Vector3(InGameConsole_WidthSize, Boss_Y_Position));
+}
+
 
 
 void Stage_1::Update()
@@ -69,7 +80,7 @@ void Stage_1::Update()
 	if (m_LTimer + 250 < GetTickCount64())
 	{
 		++m_iTime_Setting;
-		Stage::Monster_Regein();
+		Monster_Regein();
 	}
 
 	if (OutSide_UI)
@@ -91,12 +102,6 @@ void Stage_1::Release()
 {
 	::Safe_Delete(pPlayer);
 	::Safe_Delete(OutSide_UI);
-}
-
-void Stage_1::Regen_Enemy(string EnemyName)
-{
-	ObjectManager::GetInstance()->AddObject(EnemyName);
-	ObjectManager::GetInstance()->GetObject_list(EnemyName)->front()->Setposition(InGameConsole_WidthSize, Boss_Y_Position);
 }
 
 void Stage_1::Time_to_RegenMonster()

@@ -20,8 +20,9 @@ private:
 public:
 	
 
-	void AddObject(string str);
+	void AddObject(string _Key);
 	void AddObject(string _Key, Bridge* _Bridge);
+	void Active_Unit(string _Key, Vector3 _SetPosition);
 	void AddObject_Bullet(string _Key, Bridge* _Bridge, Vector3 _Position);
 
 	list<Object*>* GetObject_list(string _Key);
@@ -29,6 +30,8 @@ public:
 
 	void Redner();
 	void Update();
+
+	void Release();
 private:
 	ObjectManager();
 public:

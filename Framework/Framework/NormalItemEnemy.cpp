@@ -25,6 +25,10 @@ void NormalItemEnemy::Image_Initialize()
 {
 }
 
+void NormalItemEnemy::Shoot_Bullet()
+{
+}
+
 NormalItemEnemy::NormalItemEnemy()
 {
 }

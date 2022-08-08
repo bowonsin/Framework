@@ -11,7 +11,9 @@
 #include "NormalBullet.h"
 
 
-Player::Player(){}
+
+
+Player::Player():Speed(0),m_lTimer(0) {}
 Player::Player(Transform _info):Object(_info){}
 Player::~Player() { Release(); }
 
@@ -23,8 +25,6 @@ Object* Player::Initialize(string _Key)
 	Speed = 3.0f;
 
 	TransInfo.Position = Vector3(20.0f, 15.0f);
-	TransInfo.Rotation = Vector3(0.0f, 0.0f);
-
 	ch_Buffer.push_back((char*)"＼―≥ ");
 	ch_Buffer.push_back((char*)"｜￣￣￣＼＞");
 	ch_Buffer.push_back((char*)"／￣￣￣￣");
@@ -43,9 +43,9 @@ int Player::Update()
 		TransInfo.Position.y -= 1 * Speed;
 	if (dwKey & KEY_DOWN)
 		TransInfo.Position.y += 1* Speed;
-	if (dwKey & KEY_LEFT)
+	if (dwKey & KEY_LEFT && limit_Move_x(true))
 		TransInfo.Position.x -= 1* Speed;
-	if (dwKey & KEY_RIGHT)
+	if (dwKey & KEY_RIGHT && limit_Move_x(false))
 		TransInfo.Position.x += 1* Speed;
 
 	//if (dwKey & KEY_RIGHT && dwKey & 
@@ -100,4 +100,16 @@ void Player::Release()
 {
 }
 
+void Player::LifeCheck()
+{
+	
+}
+bool Player::limit_Move_x(bool Check)
+{
+	if (Check && TransInfo.Position.x <= Player_Limit_x_Min)
+		return false;
+	else if (!Check && TransInfo.Position.x >= InGameConsole_WidthSize)
+		return false;
 
+	return true;
+}

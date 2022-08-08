@@ -15,19 +15,7 @@ protected:
 	int Color;
 	Vector3 Target_Direction;
 
-	int Console_OutSide_Check() 
-	{
-		if (pObject->Getposition().x  >= InGameConsole_WidthSize)
-			return BUFFER_OVER;
-		else if (pObject->Getposition().x <= 0)
-			return BUFFER_OVER;
-		if (pObject->Getposition().y >= (float)ConsoleHeightSize)
-			return BUFFER_OVER;
-		else if (pObject->Getposition().y <= 0)
-			return BUFFER_OVER;
-
-		return 0;
-	}
+	
 
 
 public:
