@@ -13,6 +13,8 @@ private:
 
 	void Time_to_RegenMonster();
 
+	virtual void Monster_Regein()override;
+
 public:
 	Stage_1();
 	virtual ~Stage_1();

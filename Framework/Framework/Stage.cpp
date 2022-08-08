@@ -5,7 +5,7 @@
 #include "ObjectManager.h"
 #include "CollisionManager.h"
 
-Stage::Stage():pPlayer(nullptr), m_LTimer(0) {}
+Stage::Stage():pPlayer(nullptr), m_LTimer(0) , m_iTime_Setting(0){}
 Stage::~Stage() { }
 
 void Stage::Stage_Collision_Check()

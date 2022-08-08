@@ -25,6 +25,7 @@ void Stage_1::Initialize()
 	OutSide_UI->Initialize();
 
 	m_LTimer = GetTickCount64();
+	m_iTime_Setting = 0;
 
 	ObjectManager::GetInstance()->AddObject("Player");
 	pPlayer = ObjectManager::GetInstance()->GetObject_list("Player")->front();
@@ -52,8 +53,25 @@ void Stage_1::Initialize()
 	Regen_Enemy("NamedEnemy");
 }
 
+void Stage_1::Monster_Regein()
+{
+	if (m_iTime_Setting == 10)
+	{
+		Regen_Enemy("NamedEnemy");
+		m_iTime_Setting = 0;
+	}
+	 
+}
+
+
 void Stage_1::Update()
 {
+	if (m_LTimer + 250 < GetTickCount64())
+	{
+		++m_iTime_Setting;
+		Stage::Monster_Regein();
+	}
+
 	if (OutSide_UI)
 		OutSide_UI->Update();
 

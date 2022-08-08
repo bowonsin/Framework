@@ -15,6 +15,7 @@ protected:
 
 	Object* pPlayer;
 	ULONGLONG m_LTimer;
+	int m_iTime_Setting;
 
 	void Stage_Collision_Check();
 
@@ -23,6 +24,8 @@ protected:
 	void PlayerBullet_Enemy_Collision_Check(list<Object*>* Player_Bullet, list<Object*>* EnemyList);
 
 	void Obejct_Disable();
+
+	virtual void Monster_Regein()PURE;
 
 public:
 	Stage();
