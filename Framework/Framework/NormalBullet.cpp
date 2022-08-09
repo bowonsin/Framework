@@ -14,6 +14,7 @@ void NormalBullet::Initialize()
 
 	Speed = 4.5f;
 	Color = 12;
+	
 }
 
 int NormalBullet::Update(Transform& Info)

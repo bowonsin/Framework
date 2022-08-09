@@ -11,7 +11,7 @@ NormalEnemy::~NormalEnemy() { Release(); }
 void NormalEnemy::Initialize()
 {
     m_iColor = 15;
-    m_iSpeed = 1.1f;
+    m_iSpeed = 0.9f;
     m_eState = OBJECT_STATE::STATE_NORMAL;
 
     m_lTimer = GetTickCount64();
@@ -20,6 +20,7 @@ void NormalEnemy::Initialize()
     m_iState_Time = 0;
     m_iUpDown = 1.0f;
     m_bUpDown = true;
+    m_iShoting_Time = 0;
     InputImage(OBJECT_STATE::STATE_NORMAL);
 }
 
@@ -28,9 +29,8 @@ int NormalEnemy::Update(Transform& Info)
     switch (m_eMoving)
     {
     case MONSTER_MOVING::MOVE_FORNT:
-        if (m_lTimer + 300 < GetTickCount64())
+        if (m_lTimer + 50 < GetTickCount64())
         {
-
             if (m_bUpDown)
             {
                 Info.Direction.x = -m_iSpeed;
@@ -47,16 +47,14 @@ int NormalEnemy::Update(Transform& Info)
             }
             Info.Position += Info.Direction;
 
-            if (Info.Position.x == InGameConsole_WidthSize * 0.75f)
+            if (m_iShoting_Time == 40) // 한번만 쏘면 좋은데... 쩗
             {
                 Bridge* Br = new EnemyNormalBullet;
                 ObjectManager::GetInstance()->AddObject_Bullet("EnemyNormalBullet",Br,Info.Position);
+                m_iShoting_Time = 0;
             }
-            else if (Info.Position.x == InGameConsole_WidthSize * 0.5f)
-            {
-                Bridge* Br = new EnemyNormalBullet;
-                ObjectManager::GetInstance()->AddObject_Bullet("EnemyNormalBullet", Br, Info.Position);
-            }
+
+            ++m_iShoting_Time;
         }
         break;
     case MONSTER_MOVING::MOVE_STOP:
@@ -76,6 +74,11 @@ void NormalEnemy::Render()
 
 void NormalEnemy::Release()
 {
+}
+
+void NormalEnemy::Survival_Check()
+{
+
 }
 
 void NormalEnemy::InputImage(OBJECT_STATE State)

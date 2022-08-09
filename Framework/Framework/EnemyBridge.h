@@ -9,6 +9,7 @@ protected:
 	float m_iSpeed;
 	int m_iColor;
 	int m_iState_Time; // 그림 형태 
+	int m_iShoting_Time;
 
 	OBJECT_STATE m_eState;
 	vector<Image_State> m_vecImageList;
@@ -20,6 +21,7 @@ protected:
 	virtual void Image_Initialize()PURE;
 	virtual void Shoot_Bullet()PURE;
 	
+	virtual void Survival_Check()PURE;
 
 public:
 	virtual void Initialize()PURE;
@@ -28,6 +30,6 @@ public:
 	virtual void Release() { m_vecImageList.clear(); };
 public:
 
-	EnemyBridge() : m_iSpeed (0), m_iColor(0), m_eState(OBJECT_STATE::STATE_NORMAL),m_lTimer(0),m_iState_Time(0), m_eMoving(MONSTER_MOVING::MOVE_STOP) {}
+	EnemyBridge() : m_iShoting_Time(0),m_iSpeed (0), m_iColor(0), m_eState(OBJECT_STATE::STATE_NORMAL),m_lTimer(0),m_iState_Time(0), m_eMoving(MONSTER_MOVING::MOVE_STOP) {}
 	virtual  ~EnemyBridge() {}
 };

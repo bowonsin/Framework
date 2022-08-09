@@ -24,9 +24,11 @@ protected:
 	void PlayerBullet_Enemy_Collision_Check(list<Object*>* Player_Bullet, list<Object*>* EnemyList);
 	void Enemy_Check(list<Object*>* EnemyList);
 
+	void Monster_Setting();
 	void Obejct_Disable();
 
-	virtual void Monster_Regein()PURE;
+	virtual void Time_to_RegenMonster()PURE;
+	virtual void Regen_Enemy(string EnemyName, Vector3 _Position)PURE;
 
 public:
 	Stage();

@@ -27,14 +27,16 @@ public:
 	virtual int Update(Transform& Info)PURE;
 	virtual void Render()PURE;
 	virtual void Release() { m_vecImage.clear();};
+	virtual void Survival_Check()PURE;
 
 public:
 	void SetObject(Object* _Object)	{	pObject = _Object;	}
-	virtual vector<char*> GetImageShape() const { return m_vecImage; }
+	Vector3 Get_Scale() { return Vector3(strlen(m_vecImage.front()), m_vecImage.size()); }
+	
 
-	Vector3 Get_Scale(){ return Vector3(strlen(m_vecImage.front()), m_vecImage.size());}
+	virtual vector<char*> GetImageShape() const { return m_vecImage; } // ???? ³ª ÀÌ°Å ¿Ö¾¸?
 
 public:
 	Bridge() :pObject(nullptr) {}
-	virtual ~Bridge() {}
+	virtual ~Bridge() { Release(); }
 };

@@ -15,7 +15,7 @@ protected:
 	int Color;
 	Vector3 Target_Direction;
 
-	
+	virtual void Survival_Check()override {};
 
 
 public:

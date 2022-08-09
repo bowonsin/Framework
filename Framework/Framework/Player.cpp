@@ -71,11 +71,14 @@ int Player::Update()
 			ObjectManager::GetInstance()->AddObject(BulletRe);
 		}
 		*/
+
+		Bridge* pBridge = new NormalBullet;
+		ObjectManager::GetInstance()->AddObject_Bullet("NormalBullet", pBridge, TransInfo.Position);
+
 		if (m_lTimer + 600 < GetTickCount64())// -> 파워 업 하면 공격 주기가 점점 짧아지게 하도록.
 		{
 			m_lTimer = GetTickCount64();
-			Bridge* pBridge = new NormalBullet;
-			ObjectManager::GetInstance()->AddObject_Bullet("NormalBullet", pBridge, TransInfo.Position);
+			
 			//ObjectManager::GetInstance()->AddBullet( pBridge, TransInfo.Position);
 		}
 	}

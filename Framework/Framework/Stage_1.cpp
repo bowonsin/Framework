@@ -1,12 +1,7 @@
 #include "Stage_1.h"
 
 #include "Player.h"
-#include "Enemy.h"
-#include "Bullet.h"
-#include "BossEnemy.h"
-#include "NamedEnemy.h"
-#include "NormalEnemy.h"
-#include "NormalItemEnemy.h"
+
 
 #include "Prototype.h"
 #include "InputManager.h"
@@ -29,50 +24,26 @@ void Stage_1::Initialize()
 
 	ObjectManager::GetInstance()->AddObject("Player");
 	pPlayer = ObjectManager::GetInstance()->GetObject_list("Player")->front();
-	Bridge* Kind_of_Enemy;
-	for (int i = 0; i < 10; ++i)
-	{
-		Kind_of_Enemy = new NormalEnemy;
-		ObjectManager::GetInstance()->AddObject("NormalEnemy", Kind_of_Enemy);
-	}
 
-	/*
-	 Bridge* Kind_of_Enemy = new BossEnemy;
-	ObjectManager::GetInstance()->AddObject("BossEnemy",Kind_of_Enemy);
-
-	Bridge* Kind_of_Enemy = new NamedEnemy;
-	ObjectManager::GetInstance()->AddObject("NamedEnemy", Kind_of_Enemy);
-
-	for (int i = 0; i < 10; ++i)
-	{
-		Kind_of_Enemy = new NormalEnemy;
-		ObjectManager::GetInstance()->AddObject("NormalEnemy", Kind_of_Enemy);
-	}
-	
-	for (int i = 0 ; i < 2 ; ++i)
-	{
-		Kind_of_Enemy = new NormalItemEnemy;
-		ObjectManager::GetInstance()->AddObject("NormalItemEnemy", Kind_of_Enemy);
-	}
-	*/
-	Stage::Obejct_Disable();
-	Regen_Enemy("NormalEnemy");
+	Stage::Monster_Setting(); // 시작전 몬스터 초기화
 }
 
-void Stage_1::Monster_Regein()
+void Stage_1::Regen_Enemy(string EnemyName, Vector3 _Position)
+{
+	ObjectManager::GetInstance()->Active_Unit(EnemyName, _Position);
+}
+
+void Stage_1::Time_to_RegenMonster()
 {
 	if (m_iTime_Setting == 10)
 	{
-		Regen_Enemy("NormalEnemy");
+		Regen_Enemy("NormalEnemy", Vector3(InGameConsole_WidthSize, Boss_Y_Position));// 3마리 소환
+
+		auto iter = ObjectManager::GetInstance()->GetObject_list("NormalEnemy");
+		float size = iter->front()->GetScale().y;
+		Regen_Enemy("NormalEnemy", Vector3(InGameConsole_WidthSize, Boss_Y_Position - size * 1.5f));
 	}
-	 
 }
-
-void Stage_1::Regen_Enemy(string EnemyName)
-{
-	ObjectManager::GetInstance()->Active_Unit(EnemyName,Vector3(InGameConsole_WidthSize, Boss_Y_Position));
-}
-
 
 
 void Stage_1::Update()
@@ -80,7 +51,7 @@ void Stage_1::Update()
 	if (m_LTimer + 250 < GetTickCount64())
 	{
 		++m_iTime_Setting;
-		Monster_Regein();
+		Time_to_RegenMonster();
 	}
 
 	if (OutSide_UI)
@@ -104,7 +75,3 @@ void Stage_1::Release()
 	::Safe_Delete(OutSide_UI);
 }
 
-void Stage_1::Time_to_RegenMonster()
-{
-
-}

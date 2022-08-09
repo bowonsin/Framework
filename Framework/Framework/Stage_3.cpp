@@ -19,6 +19,10 @@ void Stage_3::Release()
 {
 }
 
-void Stage_3::Monster_Regein()
+void Stage_3::Time_to_RegenMonster()
+{
+}
+
+void Stage_3::Regen_Enemy(string EnemyName, Vector3 _Position)
 {
 }

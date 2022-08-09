@@ -1,5 +1,8 @@
 #include "Stage_2.h"
 
+Stage_2::Stage_2() {}
+Stage_2::~Stage_2() {}
+
 void Stage_2::Initialize()
 {
 }
@@ -16,14 +19,10 @@ void Stage_2::Release()
 {
 }
 
-void Stage_2::Monster_Regein()
+void Stage_2::Time_to_RegenMonster()
 {
 }
 
-Stage_2::Stage_2()
-{
-}
-
-Stage_2::~Stage_2()
+void Stage_2::Regen_Enemy(string EnemyName, Vector3 _Position)
 {
 }

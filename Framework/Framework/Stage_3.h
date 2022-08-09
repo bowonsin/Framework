@@ -9,8 +9,8 @@ public:
 	virtual void Release()override;
 
 private:
-	virtual void Monster_Regein()override;
-
+	virtual void Time_to_RegenMonster()override;
+	virtual void Regen_Enemy(string EnemyName, Vector3 _Position)override;
 public:
 	Stage_3();
 	virtual ~Stage_3();

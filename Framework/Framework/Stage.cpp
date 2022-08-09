@@ -1,6 +1,16 @@
 #include "Stage.h"
+
 #include "Player.h"
 #include "Enemy.h"
+
+#include "Bullet.h"
+#include "NormalBullet.h"
+#include "EnemyNormalBullet.h"
+
+#include "BossEnemy.h"
+#include "NamedEnemy.h"
+#include "NormalEnemy.h"
+#include "NormalItemEnemy.h"
 
 #include "ObjectManager.h"
 #include "CollisionManager.h"
@@ -15,7 +25,6 @@ void Stage::Stage_Collision_Check()
 	list<Object*>* pNamedEnemyList = ObjectManager::GetInstance()->GetObject_list("NamedEnemy");
 	list<Object*>* pNormalEnemyList = ObjectManager::GetInstance()->GetObject_list("NormalEnemy");
 	list<Object*>* pEnemyNormalBulletList = ObjectManager::GetInstance()->GetObject_list("EnemyNormalBullet");
-	list<Object*>* pEnemyHomimgBulletList = ObjectManager::GetInstance()->GetObject_list("EnemyHomimgBullet");
 
 	// Bullet 행동 반경 넘어섯을 떄 Disable로 이동
 	/* // 각기 다른 Bullet을 BulletBridge에서 이미 정리 하고 ObjectPool 에서 이미 터진거 관리하고 있음.
@@ -61,10 +70,6 @@ void Stage::Stage_Collision_Check()
 
 		if (pNormalEnemyList != nullptr)
 			PlayerBullet_Enemy_Collision_Check(pBulletList, pNormalEnemyList);
-
-		if (pEnemyNormalBulletList != nullptr)
-			PlayerBullet_Enemy_Collision_Check(pBulletList, pEnemyNormalBulletList);
-		
 	}
 
 	// 전체적인 충돌 판정 . 
@@ -165,6 +170,42 @@ void Stage::Enemy_Check(list<Object*>* EnemyList)
 }
 
 
+void Stage::Monster_Setting() // Stage 시작전에 몬스터 초기화 
+{
+	Bridge* Kind_of_Bridge;
+	for (int i = 0; i < 10; ++i)
+	{
+		Kind_of_Bridge = new NormalEnemy;
+		ObjectManager::GetInstance()->AddObject("NormalEnemy", Kind_of_Bridge);
+	}
+
+	/*
+	 Bridge* Kind_of_Bridge= new BossEnemy;
+	ObjectManager::GetInstance()->AddObject("BossEnemy",Kind_of_Bridge);
+
+	Bridge* Kind_of_Bridge= new NamedEnemy;
+	ObjectManager::GetInstance()->AddObject("NamedEnemy", Kind_of_Bridge);
+
+	for (int i = 0; i < 10; ++i)
+	{
+		Kind_of_Bridge = new NormalEnemy;
+		ObjectManager::GetInstance()->AddObject("NormalEnemy", Kind_of_Bridge);
+	}
+
+	for (int i = 0 ; i < 2 ; ++i)
+	{
+		Kind_of_Bridge = new NormalItemEnemy;
+		ObjectManager::GetInstance()->AddObject("NormalItemEnemy", Kind_of_Bridge);
+	}
+	*/
+	for (int i = 0; i < 100; ++i)
+	{
+		ObjectManager::GetInstance()->AddObject("NormalBullet");
+		ObjectManager::GetInstance()->AddObject("EnemyNormalBullet");
+	}
+	Obejct_Disable();
+}
+
 void Stage::Obejct_Disable()
 {
 	
@@ -188,12 +229,12 @@ void Stage::Obejct_Disable()
 
 	Dis_Object = ObjectManager::GetInstance()->GetObject_list("NormalBullet");
 	if (Dis_Object)
-		for (auto BulletIter = Dis_Object->begin(); BulletIter != Dis_Object->end(); ++BulletIter)
+		for (auto BulletIter = Dis_Object->begin(); BulletIter != Dis_Object->end();)
 			BulletIter = ObjectManager::GetInstance()->ThrowObject(BulletIter, (*BulletIter));
 
 	Dis_Object = ObjectManager::GetInstance()->GetObject_list("EnemyNormalBullet");
 	if (Dis_Object)
-		for (auto BulletIter = Dis_Object->begin(); BulletIter != Dis_Object->end(); ++BulletIter)
+		for (auto BulletIter = Dis_Object->begin(); BulletIter != Dis_Object->end();)
 			BulletIter = ObjectManager::GetInstance()->ThrowObject(BulletIter, (*BulletIter));
 }
 

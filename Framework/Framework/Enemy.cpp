@@ -16,8 +16,6 @@ Object* Enemy::Initialize(string _Key)
 	TransInfo.Position = Vector3(0.0f, 0.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);
 
-	if (pBridge)
-		pBridge->Initialize();
 	return this;
 }
 
@@ -44,6 +42,8 @@ void Enemy::Release()
 	::Safe_Delete(pBridge);
 }
 
-void Enemy::LifeCheck()
+void Enemy::LifeCheck() // Bullet °ú Ãæµ¹½Ã Ã¼·Â 1 ±ï±è
 {
+	if (Hp <= 0)
+		pBridge->Survival_Check();
 }

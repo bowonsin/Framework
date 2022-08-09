@@ -10,7 +10,7 @@ ObjectManager* ObjectManager::Instance = nullptr;
 ObjectManager::ObjectManager(){	EnableList = ObjectPool::GetEnableList();}
 ObjectManager::~ObjectManager() { Release(); }
 
-void ObjectManager::AddObject(string _Key)
+void ObjectManager::AddObject(string _Key) // 있는거 할성화 또는 만들어서 
 {
 	Object* pObject = ObjectPool::GetInstance()->Recycle(_Key);
 

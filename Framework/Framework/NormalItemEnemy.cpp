@@ -17,6 +17,10 @@ void NormalItemEnemy::Release()
 {
 }
 
+void NormalItemEnemy::Survival_Check()
+{
+}
+
 void NormalItemEnemy::InputImage(OBJECT_STATE State)
 {
 }

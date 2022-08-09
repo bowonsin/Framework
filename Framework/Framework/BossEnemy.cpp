@@ -37,6 +37,10 @@ void BossEnemy::Release()
 {
 }
 
+void BossEnemy::Survival_Check()
+{
+}
+
 void BossEnemy::InputImage(OBJECT_STATE State)
 {
     for (int i = 0; i < m_vecImageList.size(); ++i)
