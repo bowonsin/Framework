@@ -10,7 +10,6 @@ public:
 
 	virtual void LifeCheck()override;
 
-
 	virtual Object* Clone()override { return new Player(*this); }
 
 private:

@@ -10,7 +10,7 @@ public:
 
 private:
 	virtual void Time_to_RegenMonster()override;
-	virtual void Regen_Enemy(string EnemyName, Vector3 _Position)override;
+	virtual void Regen_Enemy(string EnemyName, Vector3 _Position, int Monster_Hp)override;
 
 public:
 	Stage_2();

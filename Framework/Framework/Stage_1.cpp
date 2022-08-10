@@ -28,20 +28,20 @@ void Stage_1::Initialize()
 	Stage::Monster_Setting(); // 시작전 몬스터 초기화
 }
 
-void Stage_1::Regen_Enemy(string EnemyName, Vector3 _Position)
+void Stage_1::Regen_Enemy(string EnemyName, Vector3 _Position, int Monster_Hp)
 {
-	ObjectManager::GetInstance()->Active_Unit(EnemyName, _Position);
+	ObjectManager::GetInstance()->Active_Unit(EnemyName, _Position,Monster_Hp);
 }
 
 void Stage_1::Time_to_RegenMonster()
 {
 	if (m_iTime_Setting == 10)
 	{
-		Regen_Enemy("NormalEnemy", Vector3(InGameConsole_WidthSize, Boss_Y_Position));// 3마리 소환
+		Regen_Enemy("NormalEnemy", Vector3(InGameConsole_WidthSize, Boss_Y_Position),1);// 3마리 소환
 
 		auto iter = ObjectManager::GetInstance()->GetObject_list("NormalEnemy");
 		float size = iter->front()->GetScale().y;
-		Regen_Enemy("NormalEnemy", Vector3(InGameConsole_WidthSize, Boss_Y_Position - size * 1.5f));
+		Regen_Enemy("NormalEnemy", Vector3(InGameConsole_WidthSize, Boss_Y_Position - size * 1.5f),1);
 	}
 }
 

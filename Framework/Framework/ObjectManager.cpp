@@ -55,7 +55,7 @@ void ObjectManager::AddObject(string _Key, Bridge* _Bridge)
 		iter->second.push_back(pObject);
 }
 
-void ObjectManager::Active_Unit(string _Key, Vector3 _SetPosition)
+void ObjectManager::Active_Unit(string _Key, Vector3 _SetPosition,int _Hp)
 {
 
 	Object* pObject = ObjectPool::GetInstance()->Recycle(_Key);
@@ -66,6 +66,7 @@ void ObjectManager::Active_Unit(string _Key, Vector3 _SetPosition)
 	map<string, list<Object*>>::iterator iter = EnableList->find(_Key);
 
 	pObject->Setposition(_SetPosition);
+	pObject->Unit_Hp_Setting(_Hp);
 
 	if (iter == EnableList->end())
 	{

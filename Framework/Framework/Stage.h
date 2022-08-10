@@ -28,7 +28,7 @@ protected:
 	void Obejct_Disable();
 
 	virtual void Time_to_RegenMonster()PURE;
-	virtual void Regen_Enemy(string EnemyName, Vector3 _Position)PURE;
+	virtual void Regen_Enemy(string EnemyName, Vector3 _Position, int Monster_Hp)PURE;
 
 public:
 	Stage();

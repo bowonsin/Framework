@@ -26,39 +26,70 @@ void NormalEnemy::Initialize()
 
 int NormalEnemy::Update(Transform& Info)
 {
-    switch (m_eMoving)
+    if (m_eState != OBJECT_STATE::STATE_DIE1 && m_eState != OBJECT_STATE::STATE_DIE2)
     {
-    case MONSTER_MOVING::MOVE_FORNT:
-        if (m_lTimer + 50 < GetTickCount64())
+        switch (m_eMoving)
         {
-            if (m_bUpDown)
+        case MONSTER_MOVING::MOVE_FORNT:
+            if (m_lTimer + 50 < GetTickCount64())
             {
-                Info.Direction.x = -m_iSpeed;
-                Info.Direction.y = m_iUpDown * m_iSpeed;
-                if (Info.Position.y >= 35)
-                    m_bUpDown = false;
-            }
-            else
-            {
-                Info.Direction.x = -m_iSpeed;
-                Info.Direction.y = -m_iUpDown * m_iSpeed;
-                if (Info.Position.y <= 5)
-                    m_bUpDown = true;
-            }
-            Info.Position += Info.Direction;
+                if (m_bUpDown)
+                {
+                    Info.Direction.x = -m_iSpeed;
+                    Info.Direction.y = m_iUpDown * m_iSpeed;
+                    if (Info.Position.y >= 35)
+                        m_bUpDown = false;
+                }
+                else
+                {
+                    Info.Direction.x = -m_iSpeed;
+                    Info.Direction.y = -m_iUpDown * m_iSpeed;
+                    if (Info.Position.y <= 5)
+                        m_bUpDown = true;
+                }
+                Info.Position += Info.Direction;
 
-            if (m_iShoting_Time == 40) // 한번만 쏘면 좋은데... 쩗
-            {
-                Bridge* Br = new EnemyNormalBullet;
-                ObjectManager::GetInstance()->AddObject_Bullet("EnemyNormalBullet",Br,Info.Position);
-                m_iShoting_Time = 0;
-            }
+                if (m_iShoting_Time == 40) // 한번만 쏘면 좋은데... 쩗
+                {
+                    Bridge* Br = new EnemyNormalBullet;
+                    ObjectManager::GetInstance()->AddObject_Bullet("EnemyNormalBullet", Br, Info.Position);
+                    m_iShoting_Time = 0;
+                }
 
-            ++m_iShoting_Time;
+                ++m_iShoting_Time;
+            }
+            break;
+        case MONSTER_MOVING::MOVE_STOP:
+            break;
         }
-        break;
-    case MONSTER_MOVING::MOVE_STOP:
-        break;
+    }
+    else
+    {
+        if (m_eState == OBJECT_STATE::STATE_DIE1)
+        {
+            if (m_lTimer + 500 < GetTickCount64())
+            {
+                m_lTimer = GetTickCount64();
+                if (m_iState_Time >= 2)
+                {
+                    m_eState = OBJECT_STATE::STATE_DIE2;
+                    m_iState_Time = 0;
+                    InputImage(OBJECT_STATE::STATE_DIE2);
+                }
+                ++m_iState_Time;
+            }
+        }
+        else if (m_eState == OBJECT_STATE::STATE_DIE2)
+        {
+            if (m_lTimer + 500 < GetTickCount64())
+            {
+                m_lTimer = GetTickCount64();
+                if (m_iState_Time >= 2)
+                    return BUFFER_OVER;
+                Info.Position.x += 0.5f;
+                ++m_iState_Time;
+            }
+        }
     }
     return Bridge::Console_OutSide_Check();
 }
@@ -78,7 +109,9 @@ void NormalEnemy::Release()
 
 void NormalEnemy::Survival_Check()
 {
-
+    m_eState = OBJECT_STATE::STATE_DIE1;
+    m_iState_Time = 0;
+    InputImage(OBJECT_STATE::STATE_DIE1);
 }
 
 void NormalEnemy::InputImage(OBJECT_STATE State)

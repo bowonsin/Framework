@@ -12,6 +12,9 @@ void BossEnemy::Initialize()
 
     Image_Initialize();
 
+
+    
+    //Disable
     InputImage(OBJECT_STATE::STATE_NORMAL);
 }
 

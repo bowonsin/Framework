@@ -11,8 +11,6 @@ Object* Enemy::Initialize(string _Key)
 {
 	strKey = _Key;
 
-	Hp = 3;
-
 	TransInfo.Position = Vector3(0.0f, 0.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);
 
@@ -44,6 +42,8 @@ void Enemy::Release()
 
 void Enemy::LifeCheck() // Bullet °ú Ãæµ¹½Ã Ã¼·Â 1 ±ï±è
 {
+	--Hp;
 	if (Hp <= 0)
 		pBridge->Survival_Check();
 }
+

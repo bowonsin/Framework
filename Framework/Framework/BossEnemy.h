@@ -2,6 +2,7 @@
 #include "EnemyBridge.h"
 class BossEnemy : public EnemyBridge
 {
+private:
 public:
 	virtual void Initialize()override;
 	virtual int Update(Transform& Info)override;

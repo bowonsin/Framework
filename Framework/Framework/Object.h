@@ -18,6 +18,7 @@ public:
 	virtual void Release()PURE;
 
 	virtual void LifeCheck()PURE;
+	void Unit_Hp_Setting(int _Hp) { Hp = _Hp; };
 
 	virtual Object* Clone()PURE;
 public:

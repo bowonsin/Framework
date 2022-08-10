@@ -118,7 +118,10 @@ void Stage::Player_Enemy_Collision_Check( list<Object*>* EnemyList)
 		Enemy != EnemyList->end();)
 	{
 		if (CollisionManager::Collision(pPlayer, (*Enemy)))
+		{
 			Enemy = ObjectManager::GetInstance()->ThrowObject(Enemy, (*Enemy));
+			pPlayer->LifeCheck();
+		}
 		else
 			++Enemy;
 	}
@@ -152,6 +155,7 @@ void Stage::PlayerBullet_Enemy_Collision_Check(list<Object*>* Player_Bullet, lis
 			{
 				Bullet = ObjectManager::GetInstance()->ThrowObject(Bullet, (*Bullet));
 				EnemyCheck = true;
+				(*Enemy)->LifeCheck();
 			}
 			else 
 				++Bullet;
