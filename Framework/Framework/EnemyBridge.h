@@ -21,7 +21,7 @@ protected:
 	virtual void Image_Initialize()PURE;
 	virtual void Shoot_Bullet()PURE;
 	
-	virtual void Survival_Check()PURE;
+	virtual void Survival_Check(int Hp)PURE;
 
 public:
 	virtual void Initialize()PURE;

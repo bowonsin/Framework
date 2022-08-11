@@ -40,8 +40,20 @@ void BossEnemy::Release()
 {
 }
 
-void BossEnemy::Survival_Check()
+void BossEnemy::Survival_Check(int Hp)
 {
+    if (Hp == 0)
+    {
+        m_eState = OBJECT_STATE::STATE_DIE1;
+        InputImage(OBJECT_STATE::STATE_DIE1);
+        m_iState_Time = 0;
+    }
+    else if (Hp < 4)
+    {
+        m_eState = OBJECT_STATE::STATE_HIT;
+        InputImage(OBJECT_STATE::STATE_HIT);
+        m_iState_Time = 0;
+    }
 }
 
 void BossEnemy::InputImage(OBJECT_STATE State)
@@ -60,147 +72,130 @@ void BossEnemy::InputImage(OBJECT_STATE State)
 void BossEnemy::Image_Initialize()
 {
     Image_State Image_Data;
-    vector<char*> Input_Data;
-    Input_Data.push_back((char*)"              .  ");
-    Input_Data.push_back((char*)"          ,;,... ");
-    Input_Data.push_back((char*)"          -!*!:* ");
-    Input_Data.push_back((char*)" ,,    , -,=*;!* ");
-    Input_Data.push_back((char*)" - .-,.. ..=****,");
-    Input_Data.push_back((char*)" .,-, .,   ;****~");
-    Input_Data.push_back((char*)" ,-:,  -   ~!=**=");
-    Input_Data.push_back((char*)",  -:.,-   ~-.:*-");
-    Input_Data.push_back((char*)"-,:,.::~,,~,~    ");
-    Input_Data.push_back((char*)" ,:~ ...,::~:    ");
-    Input_Data.push_back((char*)"  -.-;..***~.    ");
-    Input_Data.push_back((char*)"   -:,,,***;- .. ");
-    Input_Data.push_back((char*)"   -~.,-***=~~*- ");
-    Input_Data.push_back((char*)"   ,..,,==*==*=. ");
-    Input_Data.push_back((char*)"   ~.::~;::***!  ");
-    Input_Data.push_back((char*)"   -::,~-;~**=.  ");
-    Input_Data.push_back((char*)"     ,--~::!.,   ");
-    Input_Data.push_back((char*)"         .~      ");
-    Image_Data.State = OBJECT_STATE::STATE_HIT;
-    Image_Data.Dot_Image = Input_Data;
-    Input_Data.clear();
-    m_vecImageList.push_back(Image_Data);
-
-    Input_Data.push_back((char*)"   ..      -:.   ");
-    Input_Data.push_back((char*)"   ,.-     **=~  ");
-    Input_Data.push_back((char*)"   -.,. ,,-:*!!- ");
-    Input_Data.push_back((char*)"    ,~.~. .,***~ ");
-    Input_Data.push_back((char*)"   -~;  -   ~**=-");
-    Input_Data.push_back((char*)"   .-,,.~   :;==,");
-    Input_Data.push_back((char*)" ,,. *-:. .-. .  ");
-    Input_Data.push_back((char*)" ,-, , : :*=*    ");
-    Input_Data.push_back((char*)"    ,-,~.**!,    ");
-    Input_Data.push_back((char*)"    ,~~,.**-:..  ");
-    Input_Data.push_back((char*)"     ~- ,**=:*   ");
-    Input_Data.push_back((char*)"     .-:~;.-=*   ");
-    Input_Data.push_back((char*)"      :-~;~~=;   ");
-    Input_Data.push_back((char*)"      .---.~.    ");
-    Input_Data.push_back((char*)"          ..     ");
-    Image_Data.State = OBJECT_STATE::STATE_HIT2;
-    Image_Data.Dot_Image = Input_Data;
-    Input_Data.clear();
-    m_vecImageList.push_back(Image_Data);
-                                                        
-
-    Input_Data.push_back((char*)"       .~--.--   ");
-    Input_Data.push_back((char*)"      ;***.=*:--~");
-    Input_Data.push_back((char*)"     --****=-;**-");
-    Input_Data.push_back((char*)"  ~!!*=~..~=****=");
-    Input_Data.push_back((char*)"  :**-      .=**-");
-    Input_Data.push_back((char*)"   :. ,      .*=.");
-    Input_Data.push_back((char*)"   ~.         !~ ");
-    Input_Data.push_back((char*)"   ~...       ~  ");
-    Input_Data.push_back((char*)" ~  -!        .  ");
-    Input_Data.push_back((char*)" , , ~       -,-.");
-    Input_Data.push_back((char*)"  --:.    , .-*~ ");
-    Input_Data.push_back((char*)"   .~-~.:*=.**** ");
-    Input_Data.push_back((char*)" .~. -, -..,**** ");
-    Input_Data.push_back((char*)".,...;,: .;-****~");
-    Input_Data.push_back((char*)" --;-:::,*******=");
-    Input_Data.push_back((char*)"  .-,-::~:.=**** ");
-    Input_Data.push_back((char*)"    :;-  ,~:, .. ");
-    Input_Data.push_back((char*)"      ~:         ");
+    Image_Data.Dot_Image.push_back((char*)"                                   +***.                      ");
+    Image_Data.Dot_Image.push_back((char*)"                                =+=+**:                       ");
+    Image_Data.Dot_Image.push_back((char*)"                               +==**:                         ");
+    Image_Data.Dot_Image.push_back((char*)"                              .==++=::                        ");
+    Image_Data.Dot_Image.push_back((char*)"                  ..   .++   =.=++:.:+*.    ==+               ");
+    Image_Data.Dot_Image.push_back((char*)"                 #*=   =*#: +==:::=+=.=+*.  ***:              ");
+    Image_Data.Dot_Image.push_back((char*)"               ..==::::::..=+.:::.:+**:...=:....:=*::..       ");
+    Image_Data.Dot_Image.push_back((char*)"         =****#+.::.:=:.:..:#*+++**+===.:.::*#++==*+.++.      ");
+    Image_Data.Dot_Image.push_back((char*)"       =*+****#*::::.....:...:++****++======*##==***:*+=....  ");
+    Image_Data.Dot_Image.push_back((char*)"      .#*#+##+*+ ...::...=.:::::==::.:.:=++=:=*#+**==+=+####*:");
+    Image_Data.Dot_Image.push_back((char*)"     .#+=#*#*+#+.:+...:=::.=++=#=+++==+=:..   .=+*::==:::**##:");
+    Image_Data.Dot_Image.push_back((char*)"     .*#***+*+*+......=:+:.:::=::.:*=.... =+=*=+=+*+=####+:=#+");
+    Image_Data.Dot_Image.push_back((char*)"   :++#+=++*#+*+.:::=++:++=.:.=...+: :::+==+==+++**+=+++++*==+");
+    Image_Data.Dot_Image.push_back((char*)" =#++#*****##+**====::+*++:+:==:=+*::+**##*++++****+=****+#*=+");
+    Image_Data.Dot_Image.push_back((char*)"  .###**#***#+*#**++=====+==+*+*+*#+==+*++++##**#*+:=#*#+*#+*+");
+    Image_Data.Dot_Image.push_back((char*)" :+##*+++***##*####*+++++***+++**+**+==+++++++**#*************");
+    Image_Data.Dot_Image.push_back((char*)"  *******+****+****#**###*+++++*++**##*++++++*****************");
+    Image_Data.Dot_Image.push_back((char*)"  ***++++****#***************+**++**###***##**#**++***++**+**+");
+    Image_Data.Dot_Image.push_back((char*)" %#****#######%#######%#***+*#**#####%++*##=***%+=+#*=*#***++*");
+    Image_Data.Dot_Image.push_back((char*)"  ===========+****=*#**%###+*######%*.=**:   ..:###=+++=#*=+++");
+    Image_Data.Dot_Image.push_back((char*)"                 =#+*   +%#%%%####%*  :**        :*#*+*###**+*");
+    Image_Data.Dot_Image.push_back((char*)"                  ::.     **+:+*##                   :##*##==#");
+    Image_Data.Dot_Image.push_back((char*)"                          ==: ===+*=                         .");
+    Image_Data.Dot_Image.push_back((char*)"                               =:=*##=                 =+*+*+*");
+    Image_Data.Dot_Image.push_back((char*)"                                  :=:.                :=+**++*");
+    Image_Data.Dot_Image.push_back((char*)"                                                            ..");
     Image_Data.State = OBJECT_STATE::STATE_NORMAL;
-    Image_Data.Dot_Image = Input_Data;
-    Input_Data.clear();
+    Image_Data.Dot_Image.clear();
     m_vecImageList.push_back(Image_Data);
 
-    Input_Data.push_back((char*)"       .~--.--   ");
-    Input_Data.push_back((char*)"      ;***.=*:--~");
-    Input_Data.push_back((char*)"     --****=-;**-");
-    Input_Data.push_back((char*)"  ~!!*=~..~=****=");
-    Input_Data.push_back((char*)"  :**-      .=**-");
-    Input_Data.push_back((char*)"   :. ,      .*=.");
-    Input_Data.push_back((char*)"   ~.         !~ ");
-    Input_Data.push_back((char*)"   ~...       ~  ");
-    Input_Data.push_back((char*)" ~  -!        .  ");
-    Input_Data.push_back((char*)" , , ~       -,-.");
-    Input_Data.push_back((char*)"  --:.    , .-*~ ");
-    Input_Data.push_back((char*)"   .~-~.:*=.**** ");
-    Input_Data.push_back((char*)"   ,..-,*:=***** ");
-    Input_Data.push_back((char*)" .~. -, -..,**** ");
-    Input_Data.push_back((char*)".,...;,: .;-****~");
-    Input_Data.push_back((char*)" --;-:::,*******=");
-    Input_Data.push_back((char*)"  ~. .;-::****** ");
-    Input_Data.push_back((char*)"  .-,-::~:.=**** ");
-    Input_Data.push_back((char*)"    :;-  ,~:, .. ");
-    Input_Data.push_back((char*)"      ~:         ");
-    Image_Data.State = OBJECT_STATE::STATE_MOVE;
-    Image_Data.Dot_Image = Input_Data;
-    Input_Data.clear();
+    Image_Data.Dot_Image.push_back((char*)"                                 . :##*#                       ");
+    Image_Data.Dot_Image.push_back((char*)"                                .*=++*=                        ");
+    Image_Data.Dot_Image.push_back((char*)"                               +=+*#+                          ");
+    Image_Data.Dot_Image.push_back((char*)"                              ::==+===                         ");
+    Image_Data.Dot_Image.push_back((char*)"                  ..    ++:  :::+*+..:#+    .+++               ");
+    Image_Data.Dot_Image.push_back((char*)"                 ***   :#** :+=:.::++=:=*+. =+*#               ");
+    Image_Data.Dot_Image.push_back((char*)"               ..==:::.:.:.:*..=:.:+**+...::..:.::=*::..       ");
+    Image_Data.Dot_Image.push_back((char*)"       =*****%#*..=::::..:..+*+++**++++=::::=#*++==*=.*=       ");
+    Image_Data.Dot_Image.push_back((char*)"     :*+****#%=*:::.. ...:....=++***++===:==+##*:+*#+=#+=::::  ");
+    Image_Data.Dot_Image.push_back((char*)"     #*#+##*+%=+ ....:...=.::=.==:::::..=++==:=**+**:+==+##%#*:");
+    Image_Data.Dot_Image.push_back((char*)"    *#:#*#***%+*.:+...:==:..++=+*=*=*:++:... . :=+*::+=:::+*##:");
+    Image_Data.Dot_Image.push_back((char*)"   .+#***+***%+*.....:=:+=::.=:=:::=+:... .=*++=*:*#=+####+:=#+");
+    Image_Data.Dot_Image.push_back((char*)" :+***=++*#**%+*.::::++:+++::.=:..=+. =:=+=++===+***=++++++*==+");
+    Image_Data.Dot_Image.push_back((char*)"#*+*#****#***%:*====::+*++:+=:+:==*===***#**++++****=+****+#++*");
+    Image_Data.Dot_Image.push_back((char*)":%##****#*#**%+#**+++====+==++***+#*===+++++*##*##*=.+#*#+**+*+");
+    Image_Data.Dot_Image.push_back((char*)" :+*:+=+==##%%=####**++++***++++*+*#*+==+++++++**#*************");
+    Image_Data.Dot_Image.push_back((char*)"   . .    *##%+#******###*+++++*+++*###++++++******************");
+    Image_Data.Dot_Image.push_back((char*)"          *##%:#*******#*****++*++***##***##***#*++****+***+**+");
+    Image_Data.Dot_Image.push_back((char*)":=++:*=++**##%*%%###%#%#****+*#*#####%#++*#+***##+=*#+=*#***++*");
+    Image_Data.Dot_Image.push_back((char*)"***********###:+**=+#**%###***%*####%:.**+.  ...=###=+++=#*=+++");
+    Image_Data.Dot_Image.push_back((char*)"##########%%%.   :#**   =%#########%.  **+        =*#*+*###**+*");
+    Image_Data.Dot_Image.push_back((char*)" ...........      ::.     =**:=+*#+                   :##*##==#");
+    Image_Data.Dot_Image.push_back((char*)"                          :== :+=++*:                         .");
+    Image_Data.Dot_Image.push_back((char*)"                               =:=***#                 .=**+*+*");
+    Image_Data.Dot_Image.push_back((char*)"                                  .:::                 :=+**++*");
+    Image_Data.Dot_Image.push_back((char*)"                                                             ..");
+    Image_Data.State = OBJECT_STATE::STATE_HIT;
+    Image_Data.Dot_Image.clear();
     m_vecImageList.push_back(Image_Data);
 
-    Input_Data.push_back((char*)"     ,,.,.        ");
-    Input_Data.push_back((char*)"   .,,     ..     ");
-    Input_Data.push_back((char*)"  .,..     ...    ");
-    Input_Data.push_back((char*)"  .               ");
-    Input_Data.push_back((char*)" ,             .  ");
-    Input_Data.push_back((char*)"..             ,  ");
-    Input_Data.push_back((char*)" ..            .  ");
-    Input_Data.push_back((char*)".               , ");
-    Input_Data.push_back((char*)",               . ");
-    Input_Data.push_back((char*)",               . ");
-    Input_Data.push_back((char*)",                 ");
-    Input_Data.push_back((char*)" ,              , ");
-    Input_Data.push_back((char*)"               ,, ");
-    Input_Data.push_back((char*)"               ,  ");
-    Input_Data.push_back((char*)"  .           ..  ");
-    Input_Data.push_back((char*)"   ....     ...   ");
-    Input_Data.push_back((char*)"    .. .   .-     ");
-    Input_Data.push_back((char*)"       .,,,-      ");
+
+    Image_Data.Dot_Image.push_back((char*)"                   .=++++++++++.                            ");
+    Image_Data.Dot_Image.push_back((char*)"                 :###***++++***##+:                         ");
+    Image_Data.Dot_Image.push_back((char*)"                +#**++==:::::==::=##                        ");
+    Image_Data.Dot_Image.push_back((char*)"        :=*########**++:.     .:=. .*=+#******#==.          ");
+    Image_Data.Dot_Image.push_back((char*)"     .#####***++++++++=:==:      ::  +==:=++++***###:       ");
+    Image_Data.Dot_Image.push_back((char*)"    ###*++====:.:::.:=:=. .:.     :. ..     .:==+==+#*      ");
+    Image_Data.Dot_Image.push_back((char*)"   ##*++=::.            ...  .                .:=++ =##     ");
+    Image_Data.Dot_Image.push_back((char*)" ###*+=..                ....                    =++ :#+    ");
+    Image_Data.Dot_Image.push_back((char*)"+#*=**=:..  .        .:+++++==..                  += :**    ");
+    Image_Data.Dot_Image.push_back((char*)".#+*##**++=:....    .++:..++:.                   .=  :+##:  ");
+    Image_Data.Dot_Image.push_back((char*)" +#*==+++=::.:.::...=+.  +=                      .  :+++*#* ");
+    Image_Data.Dot_Image.push_back((char*)"#*..=+=:.  :::..    .=.  .:                        ..=++.+#=");
+    Image_Data.Dot_Image.push_back((char*)"#:.++:.  ..  .       ..    .                        .:=++.##");
+    Image_Data.Dot_Image.push_back((char*)"#.=+=:.            .               +:   +:     ..  .:=+= +# ");
+    Image_Data.Dot_Image.push_back((char*)"#*:++=::        .::   ..         .:+: .=+:::::=. .:=+=:.+#: ");
+    Image_Data.Dot_Image.push_back((char*)"=#*+++. ..     .:+.  :+       ..:=+=:+++:....::==+++***##:  ");
+    Image_Data.Dot_Image.push_back((char*)"  *#=: .=       .=+:..++:    . .:=++==:   .....::==+*#*=+#: ");
+    Image_Data.Dot_Image.push_back((char*)"   **: ++.       .=++==+=::..                      .=*#**#= ");
+    Image_Data.Dot_Image.push_back((char*)"   ##. ++=         ..:===:.                      ..:=+###=  ");
+    Image_Data.Dot_Image.push_back((char*)"    ##+.=+=:.           .    ..  .:.          .:==++*##:    ");
+    Image_Data.Dot_Image.push_back((char*)"     =##++++==:.:.  .. .:.    .:=..::======:===+++*###:     ");
+    Image_Data.Dot_Image.push_back((char*)"       =*####****++++*. :=.      ==++********#######:       ");
+    Image_Data.Dot_Image.push_back((char*)"           .========..++. ==:.     .=++**####===:           ");
+    Image_Data.Dot_Image.push_back((char*)"                       +#*=:=++====++++*##.                 ");
+    Image_Data.Dot_Image.push_back((char*)"                         .*####****#####=                   ");
+    Image_Data.Dot_Image.push_back((char*)"                            ...........                     ");
     Image_Data.State = OBJECT_STATE::STATE_DIE1;
-    Image_Data.Dot_Image = Input_Data;
-    Input_Data.clear();
+    Image_Data.Dot_Image.clear();
     m_vecImageList.push_back(Image_Data);
-                        
 
-    Input_Data.push_back((char*)"     .,.  .,.     ");
-    Input_Data.push_back((char*)"     ,,,. ,,,.    ");
-    Input_Data.push_back((char*)"    ,    .   ,.   ");
-    Input_Data.push_back((char*)"  ,,.        .-.  ");
-    Input_Data.push_back((char*)" ,, .          ,  ");
-    Input_Data.push_back((char*)"  .            ., ");
-    Input_Data.push_back((char*)" ,.             , ");
-    Input_Data.push_back((char*)" ..             , ");
-    Input_Data.push_back((char*)"  .            .. ");
-    Input_Data.push_back((char*)"  .               ");
-    Input_Data.push_back((char*)"  .            .. ");
-    Input_Data.push_back((char*)" ..             , ");
-    Input_Data.push_back((char*)" ..             , ");
-    Input_Data.push_back((char*)"  .            ., ");
-    Input_Data.push_back((char*)" ,. .          ,. ");
-    Input_Data.push_back((char*)"   -,        .,,  ");
-    Input_Data.push_back((char*)"    ,   ..   ,.   ");
-    Input_Data.push_back((char*)"     -,,  ,,,     ");
-    Input_Data.push_back((char*)"      ,.   ..     ");
+
+    Image_Data.Dot_Image.push_back((char*)"                     . . =::=  ..    . . =::= . .");
+    Image_Data.Dot_Image.push_back((char*)"                :#####**#####:  :#####**#####:");
+    Image_Data.Dot_Image.push_back((char*)"              .###*+++++==:+******+:==+++++*###.");
+    Image_Data.Dot_Image.push_back((char*)"              ###*+++==:...  ::::  ...:==+++*###");
+    Image_Data.Dot_Image.push_back((char*)"     :++*::=**##*+++:                    :+++*##**=::**");
+    Image_Data.Dot_Image.push_back((char*)"    ##=.*##**+*#=+==                      ==+=#*+**##*.");
+    Image_Data.Dot_Image.push_back((char*)"   #= ###*++==:+= :                        : =+:==++*##* .#");
+    Image_Data.Dot_Image.push_back((char*)"   * ##*++==...  .                          .  ...==++*## *");
+    Image_Data.Dot_Image.push_back((char*)"    ##*++==.                                      .==++*##");
+    Image_Data.Dot_Image.push_back((char*)"   :##+++=.                       .:=+++.          .=+++##:");
+    Image_Data.Dot_Image.push_back((char*)" = =##:+:=.      ..::.              :+.:+=.        .=:+:##= =");
+    Image_Data.Dot_Image.push_back((char*)" %. ##+.+ .    .++:++:..             :: .+.        . +.+## .%");
+    Image_Data.Dot_Image.push_back((char*)" *# .##= .    .+: :+                    .           . =##. #*");
+    Image_Data.Dot_Image.push_back((char*)"  +: :#+=.     :.  :                                .=+#: :+ ");
+    Image_Data.Dot_Image.push_back((char*)"   :  .#=:                                          :=#.  :  ");
+    Image_Data.Dot_Image.push_back((char*)"  #. +#+=                                            =+#+ .# ");
+    Image_Data.Dot_Image.push_back((char*)" #* =##...                               .  .:      ...##= *#");
+    Image_Data.Dot_Image.push_back((char*)" #  ##=:=..                               +  =:    ..=:=##  #");
+    Image_Data.Dot_Image.push_back((char*)" . +##=+:+.           :.  .            .:+=:++.    .+:+=##+ .");
+    Image_Data.Dot_Image.push_back((char*)"    ##*++=..         :=  +             .:==:.     ..=++*##");
+    Image_Data.Dot_Image.push_back((char*)"    *##*++=..        .++:=+:.                    ..=++*##*");
+    Image_Data.Dot_Image.push_back((char*)"   # ##**+==:.....     .:==:.               .....:==+**## #");
+    Image_Data.Dot_Image.push_back((char*)"   ** +##*++===*:.=.                      .=.:*===++*##+ **");
+    Image_Data.Dot_Image.push_back((char*)"    +#+ =*###*##=*+=                      =+*=##*###*= +#+");
+    Image_Data.Dot_Image.push_back((char*)"      :=*. .=+##*+++=.  .            .  .=+++*##:=. .*=:");
+    Image_Data.Dot_Image.push_back((char*)"              *##*++++==::. .=::=. .::==++++*##*");
+    Image_Data.Dot_Image.push_back((char*)"               +##**+++++=+*##==##*+=+++++**##+");
+    Image_Data.Dot_Image.push_back((char*)"                 +*########*+    +*########*+");
+    Image_Data.Dot_Image.push_back((char*)"                 .:.      .:.    .:.      .:.");
     Image_Data.State = OBJECT_STATE::STATE_DIE2;
-    Image_Data.Dot_Image = Input_Data;
-    Input_Data.clear();
+    Image_Data.Dot_Image.clear();
     m_vecImageList.push_back(Image_Data);
-
 }
 
 void BossEnemy::Shoot_Bullet()

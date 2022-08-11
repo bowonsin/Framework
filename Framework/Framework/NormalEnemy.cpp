@@ -70,7 +70,7 @@ int NormalEnemy::Update(Transform& Info)
             if (m_lTimer + 500 < GetTickCount64())
             {
                 m_lTimer = GetTickCount64();
-                if (m_iState_Time >= 2)
+                if (m_iState_Time >= 1)
                 {
                     m_eState = OBJECT_STATE::STATE_DIE2;
                     m_iState_Time = 0;
@@ -84,7 +84,7 @@ int NormalEnemy::Update(Transform& Info)
             if (m_lTimer + 500 < GetTickCount64())
             {
                 m_lTimer = GetTickCount64();
-                if (m_iState_Time >= 2)
+                if (m_iState_Time >= 1)
                     return BUFFER_OVER;
                 Info.Position.x += 0.5f;
                 ++m_iState_Time;
@@ -107,7 +107,7 @@ void NormalEnemy::Release()
 {
 }
 
-void NormalEnemy::Survival_Check()
+void NormalEnemy::Survival_Check(int Hp)
 {
     m_eState = OBJECT_STATE::STATE_DIE1;
     m_iState_Time = 0;

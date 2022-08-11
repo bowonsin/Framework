@@ -27,7 +27,7 @@ public:
 	virtual int Update(Transform& Info)PURE;
 	virtual void Render()PURE;
 	virtual void Release() { m_vecImage.clear();};
-	virtual void Survival_Check()PURE;
+	virtual void Survival_Check(int Hp)PURE;
 
 public:
 	void SetObject(Object* _Object)	{	pObject = _Object;	}

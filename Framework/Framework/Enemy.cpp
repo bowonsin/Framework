@@ -44,6 +44,6 @@ void Enemy::LifeCheck() // Bullet °ú Ãæµ¹½Ã Ã¼·Â 1 ±ï±è
 {
 	--Hp;
 	if (Hp <= 0)
-		pBridge->Survival_Check();
+		pBridge->Survival_Check(Hp);
 }
 

@@ -56,12 +56,14 @@ int NamedEnemy::Update(Transform& Info)
                 Vector3 BulletPosition = Info.Position;
                 BulletPosition.y += m_vecImage.size() / 2;
                 ObjectManager::GetInstance()->AddObject_Bullet("EnemyNormalBullet", N_Bullet, BulletPosition);
+                Hit_Check();
                 ++m_iState_Time;
             }
             break;
         case MONSTER_MOVING::MOVE_BACK: // 뒤로 가기 만약 뒤로 끝까지 가면 사망
             if (m_lTimer + 250 < GetTickCount64()) // 1000 을 1초 기준으로 이동 
             {
+                Hit_Check();
                 // 제거
                 if (Info.Position.x == InGameConsole_WidthSize)
                     return BUFFER_OVER;
@@ -118,11 +120,46 @@ void NamedEnemy::Release()
 {
 }
 
-void NamedEnemy::Survival_Check()
+void NamedEnemy::Hit_Check()
 {
-    m_eState = OBJECT_STATE::STATE_DIE1;
-    InputImage(OBJECT_STATE::STATE_DIE1);
-    m_iState_Time = 0;
+    switch (m_eState)
+    {
+    case OBJECT_STATE::STATE_HIT:
+        if (m_iState_Time >= 2)
+        {
+            m_eState = OBJECT_STATE::STATE_HIT2;
+            m_iState_Time = 0;
+            InputImage(OBJECT_STATE::STATE_HIT2);
+        }
+        ++m_iState_Time;
+        break;
+    case OBJECT_STATE::STATE_HIT2:
+        if (m_iState_Time >= 2)
+        {
+            m_eState = OBJECT_STATE::STATE_NORMAL;
+            m_iState_Time = 0;
+            InputImage(OBJECT_STATE::STATE_NORMAL);
+        }
+        ++m_iState_Time;
+        break;
+    }
+}
+
+
+void NamedEnemy::Survival_Check(int Hp)
+{
+    if (Hp == 0)
+    {
+        m_eState = OBJECT_STATE::STATE_DIE1;
+        InputImage(OBJECT_STATE::STATE_DIE1);
+        m_iState_Time = 0;
+    }
+    else if (Hp < 4)
+    {
+        m_eState = OBJECT_STATE::STATE_HIT;
+        InputImage(OBJECT_STATE::STATE_HIT);
+        m_iState_Time = 0;
+    }
 }
 
 void NamedEnemy::InputImage(OBJECT_STATE State)

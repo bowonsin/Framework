@@ -17,7 +17,7 @@ void NormalItemEnemy::Release()
 {
 }
 
-void NormalItemEnemy::Survival_Check()
+void NormalItemEnemy::Survival_Check(int Hp)
 {
 }
 
