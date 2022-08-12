@@ -4,6 +4,7 @@
 #include "Bullet.h"
 #include "Enemy.h"
 #include "BackGround.h"
+#include "Item.h"
 
 #include "InputManager.h"
 
@@ -40,8 +41,14 @@ void Prototype::Initialize()
 	Key = "EnemyNormalBullet";
 	ProtoTypeList[Key] = (new Bullet(Info))->Initialize(Key);
 
+	Key = "HomingBullet";
+	ProtoTypeList[Key] = (new Bullet(Info))->Initialize(Key);
+
 	Key = "BackGround";
 	ProtoTypeList[Key] = (new BackGround(Info))->Initialize(Key);
+
+	Key = "Item";
+	ProtoTypeList[Key] = (new Item(Info))->Initialize(Key);
 }
 
 Object* Prototype::ProtoTypeObject(string _Key)

@@ -19,7 +19,6 @@ protected:
 
 	virtual void InputImage(OBJECT_STATE State)PURE;
 	virtual void Image_Initialize()PURE;
-	virtual void Shoot_Bullet()PURE;
 	
 	virtual void Survival_Check(int Hp)PURE;
 

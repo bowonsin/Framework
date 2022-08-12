@@ -15,7 +15,7 @@
 #include "ObjectManager.h"
 #include "CollisionManager.h"
 
-Stage::Stage():pPlayer(nullptr), m_LTimer(0) , m_iTime_Setting(0){}
+Stage::Stage():pPlayer(nullptr), m_LTimer(0) , m_iTime_Setting(0), m_bBoss_Check(false){}
 Stage::~Stage() { }
 
 void Stage::Stage_Collision_Check()
@@ -24,7 +24,10 @@ void Stage::Stage_Collision_Check()
 	list<Object*>* pBossEnemy = ObjectManager::GetInstance()->GetObject_list("BossEnemy");
 	list<Object*>* pNamedEnemyList = ObjectManager::GetInstance()->GetObject_list("NamedEnemy");
 	list<Object*>* pNormalEnemyList = ObjectManager::GetInstance()->GetObject_list("NormalEnemy");
+	list<Object*>* pNormalItemEnemy = ObjectManager::GetInstance()->GetObject_list("NormalItemEnemy");
 	list<Object*>* pEnemyNormalBulletList = ObjectManager::GetInstance()->GetObject_list("EnemyNormalBullet");
+	list<Object*>* pHomingBullet = ObjectManager::GetInstance()->GetObject_list("HomingBullet");
+	list<Object*>* pItem= ObjectManager::GetInstance()->GetObject_list("Item");
 
 	// Bullet 행동 반경 넘어섯을 떄 Disable로 이동
 	/* // 각기 다른 Bullet을 BulletBridge에서 이미 정리 하고 ObjectPool 에서 이미 터진거 관리하고 있음.
@@ -45,22 +48,42 @@ void Stage::Stage_Collision_Check()
 	}
 	*/
 
-	if (pPlayer != nullptr)
+	if (pPlayer->Collision_Check())
 	{
-		if (pBossEnemy != nullptr)
-			Player_Enemy_Collision_Check(pBossEnemy);
+		if (pPlayer != nullptr)
+		{
+			if (pBossEnemy != nullptr)
+			{
+				Player_Enemy_Collision_Check(pBossEnemy);
+				if (pBossEnemy->begin() != pBossEnemy->end())
+				{
+					if (pBossEnemy->front()->GetHp() == 0)
+						m_bBoss_Check = false;
+				}
+			}
+			
 
-		if (pNamedEnemyList != nullptr)
-			Player_Enemy_Collision_Check(pNamedEnemyList);
+			if (pNamedEnemyList != nullptr)
+				Player_Enemy_Collision_Check(pNamedEnemyList);
 
-		if (pNormalEnemyList != nullptr)
-			Player_Enemy_Collision_Check( pNormalEnemyList);
+			if (pNormalEnemyList != nullptr)
+				Player_Enemy_Collision_Check(pNormalEnemyList);
 
-		if (pEnemyNormalBulletList != nullptr)
-			Player_EnemyBullet_Collision_Check(pEnemyNormalBulletList);
+			if (pEnemyNormalBulletList != nullptr)
+				Player_EnemyBullet_Collision_Check(pEnemyNormalBulletList);
+
+			if (pHomingBullet != nullptr)
+				Player_EnemyBullet_Collision_Check(pHomingBullet);
+
+			if (pNormalItemEnemy != nullptr)
+				Player_EnemyBullet_Collision_Check(pNormalItemEnemy);
+
+			if (pItem != nullptr)
+				Player_Item_Collision_Check(pItem);
+		}
 	}
 
-	if (pBulletList != nullptr)
+	if (pBulletList != nullptr && pBulletList->begin() != pBulletList->end())
 	{
 		if (pBossEnemy != nullptr)
 			PlayerBullet_Enemy_Collision_Check(pBulletList, pBossEnemy);
@@ -70,6 +93,13 @@ void Stage::Stage_Collision_Check()
 
 		if (pNormalEnemyList != nullptr)
 			PlayerBullet_Enemy_Collision_Check(pBulletList, pNormalEnemyList);
+
+		if (pNormalItemEnemy != nullptr)
+			PlayerBullet_Enemy_Collision_Check(pBulletList,pNormalItemEnemy);
+
+		if (pHomingBullet != nullptr)
+			PlayerBullet_Enemy_Collision_Check(pBulletList, pHomingBullet);
+
 	}
 
 	// 전체적인 충돌 판정 . 
@@ -111,6 +141,10 @@ void Stage::Stage_Collision_Check()
 	}
 	*/
 }
+void Stage::Regen_Enemy(string EnemyName, Vector3 _Position, int Monster_Hp)
+{
+	ObjectManager::GetInstance()->Active_Unit(EnemyName, _Position, Monster_Hp);
+}
 
 void Stage::Player_Enemy_Collision_Check( list<Object*>* EnemyList)
 {
@@ -119,8 +153,9 @@ void Stage::Player_Enemy_Collision_Check( list<Object*>* EnemyList)
 	{
 		if (CollisionManager::Collision(pPlayer, (*Enemy)))
 		{
-			Enemy = ObjectManager::GetInstance()->ThrowObject(Enemy, (*Enemy));
 			pPlayer->LifeCheck();
+			if ((*Enemy)->GetKey() == "NormalEnemy")
+				Enemy = ObjectManager::GetInstance()->ThrowObject(Enemy, (*Enemy));
 		}
 		else
 			++Enemy;
@@ -136,6 +171,7 @@ void Stage::Player_EnemyBullet_Collision_Check(list<Object*>* EnemyBullet)
 		{
 			Bullet = ObjectManager::GetInstance()->ThrowObject(Bullet, (*Bullet));
 			// Player 와 적 Bullet이 충돌 했으니 Player에게 충돌 판정이후 들어가는 데미지 등 관리
+			pPlayer->LifeCheck();
 		}
 		else
 			++Bullet;
@@ -148,60 +184,75 @@ void Stage::PlayerBullet_Enemy_Collision_Check(list<Object*>* Player_Bullet, lis
 	for (list<Object*>::iterator Enemy = EnemyList->begin();
 		Enemy != EnemyList->end();)
 	{
+		
 		for (list<Object*>::iterator Bullet = Player_Bullet->begin();
 			Bullet != Player_Bullet->end();)
 		{
-			if (CollisionManager::Collision((*Enemy), (*Bullet)))
+			if ((*Enemy)->Collision_Check())
 			{
-				Bullet = ObjectManager::GetInstance()->ThrowObject(Bullet, (*Bullet));
-				EnemyCheck = true;
-				(*Enemy)->LifeCheck();
+				if (CollisionManager::Collision((*Enemy), (*Bullet)))
+				{
+					Bullet = ObjectManager::GetInstance()->ThrowObject(Bullet, (*Bullet));
+					EnemyCheck = true;
+					(*Enemy)->LifeCheck();
+				}
+				else
+					++Bullet;
 			}
-			else 
+			else
 				++Bullet;
 		}
 
 		if (!EnemyCheck)
+		{
 			++Enemy;
+		}
 		else
+		{
 			EnemyCheck = false;
+		}
 	}
 }
 
-void Stage::Enemy_Check(list<Object*>* EnemyList)
+void Stage::Player_Item_Collision_Check(list<Object*>* Item)
 {
+ 	for (list<Object*>::iterator Item_iter = Item->begin();
+		Item_iter != Item->end();)
+	{
+		if (CollisionManager::Collision(pPlayer, (*Item_iter)))
+		{
+			pPlayer->Power_Up();// -> LifeCheck가 아닌 Get_Item으로 바꿔야함
+			Item_iter = ObjectManager::GetInstance()->ThrowObject(Item_iter, (*Item_iter));
 
+		}
+		else
+			++Item_iter;
+	}
 }
-
 
 void Stage::Monster_Setting() // Stage 시작전에 몬스터 초기화 
 {
 	Bridge* Kind_of_Bridge;
-	for (int i = 0; i < 10; ++i)
-	{
-		Kind_of_Bridge = new NormalEnemy;
-		ObjectManager::GetInstance()->AddObject("NormalEnemy", Kind_of_Bridge);
-	}
 
-	/*
-	 Bridge* Kind_of_Bridge= new BossEnemy;
-	ObjectManager::GetInstance()->AddObject("BossEnemy",Kind_of_Bridge);
 
-	Bridge* Kind_of_Bridge= new NamedEnemy;
+	Kind_of_Bridge = new NamedEnemy;
 	ObjectManager::GetInstance()->AddObject("NamedEnemy", Kind_of_Bridge);
 
+	 Kind_of_Bridge= new BossEnemy;
+	ObjectManager::GetInstance()->AddObject("BossEnemy",Kind_of_Bridge);
+
 	for (int i = 0; i < 10; ++i)
 	{
 		Kind_of_Bridge = new NormalEnemy;
 		ObjectManager::GetInstance()->AddObject("NormalEnemy", Kind_of_Bridge);
-	}
 
-	for (int i = 0 ; i < 2 ; ++i)
-	{
 		Kind_of_Bridge = new NormalItemEnemy;
 		ObjectManager::GetInstance()->AddObject("NormalItemEnemy", Kind_of_Bridge);
 	}
-	*/
+
+	for (int i = 0; i < 10; ++i)
+		ObjectManager::GetInstance()->AddObject("Item");
+
 	for (int i = 0; i < 100; ++i)
 	{
 		ObjectManager::GetInstance()->AddObject("NormalBullet");
@@ -223,12 +274,12 @@ void Stage::Obejct_Disable()
 
 	Dis_Object = ObjectManager::GetInstance()->GetObject_list("NormalEnemy");
 	if (Dis_Object)
-		for (auto Enemyiter = Dis_Object->begin(); Enemyiter != Dis_Object->end(); ++Enemyiter)
+		for (auto Enemyiter = Dis_Object->begin(); Enemyiter != Dis_Object->end();)
 			Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
 
 	Dis_Object = ObjectManager::GetInstance()->GetObject_list("NormalItemEnemy");
 	if (Dis_Object)
-		for (auto Enemyiter = Dis_Object->begin(); Enemyiter != Dis_Object->end(); ++Enemyiter)
+		for (auto Enemyiter = Dis_Object->begin(); Enemyiter != Dis_Object->end();)
 			Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
 
 	Dis_Object = ObjectManager::GetInstance()->GetObject_list("NormalBullet");
@@ -240,6 +291,11 @@ void Stage::Obejct_Disable()
 	if (Dis_Object)
 		for (auto BulletIter = Dis_Object->begin(); BulletIter != Dis_Object->end();)
 			BulletIter = ObjectManager::GetInstance()->ThrowObject(BulletIter, (*BulletIter));
+
+	Dis_Object = ObjectManager::GetInstance()->GetObject_list("Item");
+	if (Dis_Object)
+		for (auto Item = Dis_Object->begin(); Item != Dis_Object->end();)
+			Item = ObjectManager::GetInstance()->ThrowObject(Item, (*Item));
 }
 
 /*

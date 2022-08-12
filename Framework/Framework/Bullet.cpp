@@ -20,9 +20,9 @@ Object* Bullet::Initialize(string _Key)
 
 	TransInfo.Position = Vector3(0.0f, 0.0f);
 	TransInfo.Rotation = Vector3(0.0f, .0f);
-	TransInfo.Scale = Vector3((float)strlen(ch_Buffer[0]),(float)MAX_SIZE);
+	TransInfo.Scale = Vector3(0.5f,0.5f);
 
-	TransInfo.Direction= Vector3(0.0f, 0.0f);
+	TransInfo.Direction = Vector3(0.0f, 0.0f);
 
 	// Å¸°ÙÀ¸·Î ºÎÅÍ ³» ÁÂÇ¥¸¦ »©¸é µÊ
 
@@ -62,7 +62,7 @@ int  Bullet::Update()
 
 	Info.Position += Info.Direction;
 
-	*/
+	*/ 
 	if (pBridge)
 		return pBridge->Update(TransInfo);
 	
@@ -84,4 +84,6 @@ void Bullet::Release()
 
 void Bullet::LifeCheck()
 {
+	if (pBridge)
+		pBridge->Survival_Check(0);
 }

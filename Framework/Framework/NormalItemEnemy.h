@@ -11,7 +11,9 @@ class NormalItemEnemy : public EnemyBridge
 private:
 	virtual void InputImage(OBJECT_STATE State)override;
 	virtual void Image_Initialize()override;
-	virtual void Shoot_Bullet()override;
+
+	float m_iUpDown;
+	bool m_bUpDown;
 
 public:
 

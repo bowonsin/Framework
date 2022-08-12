@@ -30,6 +30,28 @@ void ObjectManager::AddObject(string _Key) // 있는거 할성화 또는 만들어서
 		iter->second.push_back(pObject);
 }
 
+void ObjectManager::AddObject(string _Key, Vector3 _Position)
+{
+	Object* pObject = ObjectPool::GetInstance()->Recycle(_Key);
+
+	if (pObject == nullptr)
+		pObject = Prototype::GetInstance()->ProtoTypeObject(_Key)->Clone();
+
+	pObject->Initialize(_Key);
+	pObject->Setposition(_Position);
+
+	map<string, list<Object*>>::iterator iter = EnableList->find(_Key);
+
+	if (iter == EnableList->end())
+	{
+		list<Object*> TempList;
+		TempList.push_back(pObject);
+		EnableList->insert(make_pair(pObject->GetKey(), TempList));
+	}
+	else
+		iter->second.push_back(pObject);
+}
+
 void ObjectManager::AddObject(string _Key, Bridge* _Bridge)
 {
 	Object* pObject = ObjectPool::GetInstance()->Recycle(_Key);

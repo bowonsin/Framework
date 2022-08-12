@@ -10,6 +10,7 @@ public:
 	virtual void Release()PURE;
 
 protected:
+	UserInterface* Clear_Ui;
 	UserInterface* OutSide_UI;
 	UserInterface* UI;
 

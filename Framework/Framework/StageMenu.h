@@ -11,6 +11,8 @@ public:
 private:
 	int m_iSelect_Stage;
 
+	int m_iStage_unlock;
+
 public:
 	StageMenu();
 	virtual ~StageMenu();

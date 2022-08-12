@@ -4,16 +4,17 @@
 #include "SceneManager.h"
 #include "ScoreInterface.h"
 
-StageMenu::StageMenu(): m_iSelect_Stage(0){}
+StageMenu::StageMenu(): m_iSelect_Stage(0), m_iStage_unlock(1){}
 StageMenu::~StageMenu() { Release(); }
 
 void StageMenu::Initialize()
 {
+
 	UI = new StageMenuInterface;
 	UI->Initialize();
 	OutSide_UI = new ScoreInterface;
 	OutSide_UI->Initialize();
-
+	
 	m_iSelect_Stage = STAGE_MENU::SELECT_EXIT;
 }
 

@@ -12,7 +12,8 @@ public:
 private:
 	virtual void InputImage(OBJECT_STATE State)override;
 	virtual void Image_Initialize()override;
-	virtual void Shoot_Bullet()override;
+
+	void Hit_Check();
 
 public:
 	BossEnemy();

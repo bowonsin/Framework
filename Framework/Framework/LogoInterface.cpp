@@ -60,9 +60,8 @@ int LogoInterface::Update()
 
 void LogoInterface::Render()
 {
-
 	for (int i = 0; i < m_vecTextureImage.size(); ++i)
-		ImageDraw(i);
+		UserInterface::ImageDraw(i);
 }
 
 void LogoInterface::Release()

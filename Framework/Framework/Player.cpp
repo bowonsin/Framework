@@ -13,7 +13,7 @@
 
 
 
-Player::Player():Speed(0),m_lTimer(0) {}
+Player::Player():Speed(0),m_lTimer(0) , m_iTime_Count_Check(0), m_iColor(15), m_lBullet_timer(0),m_iPowerUp(0), m_iLife_Check(0){}
 Player::Player(Transform _info):Object(_info){}
 Player::~Player() { Release(); }
 
@@ -22,16 +22,22 @@ Object* Player::Initialize(string _Key)
 	strKey = _Key;
 	Hp = 10;
 	
-	Speed = 3.0f;
+	Speed = 1.0f; // 속도 조절
+	m_iTime_Count_Check = 0; // 시간 카운트 체크
+	m_iColor = 15; // Player 색
+	m_bCollision_Check = true; // 충돌 온 오프 체크 
+	m_iPowerUp = 0;
 
+	m_iLife_Check = 0;
 	TransInfo.Position = Vector3(20.0f, 15.0f);
 	ch_Buffer.push_back((char*)"＼―≥ ");
 	ch_Buffer.push_back((char*)"｜￣￣￣＼＞");
 	ch_Buffer.push_back((char*)"／￣￣￣￣");
 
-	TransInfo.Scale = Vector3((float)strlen(ch_Buffer[0]), ch_Buffer.size() - 0.5f );
+	
+	TransInfo.Scale = Vector3((float)strlen(ch_Buffer[0]), ch_Buffer.size() - 0.5f);
 	m_lTimer = GetTickCount64();
-
+	m_lBullet_timer = GetTickCount64();
 	return this;
 }
 
@@ -39,9 +45,9 @@ Object* Player::Initialize(string _Key)
 int Player::Update()
 {
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
-	if (dwKey & KEY_UP)
+	if (dwKey & KEY_UP && limit_Move_y(true))
 		TransInfo.Position.y -= 1 * Speed;
-	if (dwKey & KEY_DOWN)
+	if (dwKey & KEY_DOWN && limit_Move_y(false))
 		TransInfo.Position.y += 1* Speed;
 	if (dwKey & KEY_LEFT && limit_Move_x(true))
 		TransInfo.Position.x -= 1* Speed;
@@ -53,37 +59,48 @@ int Player::Update()
 	//	TransInfo.Position.x += 1;
 	//	TransInfo.Position.y += 1;
 	//}
-
-	if (dwKey & KEY_SPACE)
+	if (m_lBullet_timer + ( 800  - m_iPowerUp * 100 )< GetTickCount64())
 	{
-		/*
-		Object* BulletRe;
-		if (ObjectPool::GetInstance()->Getlist("Bullet")->size() <= 2)
+		if (dwKey & KEY_SPACE)
 		{
-			BulletRe = Prototype::GetInstance()->ProtoTypeObject("Bullet")->Clone();
-			BulletRe->Setposition(TransInfo.Position);
-			ObjectManager::GetInstance()->AddObject(BulletRe);
-		}
-		else
-		{
-			BulletRe =  ObjectPool::GetInstance()->Recycle("Bullet");
-			BulletRe->Setposition(TransInfo.Position);
-			ObjectManager::GetInstance()->AddObject(BulletRe);
-		}
-		*/
-
-		Bridge* pBridge = new NormalBullet;
-		ObjectManager::GetInstance()->AddObject_Bullet("NormalBullet", pBridge, TransInfo.Position);
-
-		if (m_lTimer + 600 < GetTickCount64())// -> 파워 업 하면 공격 주기가 점점 짧아지게 하도록.
-		{
-			m_lTimer = GetTickCount64();
-			
-			//ObjectManager::GetInstance()->AddBullet( pBridge, TransInfo.Position);
+			/*
+			Object* BulletRe;
+			if (ObjectPool::GetInstance()->Getlist("Bullet")->size() <= 2)
+			{
+				BulletRe = Prototype::GetInstance()->ProtoTypeObject("Bullet")->Clone();
+				BulletRe->Setposition(TransInfo.Position);
+				ObjectManager::GetInstance()->AddObject(BulletRe);
+			}
+			else
+			{
+				BulletRe =  ObjectPool::GetInstance()->Recycle("Bullet");
+				BulletRe->Setposition(TransInfo.Position);
+				ObjectManager::GetInstance()->AddObject(BulletRe);
+			}
+			*/
+			m_lBullet_timer = GetTickCount64();
+			Bridge* pBridge = new NormalBullet;
+			ObjectManager::GetInstance()->AddObject_Bullet("NormalBullet", pBridge, TransInfo.Position);
 		}
 	}
 
-	return 0;
+	if (!m_bCollision_Check)
+	{
+		if (m_lTimer + 500 < GetTickCount64())// -> 파워 업 하면 공격 주기가 점점 짧아지게 하도록.
+		{
+			m_lTimer = GetTickCount64();
+			if (m_iTime_Count_Check >= 4)
+			{
+				m_bCollision_Check = true;
+				m_iTime_Count_Check = 0;
+				m_iColor = 15;
+			}
+			++m_iTime_Count_Check;
+		}
+		//ObjectManager::GetInstance()->AddBullet( pBridge, TransInfo.Position);
+	}
+
+	return m_iLife_Check;
 }
 
 void Player::Render()
@@ -93,7 +110,7 @@ void Player::Render()
 		CursorManager::GetInstance()->WriteBuffer(
 			TransInfo.Position.x,
 			TransInfo.Position.y + i,
-			ch_Buffer[i], 15);
+			ch_Buffer[i], m_iColor);
 	}
 }
 	//cout << "Player" << endl;
@@ -105,14 +122,36 @@ void Player::Release()
 
 void Player::LifeCheck()
 {
-	
+	--Hp;
+	m_bCollision_Check = false;
+	m_iColor = 12;
+	if (Hp == 0)
+		m_iLife_Check = BUFFER_OVER;
+}
+void Player::Power_Up()
+{
+	if (m_iPowerUp <= 5)
+	{
+		Speed += 0.5f;
+		++m_iPowerUp;
+	}
 }
 bool Player::limit_Move_x(bool Check)
 {
-	if (Check && TransInfo.Position.x <= Player_Limit_x_Min)
+ 	if (Check && TransInfo.Position.x <= Player_Limit_x_Min + 2)
 		return false;
-	else if (!Check && TransInfo.Position.x >= InGameConsole_WidthSize)
+	else if (!Check && TransInfo.Position.x >= InGameConsole_WidthSize - 2)
 		return false;
 
 	return true;
+}
+
+bool Player::limit_Move_y(bool Check)
+{
+	if (Check && TransInfo.Position.y <= 7)
+		return false;
+	else if (!Check && TransInfo.Position.y >= ConsoleHeightSize - 7)
+		return false;
+
+	return true ;
 }

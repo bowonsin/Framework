@@ -145,10 +145,12 @@
     <ClCompile Include="BossEnemy.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletBridge.cpp" />
+    <ClCompile Include="ClearCheckInterface.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyNormalBullet.cpp" />
     <ClCompile Include="HomingBullet.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="Logo.cpp" />
     <ClCompile Include="LogoInterface.cpp" />
     <ClCompile Include="main.cpp" />
@@ -186,6 +188,7 @@
     <ClInclude Include="Bridge.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletBridge.h" />
+    <ClInclude Include="ClearCheckInterface.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Constant.h" />
     <ClInclude Include="CursorManager.h" />
@@ -197,6 +200,7 @@
     <ClInclude Include="Headers.h" />
     <ClInclude Include="HomingBullet.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="Logo.h" />
     <ClInclude Include="LogoInterface.h" />
     <ClInclude Include="MainUpdate.h" />

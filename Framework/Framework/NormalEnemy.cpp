@@ -168,7 +168,3 @@ void NormalEnemy::Image_Initialize()
     m_vecImageList.push_back(Image_Data);
     Image_Data.Dot_Image.clear();
 }
-
-void NormalEnemy::Shoot_Bullet()
-{
-}

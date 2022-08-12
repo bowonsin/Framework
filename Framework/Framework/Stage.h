@@ -12,23 +12,26 @@ public:
 	virtual void Release()PURE;
 
 protected:
-
 	Object* pPlayer;
 	ULONGLONG m_LTimer;
 	int m_iTime_Setting;
 
-	void Stage_Collision_Check();
+	bool m_bBoss_Check ;
 
+	void Stage_Collision_Check();
+	void Monster_Setting();
+	void Obejct_Disable();
+	void Regen_Enemy(string EnemyName, Vector3 _Position, int Monster_Hp);
+
+	virtual void Time_to_RegenMonster()PURE;
+
+private:
 	void Player_Enemy_Collision_Check(list<Object*>* NormalEnemy);
 	void Player_EnemyBullet_Collision_Check(list<Object*>* EnemyBullet);
 	void PlayerBullet_Enemy_Collision_Check(list<Object*>* Player_Bullet, list<Object*>* EnemyList);
-	void Enemy_Check(list<Object*>* EnemyList);
 
-	void Monster_Setting();
-	void Obejct_Disable();
+	void Player_Item_Collision_Check(list<Object*>* Item);
 
-	virtual void Time_to_RegenMonster()PURE;
-	virtual void Regen_Enemy(string EnemyName, Vector3 _Position, int Monster_Hp)PURE;
 
 public:
 	Stage();
